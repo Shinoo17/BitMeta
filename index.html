@@ -7,7 +7,7 @@
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <!-- JQuery -->
     <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Swiper -->
@@ -55,7 +55,10 @@
 			$ <span id="show-price-text">60000</span>
 		</div>
 		<div class="show-name">
-			<div><span id="show-name-text">Bitcoin</span><sup id="show-symbol-text">BTC</sup></div>
+			<div>
+				<img src="image/icon/BTC.png" class="coin-symbol" id="symbol">
+				<span id="show-name-text">Bitcoin</span><sup class="show-symbol">(<span id="show-symbol-text">BTC</span>)</sup>
+			</div>
 		</div>
 
 		<!-- Debug Swiper -->
@@ -151,12 +154,9 @@
 							return response.json()
 						})
 						.then(function(data){
-							price = parseFloat(data[11]['price']).toFixed(2); coin_name = "Bitcoin"; symbol = "(BTC)";
-							document.getElementById('show-price-text').innerHTML = price;
-							document.getElementById('show-name-text').innerHTML = coin_name;
-							document.getElementById('show-symbol-text').innerHTML = symbol;
+							document.getElementById('show-price-text').innerHTML = parseFloat(data[11]['price']).toFixed(2);
 						});
-					}
+					},
 				},
             });
 			let current_index;
@@ -171,18 +171,19 @@
 				})
 				.then(function (data){
 					switch(current_index){
-					case 0: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "(AXS)"; break;	// page 1 -> 5
-					case 1: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "(BTC)"; break;
-					case 2: price = parseFloat(data[12]['price']).toFixed(2); 	coin_name = "Ethereum"; symbol = "(ETH)"; break;
-					case 3: price = parseFloat(data[98]['price']).toFixed(2); 	coin_name = "Binance Coin"; symbol = "(BNB)"; break;
-					case 4: price = parseFloat(data[298]['price']).toFixed(2);  coin_name = "Cardano"; symbol = "(ADA)"; break;
-					case 5: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "(AXS)"; break;
-					case 6: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "(BTC)"; break;			// page 5 -> 1
+					case 0: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "AXS"; break;	// page 1 -> 5
+					case 1: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "BTC"; break;
+					case 2: price = parseFloat(data[12]['price']).toFixed(2); 	coin_name = "Ethereum"; symbol = "ETH"; break;
+					case 3: price = parseFloat(data[98]['price']).toFixed(2); 	coin_name = "Binance Coin"; symbol = "BNB"; break;
+					case 4: price = parseFloat(data[298]['price']).toFixed(2);  coin_name = "Cardano"; symbol = "ADA"; break;
+					case 5: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "AXS"; break;
+					case 6: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "BTC"; break;			// page 5 -> 1
 					default: price = "out of data"; coin_name = "out of data"; break;
 					}
-					document.getElementById('show-price-text').innerHTML = price;
-					document.getElementById('show-name-text').innerHTML = coin_name;
-					document.getElementById('show-symbol-text').innerHTML = symbol;
+					document.getElementById("show-price-text").innerHTML = price;
+					document.getElementById("show-name-text").innerHTML = coin_name;
+					document.getElementById("show-symbol-text").innerHTML = symbol;
+					document.getElementById("symbol").src = "image/icon/" + symbol + ".png";
 				});
 			});
         </script>

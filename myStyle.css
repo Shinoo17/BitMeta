@@ -13,7 +13,7 @@ body {
     font-size: 100px;
     position: absolute;
     left: 50%;
-    top: 430px;
+    top: 425px;
     transform: translate(-50%, -50%);
     
     z-index: 9;
@@ -32,11 +32,17 @@ body {
     text-shadow: 2px 2px 0px #000000;
 }
 
-#show-symbol-text{
+.show-symbol{
     font-size: 25px;
     position: relative;
     top: -15px;
     left: 10px;
+}
+
+.coin-symbol{
+    width: 65px; 
+    height: 65px; 
+    margin-top: -15px;
 }
 
 .nav-overtop{
@@ -44,7 +50,7 @@ body {
 }
 
 .swiper-move-top{
-    margin-top: -60px;
+    margin-top: -56px;
 }
 
 .swiper {
