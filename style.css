@@ -1,0 +1,121 @@
+body{
+    /*#E2A9E5, #632C65, #4B384C*/
+   background-color:#4B384C;
+   margin:0 auto;
+   overflow:hidden;
+ }
+ h1{
+   transition:500ms;
+   top:50%;
+   left:50%;
+   text-align:center;
+   transform:translate(-50%,-50%);
+   width:100%;
+   position:absolute;
+   color:#E2A9E5;
+   opacity:0.3;
+ }
+ .circle{
+   position:absolute;
+   top:50%;
+   left:50%;
+   height:15vw;
+   width:15vw;
+   border-radius:100vw;
+   border:dashed 2px #E2A9E5;
+   transform:translate(-50%,-50%);
+   z-index:1;
+   transition:500ms;
+   filter:url('#goo');
+   
+ }
+ .circleCover{
+   position:absolute;
+   top:50%;
+   left:50%;
+   height:calc(100% - 2px);
+   width:calc(100% - 2px);
+   border-radius:100vw;
+   transform:translate(-50%,-50%);
+   background-color:#E2A9E5;
+   z-index:3;
+   filter:url('#goo');
+ }
+ .box{
+   position:absolute;
+   top:50%;
+   left:50%;
+   height:25%;
+   width:25%;
+   border-radius:100vw;
+   border:dashed 2px #E2A9E5;
+   transform:translate(-50%,-50%);
+   background-color:#000;
+   transition:800ms;
+   z-index:2;
+   filter:url('#goo');
+ }
+ .topRight{
+   position:absolute;
+   top:0%;
+   right:0%;
+   height:50%;
+   width:50%;
+   transition:800ms;
+ }
+ .topLeft{
+   position:absolute;
+   top:0%;
+   left:0%;
+   height:50%;
+   width:50%;
+   transition:800ms;
+ }
+ .bottomRight{
+   position:absolute;
+   bottom:0%;
+   right:0%;
+   height:50%;
+   width:50%;
+   transition:800ms;
+ }
+ .bottomLeft{
+   position:absolute;
+   bottom:0%;
+   left:0%;
+   height:50%;
+   width:50%;
+   transition:800ms;
+ }
+ .topLeft:hover,.topRight:hover,.bottomLeft:hover,.bottomRight:hover{
+   background-color:#632C65;
+   cursor:pointer;
+ }
+ .topLeft:hover > h1,
+ .topRight:hover > h1,
+ .bottomLeft:hover > h1,
+ .bottomRight:hover > h1{
+   opacity:1;
+ }
+ /* .topRight:hover ~ .circle{
+   border-top:dashed 2px #ffffff;
+ } */
+ .topLeft:hover ~ .circle > .box{
+   top:9%;
+   left:9%;
+ }
+ .topRight:hover ~ .circle > .box{
+   top:9%;
+   left:91%;
+ }
+ .bottomLeft:hover ~ .circle > .box{
+   top:91%;
+   left:9%;
+ }
+ .bottomRight:hover ~ .circle > .box{
+   top:91%;
+   left:91%;
+ }
+ .topRight:hover > h1, .topLeft:hover > h1, .bottomRight:hover > h1, .bottomLeft:hover > h1{
+   opacity:1;
+ }
