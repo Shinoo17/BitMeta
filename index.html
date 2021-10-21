@@ -38,100 +38,99 @@
 		<!-- Swiper -->
         <div class="swiper swiper-move-top">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="image/index/bitcoin-2.jpg"></div>
-              <div class="swiper-slide"><img src="image/index/ETH-1.png"></div>
-              <div class="swiper-slide"><img src="image/index/BNB-2.png"></div>
-              <div class="swiper-slide"><img src="image/index/Cardano-2.png"></div>
-              <div class="swiper-slide"><img src="image/index/AXS-1.png"></div>
+              <div class="swiper-slide"><img src="image/index/bitcoin-2.jpg" class="swiper-img-move"></div>
+              <div class="swiper-slide"><img src="image/index/ETH-1.png" class="swiper-img-move"></div>
+              <div class="swiper-slide"><img src="image/index/BNB-2.png" class="swiper-img-move"></div>
+              <div class="swiper-slide"><img src="image/index/Cardano-2.png" class="swiper-img-move"></div>
+              <div class="swiper-slide"><img src="image/index/AXS-1.png" class="swiper-img-move"></div>
             </div>
-            <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
-            <!-- Add Navigation -->
 			<div class="swiper-button-prev swiper-button-white"></div>
 			<div class="swiper-button-next swiper-button-white"></div>
         </div>
 
-		<div class="show-price">
-			$ <span id="show-price-text">60000</span>
+		<!-- Show Price and coin Name -->
+		<div id="show-price" class="FadeIn">
+			$ <span id="show-price-text">60000.00</span>
 		</div>
-		<div class="show-name">
+		<div id="show-name" class="FadeIn">
 			<div>
-				<img src="image/icon/BTC.png" class="coin-symbol" id="symbol">
+				<img src="image/icon/BTC.png" id="icon" class="coin-icon">
 				<span id="show-name-text">Bitcoin</span><sup class="show-symbol">(<span id="show-symbol-text">BTC</span>)</sup>
 			</div>
 		</div>
 
 		<!-- Debug Swiper -->
 		<script>
-            function myPlugin({ swiper, extendParams, on }) {
-              extendParams({
-                debugger: false,
-              });
-      
-              on('init', () => {
-                if (!swiper.params.debugger) return;
-                console.log('init');
-              });
-              on('click', (swiper, e) => {
-                if (!swiper.params.debugger) return;
-                console.log('click');
-              });
-              on('tap', (swiper, e) => {
-                if (!swiper.params.debugger) return;
-                console.log('tap');
-              });
-              on('doubleTap', (swiper, e) => {
-                if (!swiper.params.debugger) return;
-                console.log('doubleTap');
-              });
-              on('sliderMove', (swiper, e) => {
-                if (!swiper.params.debugger) return;
-                console.log('sliderMove');
-              });
-              on('slideChange', () => {
-                if (!swiper.params.debugger) return;
-                console.log(
-                  'slideChange',
-                  swiper.previousIndex,
-                  '->',
-                  swiper.activeIndex
-                );
-              });
-              on('slideChangeTransitionStart', () => {
-                if (!swiper.params.debugger) return;
-                console.log('slideChangeTransitionStart');
-              });
-              on('slideChangeTransitionEnd', () => {
-                if (!swiper.params.debugger) return;
-                console.log('slideChangeTransitionEnd');
-              });
-              on('transitionStart', () => {
-                if (!swiper.params.debugger) return;
-                console.log('transitionStart');
-              });
-              on('transitionEnd', () => {
-                if (!swiper.params.debugger) return;
-                console.log('transitionEnd');
-              });
-              on('fromEdge', () => {
-                if (!swiper.params.debugger) return;
-                console.log('fromEdge');
-              });
-              on('reachBeginning', () => {
-                if (!swiper.params.debugger) return;
-                console.log('reachBeginning');
-              });
-              on('reachEnd', () => {
-                if (!swiper.params.debugger) return;
-                console.log('reachEnd');
-              });
-            }
-        </script>
+			function myPlugin({ swiper, extendParams, on }) {
+			extendParams({
+				debugger: false,
+			});
+
+			on('init', () => {
+				if (!swiper.params.debugger) return;
+				console.log('init');
+			});
+			on('click', (swiper, e) => {
+				if (!swiper.params.debugger) return;
+				console.log('click');
+			});
+			on('tap', (swiper, e) => {
+				if (!swiper.params.debugger) return;
+				console.log('tap');
+			});
+			on('doubleTap', (swiper, e) => {
+				if (!swiper.params.debugger) return;
+				console.log('doubleTap');
+			});
+			on('sliderMove', (swiper, e) => {
+				if (!swiper.params.debugger) return;
+				console.log('sliderMove');
+			});
+			on('slideChange', () => {
+				if (!swiper.params.debugger) return;
+				console.log(
+				'slideChange',
+				swiper.previousIndex,
+				'->',
+				swiper.activeIndex
+				);
+			});
+			on('slideChangeTransitionStart', () => {
+				if (!swiper.params.debugger) return;
+				console.log('slideChangeTransitionStart');
+			});
+			on('slideChangeTransitionEnd', () => {
+				if (!swiper.params.debugger) return;
+				console.log('slideChangeTransitionEnd');
+			});
+			on('transitionStart', () => {
+				if (!swiper.params.debugger) return;
+				console.log('transitionStart');
+			});
+			on('transitionEnd', () => {
+				if (!swiper.params.debugger) return;
+				console.log('transitionEnd');
+			});
+			on('fromEdge', () => {
+				if (!swiper.params.debugger) return;
+				console.log('fromEdge');
+			});
+			on('reachBeginning', () => {
+				if (!swiper.params.debugger) return;
+				console.log('reachBeginning');
+			});
+			on('reachEnd', () => {
+				if (!swiper.params.debugger) return;
+				console.log('reachEnd');
+			});
+			}
+		</script>
 
         <script>
             // Init Swiper
             let swiper = new Swiper('.swiper', {
-                modules: [myPlugin],
+				modules: [myPlugin],
                 loop: true,
                 autoplay: {
                     delay: 5500,
@@ -155,6 +154,13 @@
 						})
 						.then(function(data){
 							document.getElementById('show-price-text').innerHTML = parseFloat(data[11]['price']).toFixed(2);
+							// remove FadeIn Animation
+							var element1 = document.getElementById("show-price");
+							var element2 = document.getElementById("show-name");
+							setTimeout(function(){
+								element1.classList.remove("FadeIn");
+								element2.classList.remove("FadeIn");
+							},500);
 						});
 					},
 				},
@@ -163,7 +169,7 @@
 			let price;
 			let coin_name;
 			let symbol;
-			swiper.on('slideChangeTransitionEnd', function(){
+			swiper.on('slideChange', function(){
 				current_index = swiper.activeIndex;
 				fetch("https://api.binance.com/api/v3/ticker/price")
 				.then(function (response){
@@ -171,25 +177,47 @@
 				})
 				.then(function (data){
 					switch(current_index){
-					case 0: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "AXS"; break;	// page 1 -> 5
-					case 1: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "BTC"; break;
-					case 2: price = parseFloat(data[12]['price']).toFixed(2); 	coin_name = "Ethereum"; symbol = "ETH"; break;
-					case 3: price = parseFloat(data[98]['price']).toFixed(2); 	coin_name = "Binance Coin"; symbol = "BNB"; break;
-					case 4: price = parseFloat(data[298]['price']).toFixed(2);  coin_name = "Cardano"; symbol = "ADA"; break;
-					case 5: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "AXS"; break;
-					case 6: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "BTC"; break;			// page 5 -> 1
-					default: price = "out of data"; coin_name = "out of data"; break;
+						case 0: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity";symbol = "AXS"; break;	// page 1 -> 5
+						case 1: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; 		symbol = "BTC"; break;
+						case 2: price = parseFloat(data[12]['price']).toFixed(2); 	coin_name = "Ethereum"; 	symbol = "ETH"; break;
+						case 3: price = parseFloat(data[98]['price']).toFixed(2); 	coin_name = "Binance Coin"; symbol = "BNB"; break;
+						case 4: price = parseFloat(data[298]['price']).toFixed(2);  coin_name = "Cardano"; 		symbol = "ADA"; break;
+						case 5: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity";symbol = "AXS"; break;
+						case 6: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; 		symbol = "BTC"; break;	// page 5 -> 1
+						default: price = "out of data"; coin_name = "out of data"; break;
 					}
 					document.getElementById("show-price-text").innerHTML = price;
 					document.getElementById("show-name-text").innerHTML = coin_name;
 					document.getElementById("show-symbol-text").innerHTML = symbol;
-					document.getElementById("symbol").src = "image/icon/" + symbol + ".png";
+					document.getElementById("icon").src = "image/icon/" + symbol + ".png";
+					// FadeIn Animation
+					var element1 = document.getElementById("show-price");
+					var element2 = document.getElementById("show-name");
+					element1.classList.add("FadeIn");
+					element2.classList.add("FadeIn");
+					setTimeout(function(){
+						element1.classList.remove("FadeIn");
+						element2.classList.remove("FadeIn");
+						
+					},500);
 				});
 			});
+
+			// scroll mouse
+			var scrollArea = 872;
+			var ele = document.getElementsByClassName('swiper-img-move');
+			window.addEventListener('scroll', function() {
+				var scrollPercent = window.pageYOffset/scrollArea || 0;
+				for(var i=0; i<ele.length; i++){
+					ele[i].style.marginTop = scrollPercent*500 + 'px';
+				}
+			});
         </script>
+		
+
     </div>
 
-    <!-- Mini Chart -->
+    <!-- TradingView Mini Chart -->
     <div class="container">
         <br><br><br><br><br>
         <div class="row">
@@ -203,7 +231,7 @@
                         "width": "312",
                         "height": "100%",
                         "locale": "en",
-                        "dateRange": "3M",
+                        "dateRange": "1M",
                         "colorTheme": "dark",
                         "trendLineColor": "rgba(73, 133, 231, 1)",
                         "underLineColor": "rgba(41, 98, 255, 0.3)",
@@ -226,7 +254,7 @@
                         "width": "312",
                         "height": "100%",
                         "locale": "en",
-                        "dateRange": "3M",
+                        "dateRange": "1M",
                         "colorTheme": "dark",
                         "trendLineColor": "rgba(73, 133, 231, 1)",
                         "underLineColor": "rgba(41, 98, 255, 0.3)",
@@ -249,7 +277,7 @@
                         "width": "312",
                         "height": "100%",
                         "locale": "en",
-                        "dateRange": "3M",
+                        "dateRange": "1M",
                         "colorTheme": "dark",
                         "trendLineColor": "rgba(73, 133, 231, 1)",
                         "underLineColor": "rgba(41, 98, 255, 0.3)",
@@ -272,7 +300,7 @@
                             "width": "312",
                             "height": "100%",
                             "locale": "en",
-                            "dateRange": "3M",
+                            "dateRange": "1M",
                             "colorTheme": "dark",
                             "trendLineColor": "rgba(73, 133, 231, 1)",
                             "underLineColor": "rgba(41, 98, 255, 0.3)",
@@ -288,6 +316,7 @@
         </div>
         <br><br><br><br>
     </div>
-	
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
