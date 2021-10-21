@@ -124,7 +124,7 @@
                 console.log('reachEnd');
               });
             }
-          </script>
+        </script>
 
         <script>
             // Init Swiper
@@ -276,24 +276,6 @@
         </div>
         <br><br><br><br>
     </div>
-
-	<!-- function update price -->
-    <script>
-        function updatePriceTest(){
-            fetch("https://api.binance.com/api/v3/ticker/price")
-            .then(function (response){
-                return response.json()
-            })
-            .then(function (data){
-                document.getElementById('BTC_Price').innerHTML = parseFloat(data[11]['price']).toFixed(2);
-                document.getElementById('ETH_Price').innerHTML = parseFloat(data[12]['price']).toFixed(2);
-                document.getElementById('BNB_Price').innerHTML = parseFloat(data[98]['price']).toFixed(2);
-                document.getElementById('ADA_Price').innerHTML = parseFloat(data[298]['price']).toFixed(2);
-            })
-        }
-        window.onload = updatePrice();
-		
-    </script>
 	
 </body>
 </html>
