@@ -16,6 +16,7 @@
     <!-- my css -->
     <link rel="stylesheet" href="myStyle.css">
 
+	<link rel="icon" href="image/icon_200x200.png" type="image/x-icon">
     <title>BitMeta</title>
 </head>
 <body>
@@ -46,21 +47,19 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
             <!-- Add Navigation -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+			<div class="swiper-button-prev swiper-button-white"></div>
+			<div class="swiper-button-next swiper-button-white"></div>
         </div>
-        
-        <div class="show-price">
-            $ <span id="show-price-text">60000</span>
-        </div>
+
+		<div class="show-price">
+			$ <span id="show-price-text">60000</span>
+		</div>
 		<div class="show-name">
 			<div><span id="show-name-text">Bitcoin</span><sup id="show-symbol-text">BTC</sup></div>
 		</div>
 
+		<!-- Debug Swiper -->
 		<script>
-            /* ========
-            Debugger plugin, simple demo plugin to console.log some of callbacks
-            ======== */
             function myPlugin({ swiper, extendParams, on }) {
               extendParams({
                 debugger: false,
@@ -132,9 +131,9 @@
                 modules: [myPlugin],
                 loop: true,
                 autoplay: {
-                    delay: 5000,
+                    delay: 5500,
                 },
-                spaceBetween: 10,
+                spaceBetween: 0,
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -145,12 +144,26 @@
                 },
                 // Enable debugger
                 debugger: true,
+				on: {
+					init: function(){
+						fetch("https://api.binance.com/api/v3/ticker/price")
+						.then(function (response){
+							return response.json()
+						})
+						.then(function(data){
+							price = parseFloat(data[11]['price']).toFixed(2); coin_name = "Bitcoin"; symbol = "(BTC)";
+							document.getElementById('show-price-text').innerHTML = price;
+							document.getElementById('show-name-text').innerHTML = coin_name;
+							document.getElementById('show-symbol-text').innerHTML = symbol;
+						});
+					}
+				},
             });
 			let current_index;
 			let price;
 			let coin_name;
 			let symbol;
-			swiper.on('transitionEnd', function(){
+			swiper.on('slideChangeTransitionEnd', function(){
 				current_index = swiper.activeIndex;
 				fetch("https://api.binance.com/api/v3/ticker/price")
 				.then(function (response){
@@ -158,23 +171,21 @@
 				})
 				.then(function (data){
 					switch(current_index){
-					case 0: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "(AXS)"; break;
+					case 0: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "(AXS)"; break;	// page 1 -> 5
 					case 1: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "(BTC)"; break;
 					case 2: price = parseFloat(data[12]['price']).toFixed(2); 	coin_name = "Ethereum"; symbol = "(ETH)"; break;
-					case 3: price = parseFloat(data[98]['price']).toFixed(2); 	coin_name = "Binance Coin"; symbol = "BNB"; break;
-					case 4: price = parseFloat(data[298]['price']).toFixed(2);  coin_name = "Cardano"; symbol = "ADA"; break;
-					case 5: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "AXS"; break;
-					case 6: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "BTC"; break;
+					case 3: price = parseFloat(data[98]['price']).toFixed(2); 	coin_name = "Binance Coin"; symbol = "(BNB)"; break;
+					case 4: price = parseFloat(data[298]['price']).toFixed(2);  coin_name = "Cardano"; symbol = "(ADA)"; break;
+					case 5: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity"; symbol = "(AXS)"; break;
+					case 6: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; symbol = "(BTC)"; break;			// page 5 -> 1
 					default: price = "out of data"; coin_name = "out of data"; break;
 					}
 					document.getElementById('show-price-text').innerHTML = price;
 					document.getElementById('show-name-text').innerHTML = coin_name;
 					document.getElementById('show-symbol-text').innerHTML = symbol;
-				})
-			})
-          </script>
-        </div>
-		
+				});
+			});
+        </script>
     </div>
 
     <!-- Mini Chart -->

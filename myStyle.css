@@ -12,9 +12,10 @@ body {
     color: #f9f9f9;
     font-size: 100px;
     position: absolute;
-    text-align: center;
-    width: 100%;
-    top: 350px;
+    left: 50%;
+    top: 430px;
+    transform: translate(-50%, -50%);
+    
     z-index: 9;
     text-shadow: 2px 2px 10px #000000;
 }
@@ -51,6 +52,7 @@ body {
     height: 870px;
 }
 
+/* swiper img responsive */
 .swiper-slide img {
     display: block;
     width: 100%;
@@ -80,4 +82,8 @@ body {
 
 .swiper-pagination-bullet-active {
     background-color: #f9f9f9;
+}
+
+.swiper-button-white {
+    color: white;
 }
