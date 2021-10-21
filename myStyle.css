@@ -1,0 +1,67 @@
+@import url('http://fonts.cdnfonts.com/css/sofia-pro');
+
+html,
+body {
+    color: aliceblue;
+    background:#10122d;
+    position: relative;
+}
+
+.coin-price{
+    font-family: 'Sofia Pro', sans-serif;
+    color: #f9f9f9;
+    font-size: 80px;
+    position: absolute;
+    left: 42%;
+    top: 480px;
+    z-index: 9;
+    text-shadow: 2px 2px 0px #000000;
+}
+
+.coin-name{
+    font-family: 'Sofia Pro', sans-serif;
+    color: #f9f9f9;
+    font-size: 80px;
+    position: absolute;
+    left: 42%;
+    top: 370px;
+    z-index: 9;
+    text-shadow: 2px 2px 0px #000000;
+}
+
+.swiper-move-top{
+    margin-top: -60px;
+}
+
+.nav-overtop{
+    z-index: 9;
+}
+
+.swiper {
+    width: 100%;
+    height: 870px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #f9f9f9;
+}
