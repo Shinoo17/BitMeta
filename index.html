@@ -5,16 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <!-- JQuery -->
     <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <!-- my css -->
-    <link rel="stylesheet" href="myStyle.css">
+    <!-- my css & javsscript -->
+    <link rel="stylesheet" href="indexStyle.css">
+	<script src="indexFunction.js"></script>
 
 	<link rel="icon" href="image/icon_200x200.png" type="image/x-icon">
     <title>BitMeta</title>
@@ -22,7 +23,7 @@
 <body>
     <div>
 		<!-- navbar -->
-        <nav class="navbar navbar-expand navbar-dark nav-overtop" style="background-color: rgba(0,0,0,0)">
+        <nav class="navbar navbar-expand navbar-dark nav-overtop">
             <div class="container">
                 <a class="navbar-brand" href=""><i class="bi bi-house-door-fill"></i>Home</a>
                 <a class="navbar-link" href="market.php"><i class="bi bi-currency-exchange"></i>Market</a>
@@ -54,135 +55,13 @@
 			$ <span id="show-price-text">60000.00</span>
 		</div>
 		<div id="show-detail" class="noSelect FadeIn">
-			<div>
-				<img src="image/icon/BTC.png" id="icon" class="coin-icon">
-				<span id="show-detail-name">Bitcoin</span><sup class="show-symbol">(<span id="show-symbol-text">BTC</span>)</sup>
-			</div>
+			<img src="image/icon/BTC.png" id="icon" class="coin-icon">
+			<span id="show-detail-name">Bitcoin</span>
+			<span class="show-symbol" id="show-symbol-text">BTC</span> &nbsp;
+			<span class="detail-24change">PriceChange <br /><span id="priceChange">50.00</span></span> &nbsp;
+			<span class="detail-24change" style="position: relative; left: -35px;">24h <br /><span id="percentChange">5%</span></span>
 		</div>
 
-		<!-- Debug Swiper -->
-		<script>
-			let current_index;
-			let price;
-			let coin_name;
-			let symbol;
-			function swiperPlugin({ swiper, extendParams, on }) {
-				extendParams({
-					debugger: false,
-				});
-
-				on('init', () => {
-					if (!swiper.params.debugger) return;
-					console.log('init');
-					fetch("https://api.binance.com/api/v3/ticker/price")
-					.then(function (response){
-						return response.json()
-					})
-					.then(function(data){
-						document.getElementById('show-price-text').innerHTML = parseFloat(data[11]['price']).toFixed(2);
-						// remove FadeIn Animation
-						var element1 = document.getElementById("show-price");
-						var element2 = document.getElementById("show-detail");
-						setTimeout(function(){
-							element1.classList.remove("FadeIn");
-							element2.classList.remove("FadeIn");
-						},500);
-					});
-				});
-				on('click', (swiper, e) => {
-					if (!swiper.params.debugger) return;
-					console.log('click');
-				});
-				on('tap', (swiper, e) => {
-					if (!swiper.params.debugger) return;
-					console.log('tap');
-				});
-				on('doubleTap', (swiper, e) => {
-					if (!swiper.params.debugger) return;
-					console.log('doubleTap');
-				});
-				on('sliderMove', (swiper, e) => {
-					if (!swiper.params.debugger) return;
-					console.log('sliderMove');
-				});
-				on('slideChange', () => {
-					if (!swiper.params.debugger) return;
-					console.log(
-					'slideChange',
-					swiper.previousIndex,
-					'->',
-					swiper.activeIndex
-					);
-					current_index = swiper.activeIndex;
-					fetch("https://api.binance.com/api/v3/ticker/price")
-					.then(function (response){
-						return response.json()
-					})
-					.then(function (data){
-						switch(current_index){
-							case 0: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity";symbol = "AXS"; break;	// page 1 -> 5
-							case 1: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; 		symbol = "BTC"; break;
-							case 2: price = parseFloat(data[12]['price']).toFixed(2); 	coin_name = "Ethereum"; 	symbol = "ETH"; break;
-							case 3: price = parseFloat(data[98]['price']).toFixed(2); 	coin_name = "Binance Coin"; symbol = "BNB"; break;
-							case 4: price = parseFloat(data[298]['price']).toFixed(2);  coin_name = "Cardano"; 		symbol = "ADA"; break;
-							case 5: price = parseFloat(data[1148]['price']).toFixed(2); coin_name = "Axie Infinity";symbol = "AXS"; break;
-							case 6: price = parseFloat(data[11]['price']).toFixed(2); 	coin_name = "Bitcoin"; 		symbol = "BTC"; break;	// page 5 -> 1
-							default: price = "out of data"; coin_name = "out of data"; break;
-						}
-						document.getElementById("show-price-text").innerHTML = price;
-						document.getElementById("show-detail-name").innerHTML = coin_name;
-						document.getElementById("show-symbol-text").innerHTML = symbol;
-						document.getElementById("icon").src = "image/icon/" + symbol + ".png";
-						// FadeIn Animation
-						var element1 = document.getElementById("show-price");
-						var element2 = document.getElementById("show-detail");
-						element1.classList.add("FadeIn");
-						element2.classList.add("FadeIn");
-						setTimeout(function(){
-							element1.classList.remove("FadeIn");
-							element2.classList.remove("FadeIn");
-							
-						},500);
-					});
-				});
-				on('slideChangeTransitionStart', () => {
-					if (!swiper.params.debugger) return;
-					console.log('slideChangeTransitionStart');
-				});
-				on('slideChangeTransitionEnd', () => {
-					if (!swiper.params.debugger) return;
-					console.log('slideChangeTransitionEnd');
-				});
-				on('transitionStart', () => {
-					if (!swiper.params.debugger) return;
-					console.log('transitionStart');
-				});
-				on('transitionEnd', () => {
-					if (!swiper.params.debugger) return;
-					console.log('transitionEnd');
-				});
-				on('fromEdge', () => {
-					if (!swiper.params.debugger) return;
-					console.log('fromEdge');
-				});
-				on('reachBeginning', () => {
-					if (!swiper.params.debugger) return;
-					console.log('reachBeginning');
-				});
-				on('reachEnd', () => {
-					if (!swiper.params.debugger) return;
-					console.log('reachEnd');
-				});
-				// scroll mouse
-				var swiper_img = document.getElementsByClassName('swiper-img-move');
-				window.addEventListener('scroll', function() {
-					var imgMargin = window.pageYOffset/1.1 || 0
-					for(var i=0; i<swiper_img.length; i++){
-						swiper_img[i].style.marginTop = imgMargin + 'px';	// set swiper img marginTop
-					}
-				});
-			}
-		</script>
 		<!-- Init Swiper -->
         <script>
             let swiper = new Swiper('.swiper', {
@@ -205,7 +84,6 @@
             });
         </script>
 		
-
     </div>
 
     <!-- TradingView Mini Chart -->

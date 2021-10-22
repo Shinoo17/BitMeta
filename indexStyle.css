@@ -2,13 +2,13 @@
 
 html,
 body {
-    color: aliceblue;
+    font-family: 'Sofia Pro', sans-serif;
+    color: #f9f9f9;
     background:#10122d;
     position: relative;
 }
 
 #show-price{
-    font-family: 'Sofia Pro', sans-serif;
     color: #f9f9f9;
     font-size: 100px;
     position: absolute;
@@ -16,42 +16,49 @@ body {
     top: 425px;
     transform: translate(-50%, -50%);
     z-index: 9;
-    text-shadow: 2px 2px 10px #000000;
+    text-shadow: 2px 2px 5px #000000;
 }
 
 #show-detail{
-    font-family: 'Sofia Pro', sans-serif;
     color: #f9f9f9;
     font-size: 60px;
     position: absolute;
     text-align: center;
-    width: 100%;
-    top: 480px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 530px;
     z-index: 9;
     text-shadow: 2px 2px 0px #000000;
 }
 
-.noSelect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+.detail-24change {
+    display: inline-block;
+    font-size: 18px;
+    position: relative;
+    left: -18px;
 }
 
 .show-symbol{
-    font-size: 25px;
+    font-size: 23px;
     position: relative;
     top: -15px;
-    left: 10px;
+    left: -3px;
 }
 
 .coin-icon{
     width: 65px; 
     height: 65px; 
     margin-top: -15px;
+}
+
+#priceChange {
+    text-shadow: 0px 0px 0px #000000;
+    border: black;
+}
+
+#percentChange {
+    text-shadow: 0px 0px 0px #000000;
+    border: black;
 }
 
 .FadeIn {
@@ -69,6 +76,7 @@ body {
 }
 
 .nav-overtop{
+    background-color: rgba(0,0,0,0);
     z-index: 9;
 }
 
@@ -116,4 +124,14 @@ body {
 
 .swiper-button-white {
     color: white;
+}
+
+.noSelect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
