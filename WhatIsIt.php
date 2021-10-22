@@ -17,7 +17,7 @@
                     <br><br>
                     <h6 class="card-subtitle mb-2 text-muted">เผยแพร่ 22/10/2021</h6>
                     <p class="card-text">Cryptocurrency (สกุลเงินดิจิทัล) คือ สินทรัพย์ดิจิทัลประเภทหนึ่งที่มีการเข้ารหัส มีราคากลางในการซื้อขายแปรผันตามกลไกตลาด จึงสามารถทำหน้าที่เป็นสื่อกลางในการแลกเปลี่ยนมูลค่าผ่านอินเทอร์เน็ตได้ แต่เพราะไม่ได้มีลักษณะทางกายภาพเหมือนเช่นสกุลเงินทั่วไป (Fiat Currency) ของแต่ละประเทศที่มีการตีพิมพ์ธนบัตรหรือเหรียญกษาปณ์ออกมา ทำให้บางครั้ง เราก็เรียก สกุลเงินดิจิทัล ว่า "สกุลเงินเสมือน" หรือ Virtual currency  </p>
-                    <a href="https://www.scb.co.th/th/personal-banking/stories/grow-your-wealth/cryptocurrency101.html" class="btn btn-success">อ่านเพิ่มเติม</a>
+                    <a href="https://www.thairath.co.th/lifestyle/money/2121706" class="btn btn-success">อ่านเพิ่มเติม</a>
                 </div>
             </div>            
             <div class="card ">
@@ -27,7 +27,7 @@
                     <br><br>
                     <h6 class="card-subtitle mb-2 text-muted">เผยแพร่ 22/10/2021</h6>
                     <p class="card-text">เป็นสกุลเงินดิจิทัลแรกของโลก จึงถือว่าเก่าแก่ที่สุด ซึ่งตลอดหลายปีที่ผ่านมา Bitcoin เข้ามามีบทบาทในการเปลี่ยนแปลงลักษณะการดำเนินธุรกรรมต่างๆ ระหว่างบุคคล สามารถตรวจสอบได้ จึงทำให้นักลงทุนรุ่นใหม่หันมาสนใจลงทุนกับบิตคอยน์มากขึ้น</p>
-                    <a href="https://www.thairath.co.th/lifestyle/money/2121706" class="btn btn-success">อ่านเพิ่มเติม</a>
+                    <a href="https://www.moneybuffalo.in.th/business/what-is-bitcoin" class="btn btn-success">อ่านเพิ่มเติม</a>
                 </div>
             </div>           
             <div class="card ">
