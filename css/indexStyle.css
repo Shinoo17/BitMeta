@@ -8,46 +8,46 @@ body {
     position: relative;
 }
 
-#show-price{
-    color: #f9f9f9;
-    font-size: 100px;
+#show-price {
+    font-size: 5.5vw;
     position: absolute;
     left: 50%;
-    top: 425px;
+    /*top: 425px;*/
+    top: 22vw;
     transform: translate(-50%, -50%);
     z-index: 9;
     text-shadow: 2px 2px 5px #000000;
 }
 
-#show-detail{
-    color: #f9f9f9;
-    font-size: 60px;
+#show-detail {
+    font-size: 4vw;
     position: absolute;
     text-align: center;
     left: 50%;
     transform: translate(-50%, -50%);
-    top: 530px;
+    /*top: 530px;*/
+    top: 27vw;
     z-index: 9;
     text-shadow: 2px 2px 0px #000000;
 }
 
 .detail-24change {
+    font-size: 1vw;
     display: inline-block;
-    font-size: 18px;
     position: relative;
     left: -18px;
 }
 
 .show-symbol{
-    font-size: 23px;
+    font-size: 1.2vw;
     position: relative;
     top: -15px;
     left: -3px;
 }
 
 .coin-icon{
-    width: 65px; 
-    height: 65px; 
+    width: 3.5vw; 
+    height: 3.5vw; 
     margin-top: -15px;
 }
 
@@ -82,7 +82,8 @@ body {
 
 .swiper {
     width: 100%;
-    height: 870px;
+    /*height: 870px;*/
+    height: 45vw;
     margin-top: -56px;
 }
 
