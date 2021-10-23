@@ -41,83 +41,17 @@
                     <div class="card-body">
                         <form action="register_save.php" method="post">
                             <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">ชื่อบัญชี :</label>
+                                <label class="col-lg-3 col-form-label">Username :</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="login" required>
+                                    <input type="text" class="form-control" name="user" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">รหัสผ่าน :</label>
+                                <label class="col-lg-3 col-form-label">Password :</label>
                                 <div class="col-lg-9">
-                                    <input type="password" class="form-control" name="pwd" required>
+                                    <input type="password" class="form-control" name="pass" required>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">ชื่อ :</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="name" required>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">นามสกุล :</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="sur-name" required>
-                                </div>
-                            </div>
-                            <fieldset class="row mb-3">
-                                <legend class="col-form-label col-lg-3 pt-0">เพศ :</legend>
-                                <div class="col-lg-9">
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="gender" value="m" required>
-                                        <label class="form-check-label">ชาย</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" class="form-check-input" name="gender" value="f" required>
-                                        <label class="form-check-label">หญิง</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" class="form-check-input" name="gender" value="o" required>
-                                        <label class="form-check-label">อื่นๆ</label>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">อีเมล :</label>
-                                <div class="col-lg-9">
-                                    <input type="email" class="form-control" name="email" required>
-                                </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">อาชีพ :</label>
-                                <div class="col-lg-9">                                    
-                                    <input type="text" class="form-control" name="job" required>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">วันเกิด :</label>
-                                <div class="col-lg-9">
-                                    <input type="date" class="form-control" name="birth-date" required>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">รหัสบัตรประชาชน :</label>
-                                <div class="col-lg-9">
-                                    <input type="number_format" class="form-control" name="ID-card" required>
-                                </div>
-                            </div>      
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">ที่อยู่ :</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="address" required>
-                                </div>
-                            </div>                      
-                            <div class="row mb-3">
-                                <label class="col-lg-3 col-form-label">เบอร์โทรศัพท์ :</label>
-                                <div class="col-lg-9">
-                                    <input type="number_format" class="form-control" name="phone" required>
-                                </div>
-                            </div>
+                            </div>                            
                             <div class="row">
                                 <div class="col-lg-3"></div>
                                 <div class="col-lg-9">                                       
