@@ -1,14 +1,4 @@
-function setColorByPriceChange(price){
-    if(price>=0){
-        document.getElementById("priceChange").style.color = "#55d538";
-        document.getElementById("percentChange").style.color = "#55d538";
-    } else {
-        document.getElementById("priceChange").style.color = "#e22c2d";
-        document.getElementById("percentChange").style.color = "#e22c2d";
-    }
-}
-
-// scroll mouse
+// Scroll mouse
 var swiper_img = document.getElementsByClassName('swiper-img-move');
 window.addEventListener('scroll', function() {
     var imgMargin = window.pageYOffset/1.1 || 0
@@ -40,8 +30,8 @@ function swiperPlugin({ swiper, extendParams, on }) {
             document.getElementById("percentChange").innerHTML = parseFloat(data[11]['priceChangePercent']).toFixed(2) + " %";
             setColorByPriceChange(data[index]['priceChange']);
             // remove FadeIn Animation
-            var element1 = document.getElementById("show-price");
-            var element2 = document.getElementById("show-detail");
+            let element1 = document.getElementById("show-price");
+            let element2 = document.getElementById("show-detail");
             setTimeout(function(){
                 element1.classList.remove("FadeIn");
                 element2.classList.remove("FadeIn");
@@ -134,4 +124,14 @@ function swiperPlugin({ swiper, extendParams, on }) {
         if (!swiper.params.debugger) return;
         console.log('reachEnd');
     });
+}
+
+function setColorByPriceChange(price){
+    if(price>=0){
+        document.getElementById("priceChange").style.color = "#55d538";
+        document.getElementById("percentChange").style.color = "#55d538";
+    } else {
+        document.getElementById("priceChange").style.color = "#e22c2d";
+        document.getElementById("percentChange").style.color = "#e22c2d";
+    }
 }

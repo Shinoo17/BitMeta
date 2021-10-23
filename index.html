@@ -15,12 +15,20 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- my css & javsscript -->
     <link rel="stylesheet" href="css/indexStyle.css">
+    <link rel="stylesheet" href="css/loader.css">
 	<script src="js/indexFunction.js"></script>
 
 	<link rel="icon" href="image/icon_200x200.png" type="image/x-icon">
     <title>BitMeta</title>
 </head>
 <body>
+    <!-- Loader screen -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    
     <div>
 		<!-- navbar -->
         <nav class="navbar navbar-expand navbar-dark nav-overtop">
@@ -107,7 +115,7 @@
                         "underLineColor": "rgba(41, 98, 255, 0.3)",
                         "underLineBottomColor": "rgba(41, 98, 255, 0)",
                         "isTransparent": false,
-                        "autosize": false,
+                        "autosize": true,
                         "largeChartUrl": ""
                         }
                     </script>
@@ -188,5 +196,14 @@
 	<br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <script>
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('body').addClass('loaded');
+                $('h1').css('color','#222222');
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
