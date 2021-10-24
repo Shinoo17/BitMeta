@@ -83,7 +83,7 @@ function swiperPlugin({ swiper, extendParams, on }) {
             document.getElementById("percentChange").innerHTML = parseFloat(data[index]['priceChangePercent']).toFixed(2) + " %";
             document.getElementById("show-detail-name").innerHTML = coin_name;
             document.getElementById("show-symbol-text").innerHTML = "(" + symbol + ")";
-            document.getElementById("icon").src = "image/icon/" + symbol + ".png";
+            document.getElementById("icon").src = "image/symbol/" + symbol + ".png";
             setColorByPriceChange(data[index]['priceChange']);
             // FadeIn Animation
             var element1 = document.getElementById("show-price");
