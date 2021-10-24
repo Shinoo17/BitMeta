@@ -19,6 +19,6 @@ $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
 $sql="INSERT INTO user (Name,Surname,Phone,Address,ID_card_number,Job,Email,Icon) 
 VALUES('$name','$surname','$phone','$address','$ID_card_number','$job','$email','$icon')";
 $conn->exec($sql);
-$_SESSION["add_login"]="success";
+$_SESSION["save_profile"]="success";
 
 ?>
