@@ -2,8 +2,10 @@
 var swiper_img = document.getElementsByClassName('swiper-img-move');
 window.addEventListener('scroll', function() {
     var imgMargin = window.pageYOffset/1.1 || 0
-    for(var i=0; i<swiper_img.length; i++){
-        swiper_img[i].style.marginTop = imgMargin + 'px';	// set swiper img marginTop
+    if(imgMargin > 0){
+        for(var i=0; i<swiper_img.length; i++){
+            swiper_img[i].style.marginTop = imgMargin + 'px';	// set swiper img marginTop
+        }
     }
 });
 
