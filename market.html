@@ -18,6 +18,8 @@
     
 	<link rel="icon" href="image/icon_200x200.png" type="image/x-icon">
     <title>BitMeta Market</title>
+
+    
 </head>
 <body>
     <br><br><br><br>
@@ -128,75 +130,84 @@
             <div class="col-lg-2"></div>
             <!-- Buy -->
             <div class="col-lg-4">
-                <div class="bg-success mt-3">Buy</div>
+                <div class="bg-success head-column mt-3">Buy</div>
                 <form action="market.html" method="post">
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">ราคา</span>
-                          </div>
-                        <input type="text" class="form-control" placeholder="ราคา">
+                            <span class="input-group-text left-span">ราคา</span>
+                        </div>
+                        <input type="text" class="form-control shadow-none" placeholder="ราคา" required>
                         <div class="input-group-append">
-                          <span class="input-group-text" id="price-buy">USDT</span>
+                          <span class="input-group-text right-span" id="price-buy">USDT</span>
                         </div>
                     </div>
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">จำนวน</span>
+                            <span class="input-group-text left-span">จำนวน</span>
                           </div>
-                        <input type="text" class="form-control" placeholder="จำนวน">
+                        <input type="text" class="form-control shadow-none" placeholder="จำนวน" required>
                         <div class="input-group-append">
-                          <span class="input-group-text" id="coin-symbol-buy">Coin</span>
+                          <span class="input-group-text right-span" id="coin-symbol-buy">Coin</span>
                         </div>
                     </div>
+                        <div class="range-slider mt-3">
+                            <input class="range-slider__range" type="range" value="0" min="0" max="100">
+                            <span class="range-slider__value">0</span>
+                        </div>
                     <div class="input-group mt-3 mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">ทั้งหมด</span>
+                            <span class="input-group-text left-span">ทั้งหมด</span>
                           </div>
-                        <input type="text" class="form-control" placeholder="ทั้งหมด">
+                        <input type="text" class="form-control shadow-none" placeholder="ทั้งหมด" required>
                         <div class="input-group-append">
-                          <span class="input-group-text" id="price-buy">USDT</span>
+                          <span class="input-group-text right-span" id="price-buy">USDT</span>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-buy">Buy</button>
+                    <button type="submit" class="btn btn-buy">Buy</button>
                 </form>
             </div>
             <!-- Sell -->
             <div class="col-lg-4 mt-3">
-                <div class="bg-danger">Sell</div>
+                <div class="bg-danger head-column">Sell</div>
                 <form action="market.html" method="post">
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">ราคา</span>
+                            <span class="input-group-text left-span">ราคา</span>
                           </div>
-                        <input type="text" class="form-control" placeholder="ราคา">
+                        <input type="text" class="form-control shadow-none" placeholder="ราคา" required>
                         <div class="input-group-append">
-                          <span class="input-group-text" id="price-sell">USDT</span>
+                          <span class="input-group-text right-span" id="price-sell">USDT</span>
                         </div>
                     </div>
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">จำนวน</span>
+                            <span class="input-group-text left-span">จำนวน</span>
                           </div>
-                        <input type="text" class="form-control" placeholder="จำนวน">
+                        <input type="text" class="form-control shadow-none" placeholder="จำนวน" required>
                         <div class="input-group-append">
-                          <span class="input-group-text" id="coin-symbol-sell">Coin</span>
+                          <span class="input-group-text right-span" id="coin-symbol-sell">Coin</span>
                         </div>
+                    </div>
+                    <div class="range-slider mt-3">
+                        <input class="range-slider__range" type="range" value="0" min="0" max="100">
+                        <span class="range-slider__value">0</span>
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">ทั้งหมด</span>
+                            <span class="input-group-text left-span">ทั้งหมด</span>
                           </div>
-                        <input type="text" class="form-control" placeholder="ทั้งหมด">
+                        <input type="text" class="form-control shadow-none" placeholder="ทั้งหมด" required>
                         <div class="input-group-append">
-                          <span class="input-group-text" id="price-sell">USDT</span>
+                          <span class="input-group-text right-span" id="price-sell">USDT</span>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-sell">Buy</button>
+                    <button type="submit" class="btn btn-sell">Buy</button>
                 </form>
             </div>
             <div class="col-lg-2"></div>
         </div>
     </div>
+
 
     <br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br>
@@ -224,7 +235,29 @@
 
         $('.dropdown-menu li').click(function () {
             var input = $(this).parents('.dropdown').find('input').val();
-        }); 
+        });
+
+        /* Input range */
+        var rangeSlider = function(){
+        var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+            
+        slider.each(function(){
+
+            value.each(function(){
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+            });
+
+            range.on('input', function(){
+            $(this).next(value).html(this.value);
+            });
+        });
+        };
+        rangeSlider();
     </script>
+
+    
 </body>
 </html>
