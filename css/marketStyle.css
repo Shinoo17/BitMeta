@@ -6,6 +6,13 @@ body {
     color: #f9f9f9;
     background:#10122d;
     position: relative;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 .thai-font {
@@ -59,8 +66,18 @@ body {
     border-radius: 0 5px 5px 0;
 }
 
-
 /* Selectbox customs */
+.span-select:hover {
+    cursor: pointer;
+    color: #F0B90B;
+}
+.span-selected {
+    color:#F0B90B;
+}
+.span-unselect{
+    color: #f9f9f9;
+}
+
 
 .dropdown {
     width: 100%;
@@ -191,10 +208,10 @@ body {
     transition: background 0.15s ease-in-out;
 }
 .range-slider__range::-webkit-slider-thumb:hover {
-    background: #e2b129;
+    background: #F0B90B;
 }
 .range-slider__range:active::-webkit-slider-thumb {
-    background: #e2b129;
+    background: #F0B90B;
 }
 .range-slider__range::-moz-range-thumb {
     width: 20px;
@@ -207,13 +224,13 @@ body {
     transition: background 0.15s ease-in-out;
 }
 .range-slider__range::-moz-range-thumb:hover {
-    background: #e2b129;
+    background: #F0B90B;
 }
 .range-slider__range:active::-moz-range-thumb {
-    background: #e2b129;
+    background: #F0B90B;
 }
 .range-slider__range:focus::-webkit-slider-thumb {
-    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #e2b129;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #F0B90B;
 }
 
 .range-slider__value {
@@ -248,4 +265,27 @@ body {
 input::-moz-focus-inner,
 input::-moz-focus-outer {
     border: 0;
+}
+
+/* Input type number Remove Arrows/Spinners */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.enableSelect {
+    -webkit-touch-callout: all; /* iOS Safari */
+      -webkit-user-select: all; /* Safari */
+       -khtml-user-select: all; /* Konqueror HTML */
+         -moz-user-select: all; /* Old versions of Firefox */
+          -ms-user-select: all; /* Internet Explorer/Edge */
+              user-select: all; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
