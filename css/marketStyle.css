@@ -25,11 +25,6 @@ body {
     height: 24px;
 }
 
-.show-select-symbol {
-    width: 24px;
-    height: 24px;
-}
-
 .btn-buy {
     color: #f9f9f9;
     width: 100%;
@@ -37,7 +32,7 @@ body {
 }
 .btn-buy:hover {
     color: #f9f9f9;
-    background-color: rgb(54, 194, 49);
+    background-color: #30c230 ;
 }
 
 .btn-sell {
@@ -66,7 +61,7 @@ body {
     border-radius: 0 5px 5px 0;
 }
 
-/* Selectbox customs */
+/* Selectbox customs Limit & Market */
 .span-select:hover {
     cursor: pointer;
     color: #F0B90B;
@@ -77,7 +72,6 @@ body {
 .span-unselect{
     color: #f9f9f9;
 }
-
 
 .dropdown {
     width: 100%;
@@ -180,9 +174,6 @@ body {
 
 .range-slider {
     margin: 0 0 0 0%;
-}
-
-.range-slider {
     width: 100%;
 }
 
@@ -288,4 +279,13 @@ input[type=number] {
           -ms-user-select: all; /* Internet Explorer/Edge */
               user-select: all; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+/* Bootstrap tooltip */
+.tooltip-inner {
+    color: #fff;
+    background-color: #f55;
+    box-shadow: 0px 0px 4px black;
+    opacity: 1;
 }
