@@ -113,7 +113,7 @@ a,a:hover,a:focus {
 }
 
 
-.containercheckbox {
+.Container-Checkbox {
     display: block;
     position: relative;
     padding-left: 30px;
@@ -128,7 +128,7 @@ a,a:hover,a:focus {
 }
   
 /* Hide the browser's default checkbox */
-.containercheckbox input {
+.Container-Checkbox input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -148,12 +148,12 @@ a,a:hover,a:focus {
 }
   
   /* On mouse-over, add a grey background color */
-.containercheckbox:hover input ~ .checkmark {
+.Container-Checkbox:hover input ~ .checkmark {
     background-color: #ccc;
 }
   
   /* When the checkbox is checked, add a #f35588 background */
-.containercheckbox input:checked ~ .checkmark {
+.Container-Checkbox input:checked ~ .checkmark {
     background-color: #f35588;
 }
   
@@ -165,12 +165,12 @@ a,a:hover,a:focus {
 }
   
   /* Show the checkmark when checked */
-.containercheckbox input:checked ~ .checkmark:after {
+.Container-Checkbox input:checked ~ .checkmark:after {
     display: block;
 }
   
   /* Style the checkmark/indicator */
-.containercheckbox .checkmark:after {
+.Container-Checkbox .checkmark:after {
     left: 7px;
     top: 4px;
     width: 6px;
@@ -182,3 +182,14 @@ a,a:hover,a:focus {
     transform: rotate(45deg);
 }
 
+#wrong-pass {
+    color: crimson;
+    font-size: 15px;
+}
+
+.eye-password {
+    position: relative; 
+    top: -24px; 
+    right: 4%; 
+    cursor: pointer;
+}
