@@ -136,7 +136,7 @@ a,a:hover,a:focus {
     width: 0;
 }
   
-  /* Create a custom checkbox */
+/* Create a custom checkbox */
 .checkmark {
     border-radius: 7px;
     position: absolute;
@@ -147,29 +147,29 @@ a,a:hover,a:focus {
     background-color: #eee;
 }
   
-  /* On mouse-over, add a grey background color */
+/* On mouse-over, add a grey background color */
 .Container-Checkbox:hover input ~ .checkmark {
     background-color: #ccc;
 }
   
-  /* When the checkbox is checked, add a #f35588 background */
+/* When the checkbox is checked, add a #f35588 background */
 .Container-Checkbox input:checked ~ .checkmark {
     background-color: #f35588;
 }
   
-  /* Create the checkmark/indicator (hidden when not checked) */
+/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
   
-  /* Show the checkmark when checked */
+/* Show the checkmark when checked */
 .Container-Checkbox input:checked ~ .checkmark:after {
     display: block;
 }
   
-  /* Style the checkmark/indicator */
+/* Style the checkmark/indicator */
 .Container-Checkbox .checkmark:after {
     left: 7px;
     top: 4px;
@@ -182,7 +182,7 @@ a,a:hover,a:focus {
     transform: rotate(45deg);
 }
 
-#wrong-pass {
+.duplicate {
     color: crimson;
     font-size: 15px;
 }
@@ -193,3 +193,4 @@ a,a:hover,a:focus {
     right: 4%; 
     cursor: pointer;
 }
+

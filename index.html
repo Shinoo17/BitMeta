@@ -13,6 +13,8 @@
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- gg css icon -->
+    <link href='https://css.gg/css' rel='stylesheet'>
     <!-- my css & javsscript -->
     <link rel="stylesheet" href="css/indexStyle.css">
     <link rel="stylesheet" href="css/loader.css">
@@ -39,11 +41,22 @@
                 <a class="navbar-link" href="news.php"><i class="bi bi-file-earmark-text"></i>Announcement</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php"><i class="bi bi-pencil-square"></i> เข้าสู่ระบบ</a>
+                        <a class="nav-link" href="login.html"><i class="bi bi-pencil-square"></i> เข้าสู่ระบบ</a>
                     </li>
                 </ul>
             </div>
         </nav>
+
+        <!-- cookie 
+        <section class="cookie">
+            <div class="txt">
+                We using cookie for your best experience,
+                about cookie🍪? <a href="https://www.cookiesandyou.com/" target="_blanck">Learn more.</a>
+            </div>
+            <div>
+                <button class="btn accept">Accept</button>
+            </div>
+        </section>  -->
 
 		<!-- Swiper -->
         <div class="swiper noSelect">
@@ -98,7 +111,6 @@
 	<br><br><br><br><br>
     <!-- TradingView Mini Chart -->
     <div class="container">
-        
         <div class="row">
             <div class="col-lg-3">
                 <!-- TradingView Widget BEGIN -->
@@ -194,21 +206,24 @@
             </div>
         </div>
     </div>
-	<br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    
+
+    <footer style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                BitMeta
+            </div>
+        </div>
+    </footer>
+
     <script>
         $(document).ready(function() {
             setTimeout(function(){
                 $('body').addClass('loaded');
-                $('h1').css('color','#222222');
             }, 1500);
+        });
+
+        $(".accept").click(function(){
+            $(".cookie").hide();
         });
     </script>
 </body>
