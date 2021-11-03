@@ -45,6 +45,23 @@ body {
     background-color: rgb(238, 59, 59);
 }
 
+.btn-div {
+    cursor: default;
+    width: 100%;
+    color: #f9f9f9;
+
+}
+
+.link {
+    color: #F0B90B;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #F0B90B;
+    text-decoration: none;
+}
+
 .head-column {
     font-size: 20px;
     padding-left: 1vw;

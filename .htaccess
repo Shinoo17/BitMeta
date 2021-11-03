@@ -1,6 +1,0 @@
-RewriteEngine on
-
-RewriteCond %{SCRIPT_FILENAME} !-d  
-RewriteCond %{SCRIPT_FILENAME} !-f  
-
-RewriteRule ^(.*)$ 404.php/$1 [L]

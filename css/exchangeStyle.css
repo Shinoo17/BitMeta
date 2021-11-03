@@ -1,0 +1,86 @@
+@import url('http://fonts.cdnfonts.com/css/sofia-pro');
+
+body {
+    background:#1b1e4b;
+    font-size: 18px;
+}
+
+.btn-active {
+    background-color: #F0B90B;
+}
+
+.btn-active:hover {
+    background-color: #ffcf32;
+}
+
+.btn-unactive {
+    background-color: #e4e4e4a4;
+}
+
+.btn-unactive:hover {
+    background-color: #e4e4e4f3;
+}
+
+.btn-left {
+    padding: 8px;
+    border-radius: 25px 0 0 25px; 
+}
+
+.btn-right {
+    padding: 8px;
+    border-radius: 0 25px 25px 0; 
+}
+
+.btn:active {
+    box-shadow: none;
+}
+
+.exchange-rate-text {
+    padding-top: 25px;
+    padding-bottom: 6px;
+}
+
+/* Input type number Remove Arrows/Spinners */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form-control {
+    height: 48px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #000;
+    font-size: 16px;
+    border-radius: 50px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form-control:focus, .form-control:active {
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #F0B90B; 
+}
+
+.button-form {
+    background: #F0B90B;
+    font-size: 15px;
+    padding: 12px 25px;
+    border-radius: 50px; 
+    border-color: white;
+}
+
+.button-form:hover {
+    background: #ffcf32;
+}

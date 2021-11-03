@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +27,12 @@
     <nav class="navbar navbar-expand navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html"><i class="bi bi-house-door-fill"></i>Home</a>
-            <a class="navbar-link" href="market.html"><i class="bi bi-currency-exchange"></i>Market</a>
+            <a class="navbar-link" href="market.php"><i class="bi bi-currency-exchange"></i>Market</a>
             <a class="navbar-link" href="news.php"><i class="bi bi-file-earmark-text"></i>Announcement</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html"><i class="bi bi-pencil-square"></i> เข้าสู่ระบบ</a>
+                    <a class="nav-link" href="login.php"><i class="bi bi-pencil-square"></i> เข้าสู่ระบบ</a>
+                    <a class="nav-link" href="database/logout.php"><i class="bi bi-pencil-square"></i> Logout</a>
                 </li>
             </ul>
         </div>
@@ -104,10 +106,10 @@
                 <div class="mt-3" style="width: 100%;">
                     <span class="span-select span-selected" id="limit">Limit</span>
                     <span class="span-select" id="market" style="margin-left: 10px;">Market
-                        <i class="bi bi-question-circle" style="padding-left: 3px;" hidden data-toggle="tooltip" data-placement="top" 
+                        <i class="bi bi-question-circle" style="padding-left: 3px; display: none;" data-toggle="tooltip" data-placement="top" 
                         title="Market will auto match order"></i>
                     </span>
-                    <span style="float: right;" id="market-option" hidden>
+                    <span style="float: right; display: none;" id="market-option">
                         <span class="span-select span-selected" style="padding-right: 10px;" id="market-amount">จำนวน</span>
                         <span class="span-select" id="market-total">ทั้งหมด</span>
                     </span>
@@ -116,23 +118,25 @@
         </div>
         <div class="row justify-content-center">
             <!-- Buy -->
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="bg-success head-column mt-3">Buy</div>
-                <div class="mt-1">
-                    <span>Avaliable</span>
-                    <span>1000</span>
-                    <span>USDT</span>
+                <div class="mt-1" style="font-size: 17px;">
+                    <span style="padding-left: 5px;">Avaliable</span>
+                    <span style="float: right; padding-right: 10px;">
+                        <span id="usdt">-</span>
+                        <span>USDT</span>
+                    </span>
                 </div>
-                <form action="#" method="post">
+                <form action="database/place_order.php" method="post">
                     <!-- Buy ราคา -->
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">ราคา $</span>
                         </div>
                         <input type="number" step="0.0001" class="form-control shadow-none price-input enableSelect" id="buy-price" 
-                            placeholder="ราคา" min="0" required autocomplete="off">
+                            placeholder="ราคา" min="0"  autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
-                          <span class="input-group-text right-span " id="price-buy">USDT</span>
+                          <span class="input-group-text right-span" id="price-buy">USDT</span>
                         </div>
                     </div>
                     <!-- Buy จำนวน -->
@@ -141,15 +145,15 @@
                             <span class="input-group-text left-span">จำนวน</span>
                           </div>
                         <input type="number" step="0.0001" class="form-control shadow-none enableSelect" id="buy-amount" 
-                            placeholder="จำนวน" min="0" required autocomplete="off">
+                            placeholder="จำนวน" min="0" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
-                          <span class="input-group-text right-span crypto" id="coin-symbol-buy">Coin</span>
+                          <span class="input-group-text right-span Cryptocurrency" id="coin-symbol-buy">Coin</span>
                         </div>
                     </div>
                     <!-- Buy Slider -->
                     <div class="range-slider mt-3">
                         <input class="range-slider__range" type="range" value="0" min="0" max="100" id="buy-slider">
-                        <span class="range-slider__value">0</span>
+                        <span class="range-slider__value" id="buy-slider-text">0</span>
                     </div>
                     <!-- Buy ทั้งหมด -->
                     <div class="input-group mt-3" id="buy-total-group">
@@ -157,30 +161,42 @@
                             <span class="input-group-text left-span">ทั้งหมด</span>
                         </div>
                         <input type="number" step="0.0001" class="form-control shadow-none enableSelect"  id="buy-total"
-                            placeholder="ทั้งหมด" min="0" required autocomplete="off">
+                            placeholder="ทั้งหมด" min="0" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                           <span class="input-group-text right-span" id="price-buy">USDT</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-buy mt-3" id="buy-button">Buy</button>
+                    <input type="text" style="display: none;" name="option" class="select-market-option">
+                    <input type="text" style="display: none;" name="markprice" class="markprice">
+                    <input type="text" style="display: none;" name="symbol" class="symbol">
+                    <input type="text" style="display: none;" name="type" class="type">
+                    <?php if(isset($_SESSION["User_ID"])) { ?>
+                        <button type="submit" class="btn btn-buy mt-3" id="buy-button" name="buy">Buy</button>
+                    <?php } else { ?>
+                        <div class="btn btn-div btn-secondary mt-3">
+                            <a href="login.php" class="link">Login</a> or <a href="register.php" class="link">Register</a>
+                        </div>
+                    <?php } ?>
                 </form>
             </div>
             <!-- Sell -->
-            <div class="col-lg-4 col-md-6 mt-3">
+            <div class="col-lg-4 col-md-6 mt-3 col-sm-10">
                 <div class="bg-danger head-column">Sell</div>
-                <div class="mt-1">
-                    <span>Avaliable</span>
-                    <span>1</span>
-                    <span class="crypto">Coin</span>
+                <div class="mt-1" style="font-size: 17px;">
+                    <span style="padding-left: 5px;">Avaliable</span>
+                    <span style="float: right; padding-right: 10px;">
+                        <span id="crypto_coin">-</span>
+                        <span class="Cryptocurrency">Coin</span>
+                    </span>
                 </div>
-                <form action="#" method="post">
+                <form action="database/place_order.php" method="post">
                     <!-- Sell ราคา -->
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">ราคา $</span>
                           </div>
                         <input type="number" step="0.0001" class="form-control shadow-none price-input enableSelect"  id="sell-price"
-                            placeholder="ราคา" min="0" required autocomplete="off">
+                            placeholder="ราคา" min="0" autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                           <span class="input-group-text right-span" id="price-sell">USDT</span>
                         </div>
@@ -191,15 +207,15 @@
                             <span class="input-group-text left-span">จำนวน</span>
                           </div>
                         <input type="number" step="0.0001" class="form-control shadow-none enableSelect" id="sell-amount"
-                            placeholder="จำนวน" min="0" required autocomplete="off">
+                            placeholder="จำนวน" min="0" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
-                          <span class="input-group-text right-span crypto" id="coin-symbol-sell">Coin</span>
+                          <span class="input-group-text right-span Cryptocurrency" id="coin-symbol-sell">Coin</span>
                         </div>
                     </div>
                     <!-- Sell slider -->
                     <div class="range-slider mt-3">
                         <input class="range-slider__range" type="range" value="0" min="0" max="100" id="sell-slider">
-                        <span class="range-slider__value">0</span>
+                        <span class="range-slider__value" id="sell-slider-text">0</span>
                     </div>
                     <!-- Sell ทั้งหมด -->
                     <div class="input-group mt-3" id="sell-total-group">
@@ -207,16 +223,26 @@
                             <span class="input-group-text left-span">ทั้งหมด</span>
                         </div>
                         <input type="number" step="0.0001" class="form-control shadow-none enableSelect" id="sell-total"
-                        placeholder="ทั้งหมด" min="0" required autocomplete="off">
+                            placeholder="ทั้งหมด" min="0" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                             <span class="input-group-text right-span" id="price-sell">USDT</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-sell mt-3" id="sell-button">Sell</button>
+                    <input type="text" style="display: none;" name="option" class="select-market-option">
+                    <input type="text" style="display: none;" name="markprice" class="markprice">
+                    <input type="text" style="display: none;" name="symbol" class="symbol">
+                    <input type="text" style="display: none;" name="type" class="type">
+                    <?php if(isset($_SESSION["User_ID"])) { ?>
+                        <button type="submit" class="btn btn-sell mt-3" id="sell-button" name="sell">Sell</button>
+                    <?php } else { ?>
+                        <div class="btn btn-div btn-secondary mt-3">
+                            <a href="login.php" class="link">Login</a> or <a href="register.php" class="link">Register</a>
+                        </div>
+                    <?php } ?>
                 </form>
             </div>
         </div>
-        <div class="row mt-4 justify-content-center">
+        <div class="row mt-4 justify-content-center" style="padding-bottom: 250px;">
             <div class="col-lg-10 border border-secondary table-responsive">
                 <table class="table" style="color: #c9c9c9;">
                     <thead>
@@ -272,17 +298,20 @@
         </div>
     </div>
 
-    <br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br>
-
     <script>
-        let select = "limit";           /* User select Limit or Market */
-        let symbol;                     /* User select Cryptocurrency */
-        let buy_amount_percent = 0;     /* User slide buy-slider */
-        let sell_amount_percent = 0;    /* User slide sell-slider */
-        let current_crypto_price;       /* Current crypto price that user selected */
-        let market_select_option = "amount";       /* User select จำนวน or ทั้งหมด */
+        let select = "limit";                   /* User select Limit or Market */
+        let symbol;                             /* User select Cryptocurrency */
+        let id_symbol;                          /* User select Cryptocurrency */
+        let buy_amount_percent = 0;             /* User slide buy-slider */
+        let sell_amount_percent = 0;            /* User slide sell-slider */
+        let buy_current_crypto_price;           /* Current crypto price that user selected */
+        let sell_current_crypto_price;
+        let market_select_option = "amount";    /* User select จำนวน or ทั้งหมด */
+        let index;                              /* index for api */
+        let walletData;                         /* User wallet data */
+        let balance_usdt                        /* User USDT */
+        $('.type').val("limit");
+
         /*Dropdown Menu*/
         $('.dropdown').click(function () {
             $(this).attr('tabindex', 1).focus();
@@ -297,49 +326,53 @@
             $('#show-select-symbol').attr('src', $(this).find('img').attr('src'));
             $(this).parents('.dropdown').find('span').text($(this).text());
             $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
-            $('.crypto').text($(this).attr('id'));
-            if(select == "limit"){ updatePrice(); }
+            $('.Cryptocurrency').text($(this).attr('id'));
+            $('.symbol').val($(this).attr('id'));
+            symbol = $(this).parents('.dropdown').find('input').val();
+            if(walletData!=null){
+                $('#crypto_coin').text(walletData[symbol]);
+            }
+            clearInput();
+            updatePrice();
         });
         /*End Dropdown Menu*/
 
-        $('.dropdown-menu li').click(function () {
-            symbol = $(this).parents('.dropdown').find('input').val();
-            updatePrice();
-        });
+        function clearInput(){
+            $('#buy-amount').val("");
+            $('#buy-total').val("");
+            $('#sell-amount').val("");
+            $('#sell-total').val("");
+            $('.range-slider__range').val(0);
+            $('.range-slider__value').text("0");
+        }
 
         /* Select limits , market */
         $('#limit').click(function (){
             $(this).addClass('span-selected');
             $('#market').removeClass('span-selected');
-            $('#market').find('i').attr('hidden','hidden');
+            $('#market').find('i').hide();
             $('.price-input').removeAttr('disabled');
             $('.price-input').attr('type','number');
-            $('#market-option').attr('hidden','hidden');
-
-            $('#buy-button').text("Buy")
-            $('#sell-button').text("Sell")
-
+            $('#market-option').hide();
             check_showup_inputfield();
             select = "limit";
             updatePrice();
         })
         $('#market').click(function (){
-            $(this).find('i').removeAttr('hidden');
+            $(this).find('i').show();
             $(this).addClass('span-selected');
             $('#limit').removeClass('span-selected');
             $('.price-input').attr('disabled','disabled');
             $('.price-input').attr('type','text');
             $('.price-input').val('Market');
-            $('#market-option').removeAttr('hidden');
-
-            $('#buy-button').text("Coming soon")
-            $('#sell-button').text("Coming soon")
-
+            $('#market-option').show();
+            $('.type').val("market");
+            $('.select-market-option').val(market_select_option);
             select = "market";
             updatePrice();
             if(market_select_option == "amount"){
-                $('#buy-total-group').attr('hidden','hidden');
-                $('#sell-total-group').attr('hidden','hidden');
+                $('#buy-total-group').hide();
+                $('#sell-total-group').hide();
             }
             if(market_select_option == "total") {
                 swap_total_up();
@@ -364,30 +397,29 @@
                     $('#sell-amount-group').swapWith('#sell-total-group');
                 }
 
-                $('#buy-amount-group').removeAttr('hidden');
-                $('#buy-total-group').removeAttr('hidden');
+                $('#buy-amount-group').show();
+                $('#buy-total-group').show();
 
-                $('#sell-amount-group').removeAttr('hidden');
-                $('#sell-total-group').removeAttr('hidden');
-
+                $('#sell-amount-group').show();
+                $('#sell-total-group').show();
             }
         }
         
         function swap_amount_up (){
             $('#buy-amount-group').swapWith('#buy-total-group');
             $('#sell-amount-group').swapWith('#sell-total-group'); 
-            $('#buy-total-group').attr('hidden','hidden');
-            $('#buy-amount-group').removeAttr('hidden');
-            $('#sell-total-group').attr('hidden','hidden');
-            $('#sell-amount-group').removeAttr('hidden');
+            $('#buy-total-group').hide();
+            $('#sell-total-group').hide();
+            $('#buy-amount-group').show();
+            $('#sell-amount-group').show();
         }
         function swap_total_up (){
             $('#buy-amount-group').swapWith('#buy-total-group');
             $('#sell-amount-group').swapWith('#sell-total-group');
-            $('#buy-amount-group').attr('hidden','hidden');
-            $('#buy-total-group').removeAttr('hidden');
-            $('#sell-amount-group').attr('hidden','hidden');
-            $('#sell-total-group').removeAttr('hidden');
+            $('#buy-amount-group').hide();
+            $('#sell-amount-group').hide();
+            $('#buy-total-group').show();
+            $('#sell-total-group').show();
         }
 
         /* market option -> จำนวน & ทั้งหมด */
@@ -399,6 +431,7 @@
                 swap_amount_up();
             }
             market_select_option = "amount";
+            $('.select-market-option').val(market_select_option);
         })
         $('#market-total').click(function (){
             $(this).addClass('span-selected');
@@ -408,12 +441,12 @@
                 swap_total_up();
             }
             market_select_option = "total";
+            $('.select-market-option').val(market_select_option);
         })
 
         /* Slider */
         let rangeSlider = function(){
             let slider = $('.range-slider'),
-                range = $('.range-slider__range'),
                 value = $('.range-slider__value');
             let buy_slider_change = $('#buy-slider');
             let sell_slider_change = $('#sell-slider');
@@ -424,12 +457,12 @@
                     $(this).html(value);
                 });
                 buy_slider_change.on('input', function(){
-                    $(this).next(value).html(this.value);
+                    $(this).next(value).html(this.value  + '%');
                     buy_amount_percent = this.value;
                     sliderCalculateBuy();
                 });
                 sell_slider_change.on('input', function(){
-                    $(this).next(value).html(this.value);
+                    $(this).next(value).html(this.value  + '%');
                     sell_amount_percent = this.value;
                     sliderCalculateSell();
                 });
@@ -443,36 +476,36 @@
                 return response.json()
             })
             .then(function(data){
-                let index;
                 switch(symbol){
-                    case 'BTC': console.log("BTC"); index = 11; break;
-                    case 'ETH': console.log("ETH"); index = 12; break;
-                    case 'BNB': console.log("BNB"); index = 98; break;
-                    case 'ADA': console.log("ADA"); index = 298; break;
-                    case 'SOL': console.log("SOL"); index = 785; break;
-                    case 'XRP': console.log("XRP"); index = 308; break;
-                    case 'DOT': console.log("DOT"); index = 963; break;
-                    case 'DOGE': console.log("DOGE"); index = 564; break;
-                    case 'UNI': console.log("UNI"); index = 1051; break;
-                    case 'LTC': console.log("LTC"); index = 190; break;
-                    case 'AXS': console.log("AXS"); index = 1148; break;
+                    case 'BTC': index = 11; id_symbol = 2; break;
+                    case 'ETH': index = 12; id_symbol = 3; break;
+                    case 'BNB': index = 98; id_symbol = 4; break;
+                    case 'ADA': index = 298; id_symbol = 5; break;
+                    case 'SOL': index = 785; id_symbol = 6; break;
+                    case 'XRP': index = 308; id_symbol = 7; break;
+                    case 'DOT': index = 963; id_symbol = 8; break;
+                    case 'DOGE': index = 564; id_symbol = 9; break;
+                    case 'UNI': index = 1051; id_symbol = 10; break;
+                    case 'LTC': index = 190; id_symbol = 11; break;
+                    case 'AXS': index = 1148; id_symbol = 12; break;
                     default: break;
                 }
                 if(index >= 0){
                     let price = parseFloat(data[index]['lastPrice']);
-                    current_crypto_price = price;
+                    buy_current_crypto_price = price;
+                    sell_current_crypto_price = price;
                     if(select == 'limit'){ 
                         $('.price-input').val(price); 
                     }
-                } 
+                    $('.markprice').val(price); 
+                }
             });
         }
         
         /* Auto Set by slider */
         function sliderCalculateBuy(){
             let price = $('#buy-price').val();
-            if(price == "Market"){ price = current_crypto_price; }
-            let balance_usdt = 1000;
+            if(price == "Market"){ price = buy_current_crypto_price; }
             if(price > 0){
                 /* Set amount 4 decimal */
                 let amount = balance_usdt*(buy_amount_percent/100)/price;
@@ -487,11 +520,10 @@
         /* Auto Set by slider */
         function sliderCalculateSell(){
             let price = $('#sell-price').val();
-            if(price == "Market"){ price = current_crypto_price; }
-            let balance_select_coin = 1;
+            if(price == "Market"){ price = sell_current_crypto_price; }
             if(price > 0){
                 /* Set amount 4 decimal */
-                let amount = balance_select_coin*(sell_amount_percent/100);
+                let amount = walletData[symbol]*(sell_amount_percent/100);
                 amount = Math.floor(amount * 10000) / 10000;
                 $('#sell-amount').val(amount);
                 /* Set total 4 decimal */
@@ -500,16 +532,103 @@
                 $('#sell-total').val(total)
             }
         }
-        /* Cal by price * amount (Buy) */
-        function totalBuyCalculate(){
 
+        /* Buy input */
+        $('#buy-price').keyup(function (){
+            buy_current_crypto_price = $(this).val();
+        })
+        $('#buy-amount').keyup(function (){
+            if($('#buy-price').val()==""){
+                updatePrice(); 
+            } else {
+                let cal = Math.floor(buy_current_crypto_price * $(this).val() * 10000) / 10000;
+                let percent = ( cal / balance_usdt )*100 ;
+                $('#buy-total').val(cal);
+                $('#buy-slider').val(percent);
+                $('#buy-slider-text').text(parseInt(percent) + '%');
+                if(percent>100){
+                    $('#buy-slider-text').text('100%');
+                }
+                if(cal < 0){
+                    $(this).val("");
+                    $('#buy-total').val("");
+                } 
+            }  
+        });
+        $('#buy-total').keyup(function (){
+            if($('#buy-price').val()==""){
+                updatePrice(); 
+            } else {
+                let cal = Math.floor( ($(this).val() / $('#buy-price').val()) * 10000) / 10000;
+                let percent = Math.floor(( $(this).val() / balance_usdt )*100 *100 ) / 100 ;
+                $('#buy-amount').val(cal);
+                $('#buy-slider').val(percent);
+                $('#buy-slider-text').text(parseInt(percent) + '%');
+                if(percent>100){
+                    $('#buy-slider-text').text('100%');
+                }
+                if(cal < 0){
+                    $(this).val("");
+                    $('#buy-amount').val("");
+                }
+            }
+        });
+
+        /* Sell input */
+        $('#sell-price').keyup(function (){
+            sell_current_crypto_price = $(this).val();
+        })
+        $('#sell-amount').keyup(function (){
+            if($('#sell-price').val()==""){
+                updatePrice(); 
+            } else {
+                let cal = Math.floor(sell_current_crypto_price * $(this).val() * 10000) / 10000;
+                let percent = ( $(this).val() / walletData[symbol] )*100 ;
+                $('#sell-total').val(cal);
+                $('#sell-slider').val(percent);
+                $('#sell-slider-text').text(parseInt(percent) + '%');
+                if(percent>100){
+                    $('#sell-slider-text').text('100%');
+                }
+                if(cal < 0){
+                    $(this).val("");
+                    $('#sell-total').val("");
+                }
+            }
+        });
+        $('#sell-total').keyup(function (){
+            if($('#sell-price').val()==""){
+                updatePrice(); 
+            } else {
+                let cal = Math.floor($(this).val() / $('#sell-price').val() * 10000) / 10000;
+                let percent = ( cal / walletData[symbol])*100 ;
+                $('#sell-amount').val(cal);
+                $('#sell-slider').val(percent);
+                $('#sell-slider-text').text(parseInt(percent) + '%');
+                if(percent>100){
+                    $('#sell-slider-text').text('100%');
+                }
+                if(cal < 0){
+                    $(this).val("");
+                    $('#sell-amount').val("");
+                }
+            }
+        });
+
+        /* Get user wallet data */
+        function getWalletData(){
+            $.ajax({
+                url: 'database/getWalletData.php', type: 'post', dataType: 'json',
+                success: function(response){
+                    walletData = response;
+                    $('#usdt').text(walletData["USDT"]);
+                    balance_usdt = parseFloat($('#usdt').text());
+                }
+            });
         }
-        /* Cal by price * amount (Sell) */
-        function totalSellCalculate(){
+        $(document).ready(getWalletData());
 
-        }
-
-        /* tooltip by Bootsstrap */
+        /* tooltip by Bootstrap */
         $(function () {
             $('[data-toggle="tooltip"]').tooltip({
                 delay: {
@@ -518,6 +637,7 @@
                 }
             })
         })
+
     </script>
 
 </body>

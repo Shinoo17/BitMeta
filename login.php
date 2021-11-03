@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(isset($_SESSION["User_ID"])){
+        header("location:http://localhost/work/BitMeta/index.html");
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,31 +35,31 @@
                         <div class="w-100">
                             <div style="font-size: 30px;">Welcome to BitMeta</div>
                             <div>Don't have an account?</div>
-                            <a href="register.html" class="btn button-link mt-2">Sign Up</a>
+                            <a href="register.php" class="btn button-link mt-2">Sign Up</a>
                         </div>
                     </div>
                     <div class="login-wrap p-4 p-lg-5">
                         <span class="mb-5" style="font-size: 26px;">Sign In</span>
-                        <form action="#" class="mt-3">
+                        <form action="database/login_verify.php" method="post" class="mt-3">
                             <div class="form-group mb-3">
                                   <label class="label" for="name">Username</label>
-                                  <input type="text" class="form-control mt-2" placeholder="Username" id="username" required>
+                                  <input type="text" class="form-control mt-2" placeholder="Username" name="username" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="password">Password</label>
-                                <input type="password" class="form-control mt-2" placeholder="Password" id="password" required>
+                                <input type="password" class="form-control mt-2" placeholder="Password" name="password" id="password" required>
                                 <i class="fa-regular fa-eye-slash fa-lg float-end eye-password"></i>
                             </div>
                             <button type="submit" class="form-control button-form mt-4">Sign In</button>
                             <div class="form-group d-flex mt-2">
                                 <div class="w-50 text-left">
                                     <label class="Container-Checkbox">Remember Me
-                                        <input type="checkbox" checked="checked">
+                                        <input type="checkbox" checked="checked" name="remember-me">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <div class="w-50" style="text-align: right;">
-                                    <a href="#">Forgot Password</a>
+                                    <a href="resetPassword.html">Forgot Password</a>
                                 </div>
                             </div>
                         </form>
@@ -62,7 +69,7 @@
         </div>
     </div>
     <script>
-        $('i').click(function (){
+        $('i').click(function (){     
             if($('#password').attr('type') == 'password'){
                 $('#password').attr('type','text');
                 $(this).removeClass('fa-eye-slash');
@@ -71,7 +78,7 @@
                 $('#password').attr('type','password');
                 $(this).removeClass('fa-eye');
                 $(this).addClass('fa-eye-slash');
-            }
+            }       
         });
     </script>
 </body>

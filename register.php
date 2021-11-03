@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(isset($_SESSION["User_ID"])){
+        header("location:http://localhost/work/BitMeta/index.html");
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,22 +35,22 @@
                         <div class="w-100">
                             <div style="font-size: 30px;">Welcome to BitMeta</div>
                             <div>Alrady have an account?</div>
-                            <a href="login.html" class="btn button-link mt-2">Sign In</a>
+                            <a href="login.php" class="btn button-link mt-2">Sign In</a>
                         </div>
                     </div>
                     <div class="login-wrap p-4 p-lg-5">
                         <span class="mb-5" style="font-size: 26px;">Sign Up</span>
-                        <form action="php/register_verify.php" class="mt-3" method="POST">
+                        <form action="database/register_verify.php" class="mt-3" method="POST">
                             <div class="form-group mb-3">
                                   <label>Username</label>
-                                  <input type="text" class="form-control mt-2" placeholder="Username" name="username" required>
-                                  <div hidden class="duplicate" id="username-worng">*username is unavailable</div>
+                                  <input type="text" class="form-control mt-2" placeholder="Username" name="username" id="username" required>
+                                  <div class="duplicate" id="username-worng">*Username is not available</div>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Email</label>
-                                <input type="email" class="form-control mt-2" placeholder="Email" name="email" required>
-                                <div hidden class="duplicate" id="Email-worng">*Email is unavailable</div>
-                          </div>
+                                <input type="email" class="form-control mt-2" placeholder="Email" name="email" id="email" required>
+                                <div class="duplicate" id="email-worng">*Email is not available</div>
+                            </div>
                             <div class="form-group mb-3">
                                 <label>Password</label>
                                 <input type="password" class="form-control mt-2" placeholder="Password" name="password" id="password" required>
@@ -53,9 +60,9 @@
                                 <label>Confirm Password</label>
                                 <input type="password" class="form-control mt-2" placeholder="Confirm Password" id="Confirm-Password" required>
                                 <i class="fa-regular fa-eye-slash fa-lg float-end eye-password"></i>
-                                <div hidden class="duplicate" id="wrong-pass">*Please enter same password</div>
+                                <div class="duplicate" id="wrong-pass">*Please enter same password</div>
                             </div>
-                            <button type="submit" class="form-control button-form mt-4">Sign Up</button>
+                            <button type="submit" class="form-control button-form mt-4" style="cursor: pointer;">Sign Up</button>
                             <div class="form-group d-flex mt-2 term-of-use">
                                 <label class="Container-Checkbox">I accept <a href="#" data-bs-target="#showTermOfUse" data-bs-toggle="modal">Term of use</a>
                                     <input type="checkbox" checked="checked" required>
@@ -88,15 +95,18 @@
     </div>
 
     <script>
+        $('.duplicate').hide();
         function checkPassword(){
             let pass = $('#password').val();
             let confirm = $('#Confirm-Password').val();
             if(pass == "" || confirm == ""){
                 // do nothing
             }else if(pass != confirm){
-                $('#wrong-pass').removeAttr('hidden');
+                $('#wrong-pass').show();
+                $('button[type=submit]').attr('disabled',true);
             }else{
-                $('#wrong-pass').attr('hidden','hidden');
+                $('#wrong-pass').hide();
+                $('button[type=submit]').removeAttr('disabled');
             }
         }
         $('#password').focusout(function (){
@@ -117,6 +127,36 @@
                 $('i').removeClass('fa-eye');
                 $('i').addClass('fa-eye-slash');
             }
+        });
+        $('#username').keyup(function (){
+            $.ajax({
+                url: 'database/username_check.php', type: 'post', dataType: 'json',
+                data: { username: $('#username').val() },
+                success: function(response){
+                    if(response.isDuplicate){
+                        $('#username-worng').show();
+                        $('button[type=submit]').attr('disabled',true);
+                    } else { 
+                        $('#username-worng').hide();
+                        $('button[type=submit]').removeAttr('disabled');
+                    }
+                }
+            });
+        });
+        $('#email').keyup(function (){
+            $.ajax({
+                url: 'database/email_check.php', type: 'post', dataType: 'json',
+                data: { email: $('#email').val() },
+                success: function(response){
+                    if(response.isDuplicate){ 
+                        $('#email-worng').show();
+                        $('button[type=submit]').attr('disabled',true);
+                    } else { 
+                        $('#email-worng').hide();
+                        $('button[type=submit]').removeAttr('disabled');
+                    }
+                }
+            });
         });
     </script>
 
