@@ -52,6 +52,7 @@
         $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='$coin_id'";
     }
     $conn->exec($sql_order);
+    #$conn->exec($sql_wallet);
     $conn = null;
     header("location: ../market.php");
 ?>

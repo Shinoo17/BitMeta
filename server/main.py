@@ -1,12 +1,14 @@
 from tkinter import *
 import mysql.connector
+import conn
 
 running = False
 
 
 def scanning():
     if running:
-        print("running")
+        conn.match_order()
+        pass
 
     root.after(1000, scanning)
 

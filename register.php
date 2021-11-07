@@ -22,7 +22,7 @@
     <!-- font awesome icon -->
     <script src="https://kit.fontawesome.com/f7b93d372f.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/loginStyle.css">
+    <link rel="stylesheet" href="css/formStyle.css">
     <link rel="icon" href="image/icon_200x200.png" type="image/x-icon">
     <title>BitMeta Login</title>
 </head>
