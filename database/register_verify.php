@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION["User_ID"])){
-        header("location:http://localhost/work/BitMeta/index.html");
+        header("location: ../index.html");
         die();
     }
 
@@ -16,7 +16,7 @@
     $sql = "SELECT * FROM user where Username='$username' && Email='$email'";
     $result = $conn->query($sql);
     if($result->rowCount() >= 1){ 
-        header("location:http://localhost/work/BitMeta/register.html");
+        header("location: ../register.html");
         die(); 
     }
 
@@ -55,5 +55,5 @@
     }
 
     $conn = null;
-    header("location:http://localhost/work/BitMeta/login.html");
+    header("location: ../login.html");
 ?>

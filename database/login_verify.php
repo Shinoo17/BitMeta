@@ -17,10 +17,10 @@
         }
         $_SESSION["Username"] = $username;
         $_SESSION["User_ID"] = $data["User_ID"];
-        header("location: http://localhost/work/BitMeta/index.html");
+        header("location: ../index.html");
         die();
     }else{
-        header("location: http://localhost/work/BitMeta/login.html");
+        header("location: ../login.html");
         die();
     }
 ?>

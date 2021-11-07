@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION["User_ID"])){
-        header("location: http://localhost/work/BitMeta/login.html");
+        header("location: ../login.html");
         die();
     }
 
@@ -23,6 +23,6 @@
 
     $sql = "UPDATE wallet SET Amount='$newBalance' where User_ID='$User_ID' && Coin_ID='1'";
     $conn->exec($sql);
-    header("location:http://localhost/work/BitMeta/index.html");
+    header("location: ../index.html");
 
 ?>

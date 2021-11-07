@@ -5,48 +5,53 @@
         die();
     }
 
-    $User_ID = $_SESSION["User_ID"];
-    $amount = $_POST["amount"];
-    $total = $_POST["total"];
-    $type = $_POST["type"];
-    $symbol = $_POST["symbol"];
-    if($type=="limit"){ 
-        $price = $_POST["price"]; 
-    } else {
-        $price = $_POST["markprice"];
-        $market_option = $_POST["option"];
-        echo $market_option . "<br>";
-    }
     $conn = new PDO("mysql:host=localhost;dbname=test;charset=utf8","root","");
 
+    $User_ID = $_SESSION["User_ID"];
+    $coin_id = $_POST["coin_id"];
+    $type = $_POST["type"];
+    
     if(isset($_POST["buy"])){
-        $sild = "buy";
         $sql = "SELECT * FROM wallet where User_ID='$User_ID' && Coin_ID='1'";
         $result = $conn->query($sql);
         $data = $result->fetch(PDO::FETCH_ASSOC);
         $USDT = $data['Amount'];
-        //if($total > $USDT ) { die(); }
-        if($type=="limit"){
-            $sql = "SELECT * FROM orders where Coin_symbol='$symbol' && Slid='buy' && Price='$price'";
-            $order = $conn->query($sql);
-            while($row = $order->fetch()){
-                echo "price to buy = " . $row["Price"] . "<br>";
-                echo "user " . $row["User_ID"] . "<br>";
-            }
+        $total = $_POST["total"];
+        $newBalance = $USDT - $total;
+        //if( $newBalance < 0 ) { die(); }
+        if($type == "limit"){
+            $price = $_POST["price"];
+            $amount = $_POST["amount"];
+            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
+                          VALUES ('$User_ID','$coin_id','Buy','$price','$amount','0','$total','$total',NOW())";   
         }
-
-    } else if(isset($_POST["sell"])) {
-        $sild = "sell";
+        else if($type == "market"){
+            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
+                          VALUES ('$User_ID','$coin_id','Buy','0','0','0','$total','$total',NOW())";
+        }
+        $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='1'";
     }
-    //$sql = "SELECT * FROM wallet as wallet INNER JOIN crypto_coin as coin ON (wallet.Coin_ID = coin.CoinID) where wallet.User_ID='$User_ID'";
-    
-    echo "<br> user details <br>";
-    echo "User_ID : " . $User_ID . "<br>";
-    echo "USDT = " . $USDT . "<br>";
-    echo "type : " . $type . "<br>";
-    echo "symbol : " . $symbol . "<br>";
-    echo "sild : " . $sild . "<br>";
-    echo "price : " . $price . "<br>";
-    echo "amount : " . $amount . "<br>";
-    echo "total : " . $total . "<br>";
+    else if(isset($_POST["sell"])){
+        $sql = "SELECT * FROM wallet where User_ID='$User_ID' && Coin_ID='$coin_id'";
+        $result = $conn->query($sql);
+        $data = $result->fetch(PDO::FETCH_ASSOC);
+        $coin = $data['Amount'];
+        $amount = $_POST["amount"];
+        $newBalance = $coin - $amount;
+        //if( $newBalance < 0 ) { die(); }
+        if($type == "limit"){
+            $price = $_POST["price"];
+            $total = $_POST["total"];
+            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
+                          VALUES ('$User_ID','$coin_id','Sell','$price','$amount','0','$amount','$total',NOW())";
+        }
+        else if($type == "market"){
+            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
+                          VALUES ('$User_ID','$coin_id','Sell','0','$amount','0','$amount','0',NOW())";
+        }
+        $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='$coin_id'";
+    }
+    $conn->exec($sql_order);
+    $conn = null;
+    header("location: ../market.php");
 ?>

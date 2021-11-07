@@ -109,10 +109,6 @@
                         <i class="bi bi-question-circle" style="padding-left: 3px; display: none;" data-toggle="tooltip" data-placement="top" 
                         title="Market will auto match order"></i>
                     </span>
-                    <span style="float: right; display: none;" id="market-option">
-                        <span class="span-select span-selected" style="padding-right: 10px;" id="market-amount">จำนวน</span>
-                        <span class="span-select" id="market-total">ทั้งหมด</span>
-                    </span>
                 </div>
             </div>
         </div>
@@ -166,8 +162,7 @@
                           <span class="input-group-text right-span" id="price-buy">USDT</span>
                         </div>
                     </div>
-                    <input type="text" style="display: none;" name="option" class="select-market-option">
-                    <input type="text" style="display: none;" name="markprice" class="markprice">
+                    <input type="text" style="display: none;" name="coin_id" class="coin_id">
                     <input type="text" style="display: none;" name="symbol" class="symbol">
                     <input type="text" style="display: none;" name="type" class="type">
                     <?php if(isset($_SESSION["User_ID"])) { ?>
@@ -228,8 +223,7 @@
                             <span class="input-group-text right-span" id="price-sell">USDT</span>
                         </div>
                     </div>
-                    <input type="text" style="display: none;" name="option" class="select-market-option">
-                    <input type="text" style="display: none;" name="markprice" class="markprice">
+                    <input type="text" style="display: none;" name="coin_id" class="coin_id">
                     <input type="text" style="display: none;" name="symbol" class="symbol">
                     <input type="text" style="display: none;" name="type" class="type">
                     <?php if(isset($_SESSION["User_ID"])) { ?>
@@ -302,15 +296,11 @@
         let select = "limit";                   /* User select Limit or Market */
         let symbol;                             /* User select Cryptocurrency */
         let id_symbol;                          /* User select Cryptocurrency */
-        let buy_amount_percent = 0;             /* User slide buy-slider */
-        let sell_amount_percent = 0;            /* User slide sell-slider */
-        let buy_current_crypto_price;           /* Current crypto price that user selected */
-        let sell_current_crypto_price;
-        let market_select_option = "amount";    /* User select จำนวน or ทั้งหมด */
+        let buy_percent = 0;             /* User slide buy-slider */
+        let sell_percent = 0;            /* User slide sell-slider */
         let index;                              /* index for api */
         let walletData;                         /* User wallet data */
-        let balance_usdt                        /* User USDT */
-        $('.type').val("limit");
+        let balance_usdt;                        /* User USDT */
 
         /*Dropdown Menu*/
         $('.dropdown').click(function () {
@@ -332,12 +322,12 @@
             if(walletData!=null){
                 $('#crypto_coin').text(walletData[symbol]);
             }
-            clearInput();
+            clearInputField();
             updatePrice();
         });
         /*End Dropdown Menu*/
 
-        function clearInput(){
+        function clearInputField(){
             $('#buy-amount').val("");
             $('#buy-total').val("");
             $('#sell-amount').val("");
@@ -353,9 +343,14 @@
             $('#market').find('i').hide();
             $('.price-input').removeAttr('disabled');
             $('.price-input').attr('type','number');
-            $('#market-option').hide();
-            check_showup_inputfield();
+            $('.type').val("limit");
+            if(select == "market"){
+                $('#buy-amount-group').show();
+                $('#sell-total-group').show();
+                $('#buy-amount-group').swapWith('#buy-total-group');
+            }
             select = "limit";
+            clearInputField();
             updatePrice();
         })
         $('#market').click(function (){
@@ -365,18 +360,15 @@
             $('.price-input').attr('disabled','disabled');
             $('.price-input').attr('type','text');
             $('.price-input').val('Market');
-            $('#market-option').show();
             $('.type').val("market");
-            $('.select-market-option').val(market_select_option);
-            select = "market";
-            updatePrice();
-            if(market_select_option == "amount"){
-                $('#buy-total-group').hide();
+            if(select == "limit"){
+                $('#buy-amount-group').hide();
                 $('#sell-total-group').hide();
+                $('#buy-amount-group').swapWith('#buy-total-group');
             }
-            if(market_select_option == "total") {
-                swap_total_up();
-            }
+            select = "market";
+            clearInputField();
+            updatePrice();
         })
 
         /* swap element function */
@@ -389,61 +381,6 @@
             });
         };
 
-        /* check when user switch from Market -> Limit */
-        function check_showup_inputfield (){
-            if(select == "market"){
-                if(market_select_option == "total"){
-                    $('#buy-amount-group').swapWith('#buy-total-group');
-                    $('#sell-amount-group').swapWith('#sell-total-group');
-                }
-
-                $('#buy-amount-group').show();
-                $('#buy-total-group').show();
-
-                $('#sell-amount-group').show();
-                $('#sell-total-group').show();
-            }
-        }
-        
-        function swap_amount_up (){
-            $('#buy-amount-group').swapWith('#buy-total-group');
-            $('#sell-amount-group').swapWith('#sell-total-group'); 
-            $('#buy-total-group').hide();
-            $('#sell-total-group').hide();
-            $('#buy-amount-group').show();
-            $('#sell-amount-group').show();
-        }
-        function swap_total_up (){
-            $('#buy-amount-group').swapWith('#buy-total-group');
-            $('#sell-amount-group').swapWith('#sell-total-group');
-            $('#buy-amount-group').hide();
-            $('#sell-amount-group').hide();
-            $('#buy-total-group').show();
-            $('#sell-total-group').show();
-        }
-
-        /* market option -> จำนวน & ทั้งหมด */
-        $('#market-amount').click(function (){
-            $(this).addClass('span-selected');
-            $('#market-total').removeClass('span-selected');
-            /* show up amount-inputfield */
-            if(market_select_option == "total"){
-                swap_amount_up();
-            }
-            market_select_option = "amount";
-            $('.select-market-option').val(market_select_option);
-        })
-        $('#market-total').click(function (){
-            $(this).addClass('span-selected');
-            $('#market-amount').removeClass('span-selected');
-            /* show up total-inputfield */
-            if(market_select_option == "amount") {
-                swap_total_up();
-            }
-            market_select_option = "total";
-            $('.select-market-option').val(market_select_option);
-        })
-
         /* Slider */
         let rangeSlider = function(){
             let slider = $('.range-slider'),
@@ -454,16 +391,16 @@
             slider.each(function(){
                 value.each(function(){
                     let value = $(this).prev().attr('value');
-                    $(this).html(value);
+                    $(this).html(value + '%');
                 });
                 buy_slider_change.on('input', function(){
                     $(this).next(value).html(this.value  + '%');
-                    buy_amount_percent = this.value;
+                    buy_percent = this.value;
                     sliderCalculateBuy();
                 });
                 sell_slider_change.on('input', function(){
                     $(this).next(value).html(this.value  + '%');
-                    sell_amount_percent = this.value;
+                    sell_percent = this.value;
                     sliderCalculateSell();
                 });
             });
@@ -492,12 +429,10 @@
                 }
                 if(index >= 0){
                     let price = parseFloat(data[index]['lastPrice']);
-                    buy_current_crypto_price = price;
-                    sell_current_crypto_price = price;
                     if(select == 'limit'){ 
                         $('.price-input').val(price); 
                     }
-                    $('.markprice').val(price); 
+                    $('.coin_id').val(id_symbol);
                 }
             });
         }
@@ -505,10 +440,14 @@
         /* Auto Set by slider */
         function sliderCalculateBuy(){
             let price = $('#buy-price').val();
-            if(price == "Market"){ price = buy_current_crypto_price; }
-            if(price > 0){
+            if(price == "Market"){ 
+                $('#buy-amount').val(0);
+                let total = Math.floor( balance_usdt * (buy_percent/100) * 10000 ) / 10000;
+                $('#buy-total').val(total);
+            }
+            else if(price > 0){
                 /* Set amount 4 decimal */
-                let amount = balance_usdt*(buy_amount_percent/100)/price;
+                let amount = balance_usdt*(buy_percent/100)/price;
                 amount = Math.floor(amount * 10000) / 10000;
                 $('#buy-amount').val(amount);
                 /* Set total 4 decimal */
@@ -520,10 +459,10 @@
         /* Auto Set by slider */
         function sliderCalculateSell(){
             let price = $('#sell-price').val();
-            if(price == "Market"){ price = sell_current_crypto_price; }
+            if(price == "Market"){ price = 1; }
             if(price > 0){
                 /* Set amount 4 decimal */
-                let amount = walletData[symbol]*(sell_amount_percent/100);
+                let amount = walletData[symbol]*(sell_percent/100);
                 amount = Math.floor(amount * 10000) / 10000;
                 $('#sell-amount').val(amount);
                 /* Set total 4 decimal */
@@ -535,13 +474,13 @@
 
         /* Buy input */
         $('#buy-price').keyup(function (){
-            buy_current_crypto_price = $(this).val();
+            
         })
         $('#buy-amount').keyup(function (){
             if($('#buy-price').val()==""){
                 updatePrice(); 
             } else {
-                let cal = Math.floor(buy_current_crypto_price * $(this).val() * 10000) / 10000;
+                let cal = Math.floor( $('#buy-price').val() * $(this).val() * 10000) / 10000;
                 let percent = ( cal / balance_usdt )*100 ;
                 $('#buy-total').val(cal);
                 $('#buy-slider').val(percent);
@@ -549,10 +488,6 @@
                 if(percent>100){
                     $('#buy-slider-text').text('100%');
                 }
-                if(cal < 0){
-                    $(this).val("");
-                    $('#buy-total').val("");
-                } 
             }  
         });
         $('#buy-total').keyup(function (){
@@ -567,16 +502,12 @@
                 if(percent>100){
                     $('#buy-slider-text').text('100%');
                 }
-                if(cal < 0){
-                    $(this).val("");
-                    $('#buy-amount').val("");
-                }
             }
         });
 
         /* Sell input */
         $('#sell-price').keyup(function (){
-            sell_current_crypto_price = $(this).val();
+            
         })
         $('#sell-amount').keyup(function (){
             if($('#sell-price').val()==""){
@@ -589,10 +520,6 @@
                 $('#sell-slider-text').text(parseInt(percent) + '%');
                 if(percent>100){
                     $('#sell-slider-text').text('100%');
-                }
-                if(cal < 0){
-                    $(this).val("");
-                    $('#sell-total').val("");
                 }
             }
         });
@@ -608,15 +535,12 @@
                 if(percent>100){
                     $('#sell-slider-text').text('100%');
                 }
-                if(cal < 0){
-                    $(this).val("");
-                    $('#sell-amount').val("");
-                }
             }
         });
 
         /* Get user wallet data */
         function getWalletData(){
+            $('.type').val("limit");
             $.ajax({
                 url: 'database/getWalletData.php', type: 'post', dataType: 'json',
                 success: function(response){
