@@ -6,13 +6,6 @@ body {
     color: #f9f9f9;
     background:#10122d;
     position: relative;
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Old versions of Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 .thai-font {
@@ -288,13 +281,13 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.enableSelect {
-    -webkit-touch-callout: all; /* iOS Safari */
-      -webkit-user-select: all; /* Safari */
-       -khtml-user-select: all; /* Konqueror HTML */
-         -moz-user-select: all; /* Old versions of Firefox */
-          -ms-user-select: all; /* Internet Explorer/Edge */
-              user-select: all; /* Non-prefixed version, currently
+.noSelect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
 }
 
@@ -313,4 +306,34 @@ input[type=number] {
     -webkit-box-shadow: none;
     box-shadow: none;
     border-color: #f9f9f9; 
+}
+
+.refresh {
+    float: right;
+    color: white; 
+    background: transparent;
+    font-size: 15px;
+    border-radius: 20px; 
+    border-color: white;
+    cursor: pointer;
+    margin-top: -5px;
+    position: relative;
+}
+
+.refresh:hover {
+    color: rgb(44, 44, 44);
+    background-color: #F0B90B;
+    border-color: black;
+}
+
+i {
+    cursor: pointer;
+}
+
+.buy {
+    color: green;
+}
+
+.sell {
+    color: rgb(238, 59, 59);
 }

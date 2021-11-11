@@ -69,7 +69,7 @@
         </div>
     </div>
     <script>
-        $('i').click(function (){     
+        $('i').click(function (){
             if($('#password').attr('type') == 'password'){
                 $('#password').attr('type','text');
                 $(this).removeClass('fa-eye-slash');

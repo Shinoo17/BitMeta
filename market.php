@@ -107,7 +107,7 @@
                     <span class="span-select span-selected" id="limit">Limit</span>
                     <span class="span-select" id="market" style="margin-left: 10px;">Market
                         <i class="bi bi-question-circle" style="padding-left: 3px; display: none;" data-toggle="tooltip" data-placement="top" 
-                        title="Market will auto match order"></i>
+                           title="Market will auto match order"></i>
                     </span>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">ราคา $</span>
                         </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none price-input enableSelect" id="buy-price" 
+                        <input type="number" step="0.0001" class="form-control shadow-none price-input" id="buy-price" 
                             placeholder="ราคา" min="0"  autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                           <span class="input-group-text right-span" id="price-buy">USDT</span>
@@ -140,7 +140,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">จำนวน</span>
                           </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none enableSelect" id="buy-amount" 
+                        <input type="number" step="0.0001" class="form-control shadow-none" id="buy-amount" 
                             placeholder="จำนวน" min="0" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                           <span class="input-group-text right-span Cryptocurrency" id="coin-symbol-buy">Coin</span>
@@ -156,7 +156,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">ทั้งหมด</span>
                         </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none enableSelect"  id="buy-total"
+                        <input type="number" step="0.0001" class="form-control shadow-none"  id="buy-total"
                             placeholder="ทั้งหมด" min="0" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                           <span class="input-group-text right-span" id="price-buy">USDT</span>
@@ -190,7 +190,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">ราคา $</span>
                           </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none price-input enableSelect"  id="sell-price"
+                        <input type="number" step="0.0001" class="form-control shadow-none price-input"  id="sell-price"
                             placeholder="ราคา" min="0" autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                           <span class="input-group-text right-span" id="price-sell">USDT</span>
@@ -201,7 +201,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">จำนวน</span>
                           </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none enableSelect" id="sell-amount"
+                        <input type="number" step="0.0001" class="form-control shadow-none" id="sell-amount"
                             placeholder="จำนวน" min="0" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                           <span class="input-group-text right-span Cryptocurrency" id="coin-symbol-sell">Coin</span>
@@ -217,7 +217,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text left-span">ทั้งหมด</span>
                         </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none enableSelect" id="sell-total"
+                        <input type="number" step="0.0001" class="form-control shadow-none" id="sell-total"
                             placeholder="ทั้งหมด" min="0" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append">
                             <span class="input-group-text right-span" id="price-sell">USDT</span>
@@ -236,11 +236,18 @@
                 </form>
             </div>
         </div>
-        <div class="row mt-4 justify-content-center" style="padding-bottom: 250px;">
+        
+        <div class="row mt-3 justify-content-center" style="padding-bottom: 250px;">
             <div class="col-lg-10 border border-secondary table-responsive">
                 <table class="table" style="color: #c9c9c9;">
+                    <div class="mt-3">
+                        <span>Open Orders (<span class="orderCount">0</span>)</span>
+                        <span class="refresh btn">refresh</span>
+                    </div>
+                    <hr>
                     <thead>
                         <tr>
+                            <th>Order</th>
                             <th>Time</th>
                             <th>Symbol</th>
                             <th>Type</th>
@@ -253,54 +260,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>2021-11-25 10:40:30</td>
-                            <td>BTC</td>
-                            <td>Market</td>
-                            <td>Buy</td>
-                            <td>price &lt; 63000</td>
-                            <td>1 BTC</td>
-                            <td>0.1</td>
-                            <td>63000</td>
-                            <td><i class="gg-trash" style="margin-left: 50%;"></i></td>
-                        </tr>
-                        <tr>
-                            <td>2021-11-25 10:45:50</td>
-                            <td>BTC</td>
-                            <td>Limit</td>
-                            <td>Buy</td>
-                            <td>63000</td>
-                            <td>1 BTC</td>
-                            <td>0.1</td>
-                            <td>63000</td>
-                            <td><i class="gg-trash" style="margin-left: 50%;"></i></td>
-                        </tr>
-                        <tr>
-                            <td>2021-11-25 11:20:03</td>
-                            <td>BTC</td>
-                            <td>Market</td>
-                            <td>Sell</td>
-                            <td>price &gt; 63000</td>
-                            <td>1 BTC</td>
-                            <td>0.1</td>
-                            <td>63000</td>
-                            <td><i class="gg-trash" style="margin-left: 50%;"></i></td>
-                        </tr>
                     </tbody>
                 </table>
+                
+                <div class="modal fade" id="showForm" style="color: black;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Cancel Order</h5>
+                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    คุณต้องการยกเลิก Order <span id="orderID"></span> หรือไม่
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                <button class="btn btn-success">ยืนยัน</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        let select = "limit";                   /* User select Limit or Market */
-        let symbol;                             /* User select Cryptocurrency */
-        let id_symbol;                          /* User select Cryptocurrency */
-        let buy_percent = 0;             /* User slide buy-slider */
-        let sell_percent = 0;            /* User slide sell-slider */
-        let index;                              /* index for api */
-        let walletData;                         /* User wallet data */
-        let balance_usdt;                        /* User USDT */
+        let select = "limit";   /* User select Limit or Market */
+        let symbol;             /* User select Cryptocurrency */
+        let id_symbol;          /* User select Cryptocurrency */
+        let buy_percent = 0;    /* User slide buy-slider */
+        let sell_percent = 0;   /* User slide sell-slider */
+        let index;              /* index for api */
+        let walletData;         /* User wallet data */
+        let balance_usdt;       /* User USDT */
+        let orderBy = "Time";   /* Use for query database */
 
         /*Dropdown Menu*/
         $('.dropdown').click(function () {
@@ -473,9 +468,6 @@
         }
 
         /* Buy input */
-        $('#buy-price').keyup(function (){
-            
-        })
         $('#buy-amount').keyup(function (){
             if($('#buy-price').val()==""){
                 updatePrice(); 
@@ -493,7 +485,8 @@
         $('#buy-total').keyup(function (){
             if($('#buy-price').val()==""){
                 updatePrice(); 
-            } else {
+            }
+            if(select == "limit"){
                 let cal = Math.floor( ($(this).val() / $('#buy-price').val()) * 10000) / 10000;
                 let percent = Math.floor(( $(this).val() / balance_usdt )*100 *100 ) / 100 ;
                 $('#buy-amount').val(cal);
@@ -502,18 +495,18 @@
                 if(percent>100){
                     $('#buy-slider-text').text('100%');
                 }
+            } else {
+                $('#buy-amount').val(0);
             }
         });
 
         /* Sell input */
-        $('#sell-price').keyup(function (){
-            
-        })
         $('#sell-amount').keyup(function (){
             if($('#sell-price').val()==""){
                 updatePrice(); 
-            } else {
-                let cal = Math.floor(sell_current_crypto_price * $(this).val() * 10000) / 10000;
+            }
+            if(select == "limit"){
+                let cal = Math.floor( $('#sell-price').val() * $(this).val() * 10000) / 10000;
                 let percent = ( $(this).val() / walletData[symbol] )*100 ;
                 $('#sell-total').val(cal);
                 $('#sell-slider').val(percent);
@@ -521,6 +514,8 @@
                 if(percent>100){
                     $('#sell-slider-text').text('100%');
                 }
+            } else {
+                $('#sell-total').val(0);
             }
         });
         $('#sell-total').keyup(function (){
@@ -550,7 +545,41 @@
                 }
             });
         }
-        $(document).ready(getWalletData());
+        $(document).ready(function(){
+            getWalletData(); 
+            refreshOpenOrders();
+        });
+
+        /* Open Orders table */
+        
+        $('.refresh').click(function (){
+            refreshOpenOrders();
+        })
+
+        function refreshOpenOrders(){
+            $.ajax({
+                url: 'database/getOpenOrders.php', type: 'post', dataType: 'json', data: { orderBy: orderBy },
+                success: function(response){
+                    $('tbody').html(response.code)
+                    $('.orderCount').text(response.orderCount)
+                    let deleteFunction = function(){
+                        $('i').click(function(){
+                            $('#orderID').text($(this).data("userorderid"));
+                        })
+                    }
+                    deleteFunction();
+                }
+            });
+        }
+
+        /* Cancel orders */
+        function cancelOrder(orderID, Type){
+            console.log(orderID);
+            console.log(Type);
+        }
+
+        
+        
 
         /* tooltip by Bootstrap */
         $(function () {

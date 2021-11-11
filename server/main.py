@@ -8,6 +8,8 @@ running = False
 def scanning():
     if running:
         conn.match_order()
+        conn.match_order_market_buy()
+        conn.match_order_market_sell()
         pass
 
     root.after(1000, scanning)

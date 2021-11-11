@@ -10,7 +10,7 @@
     $password = sha1($password);
     $email = $_POST["email"];
 
-    $conn = new PDO("mysql:host=localhost;dbname=test;charset=utf8","root","");
+    $conn = new PDO("mysql:host=localhost;dbname=bitmeta;charset=utf8","root","");
 
     /* Check if contain? */
     $sql = "SELECT * FROM user where Username='$username' && Email='$email'";
@@ -55,5 +55,5 @@
     }
 
     $conn = null;
-    header("location: ../login.html");
+    header("location: ../login.php");
 ?>

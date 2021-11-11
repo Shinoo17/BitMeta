@@ -1,11 +1,11 @@
 <?php 
     session_start();
     if(!isset($_SESSION["User_ID"])){
-        header("location: http://localhost/work/BitMeta/login.html");
+        header("location: http://localhost/work/BitMeta/login.php");
         die();
     }
 
-    $conn = new PDO("mysql:host=localhost;dbname=test;charset=utf8","root","");
+    $conn = new PDO("mysql:host=localhost;dbname=bitmeta;charset=utf8","root","");
 
     $User_ID = $_SESSION["User_ID"];
     $coin_id = $_POST["coin_id"];
@@ -22,12 +22,12 @@
         if($type == "limit"){
             $price = $_POST["price"];
             $amount = $_POST["amount"];
-            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
-                          VALUES ('$User_ID','$coin_id','Buy','$price','$amount','0','$total','$total',NOW())";   
+            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+                          VALUES ('$User_ID','$coin_id','Buy','$price','$amount','0','$total','$total',NOW(),'Limit')";   
         }
         else if($type == "market"){
-            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
-                          VALUES ('$User_ID','$coin_id','Buy','0','0','0','$total','$total',NOW())";
+            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+                          VALUES ('$User_ID','$coin_id','Buy','0','0','0','$total','$total',NOW(),'Market')";
         }
         $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='1'";
     }
@@ -42,12 +42,12 @@
         if($type == "limit"){
             $price = $_POST["price"];
             $total = $_POST["total"];
-            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
-                          VALUES ('$User_ID','$coin_id','Sell','$price','$amount','0','$amount','$total',NOW())";
+            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+                          VALUES ('$User_ID','$coin_id','Sell','$price','$amount','0','$amount','$total',NOW(),'Limit')";
         }
         else if($type == "market"){
-            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time) 
-                          VALUES ('$User_ID','$coin_id','Sell','0','$amount','0','$amount','0',NOW())";
+            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+                          VALUES ('$User_ID','$coin_id','Sell','0','$amount','0','$amount','0',NOW(),'Market')";
         }
         $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='$coin_id'";
     }
