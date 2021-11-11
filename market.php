@@ -248,7 +248,7 @@
                     <thead>
                         <tr>
                             <th>Order</th>
-                            <th>Time</th>
+                            <th>Time <i class="bi bi-caret-up-fill"></i> </th>
                             <th>Symbol</th>
                             <th>Type</th>
                             <th>Sild</th>
@@ -277,7 +277,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                <button class="btn btn-success">ยืนยัน</button>
+                                <button class="btn btn-success" data-bs-dismiss="modal" onclick="cancelOrder()">ยืนยัน</button>
                             </div>
                         </div>
                     </div>
@@ -555,7 +555,8 @@
         $('.refresh').click(function (){
             refreshOpenOrders();
         })
-
+        let cancelType;
+        let cancelOrderID;
         function refreshOpenOrders(){
             $.ajax({
                 url: 'database/getOpenOrders.php', type: 'post', dataType: 'json', data: { orderBy: orderBy },
@@ -563,8 +564,10 @@
                     $('tbody').html(response.code)
                     $('.orderCount').text(response.orderCount)
                     let deleteFunction = function(){
-                        $('i').click(function(){
+                        $('.cancelIcon').click(function(){
                             $('#orderID').text($(this).data("userorderid"));
+                            cancelType = $(this).data("type");
+                            cancelOrderID = $(this).data("orderid")
                         })
                     }
                     deleteFunction();
@@ -573,14 +576,21 @@
         }
 
         /* Cancel orders */
-        function cancelOrder(orderID, Type){
-            console.log(orderID);
-            console.log(Type);
+        function cancelOrder(){
+            $.ajax({
+                url: 'database/cancelOrder.php', type: 'post', dataType: 'json', 
+                data: { 
+                    type: cancelType ,
+                    orderID: cancelOrderID,
+                },
+                success: function(response){
+                    refreshOpenOrders();
+                    getWalletData();
+                }
+            });
         }
 
         
-        
-
         /* tooltip by Bootstrap */
         $(function () {
             $('[data-toggle="tooltip"]').tooltip({

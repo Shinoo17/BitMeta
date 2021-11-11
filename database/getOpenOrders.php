@@ -10,7 +10,6 @@
             UNION SELECT * FROM orders_market as orders_market INNER JOIN crypto_coin as coin ON (orders_market.Coin_ID = coin.Coin_ID) WHERE orders_market.User_ID='$user_ID'
             ORDER BY $orderBy";
     $result = $conn->query($sql);
-
     
     $order_count = 0;
     $data = "";
@@ -22,14 +21,17 @@
                     <td>$row[9]</td>
                     <td>$row[13]</td>
                     <td>$row[10]</td>";
-        if($row[3] == "Buy"){ $data = $data . "<td class='buy'>$row[3]</td>"; }
-        else { $data = $data . "<td class='sell'>$row[3]</td>"; }
+                    if($row[3] == "Buy"){
+                        $data = $data . "<td class='buy'>$row[3]</td>"; 
+                    } else { 
+                        $data = $data . "<td class='sell'>$row[3]</td>"; 
+                    }
         $data = $data . "         
                     <td>$row[4]</td>
                     <td>$row[5]</td>
                     <td>$row[6]</td>
                     <td>$row[8]</td>
-                    <td><i class='gg-trash' style='margin-left: 50%;' onclick=cancelOrder($row[0],'Limit')
+                    <td><i class='gg-trash cancelIcon' style='margin-left: 50%;' data-type='$row[10]' data-orderID='$row[0]'
                         data-bs-target='#showForm' data-bs-toggle='modal' data-userOrderID='$order_count'></i>
                     </td>
                 </tr>";

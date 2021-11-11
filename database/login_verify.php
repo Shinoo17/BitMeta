@@ -17,6 +17,7 @@
         }
         $_SESSION["Username"] = $username;
         $_SESSION["User_ID"] = $data["User_ID"];
+        $_SESSION["session_id"] = session_id();
         header("location: ../index.php");
         die();
     }else{
