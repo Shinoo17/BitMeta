@@ -15,7 +15,7 @@ if(!isset($_SESSION["id"]))
 {?>
 
     <link rel="stylesheet" href="nav.css">
-    <nav class="navbar navbar-expand navbar-light" style="background-color: #000000">
+    <nav class="navbar navbar-expand navbar-light" style="background-color: #0d154e">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="index.php"><i class="bi bi-house-door-fill"></i>Home</a>
             <a class="navbar-brand text-white" href="market.php"><i class="bi bi-currency-exchange"></i>Market</a>
