@@ -8,7 +8,7 @@ cursor = database.cursor()
 # 0 : Order_ID
 # 1 : User_ID
 # 2 : Coin_ID
-# 3 : Slid
+# 3 : Side
 # 4 : Price
 # 5 : Amount
 # 6 : Filled
@@ -44,10 +44,10 @@ def updateWallet(userID, coinID_, coinBalance):
     cursor.execute(sql, wallet_val)
 
 
-def insertHistory(userID, coinID_, type_, slid, price, amount, total):
-    sql = "INSERT INTO history (User_ID, Coin_ID, Type, Slid, Price, Amount, Total, Time, Status) " \
+def insertHistory(userID, coinID_, type_, Side, price, amount, total):
+    sql = "INSERT INTO history (User_ID, Coin_ID, Type, Side, Price, Amount, Total, Time, Status) " \
           "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 'Success')"
-    history_val = (userID, coinID_, type_, slid, price, amount, total,
+    history_val = (userID, coinID_, type_, Side, price, amount, total,
                    datetime.datetime.now())
     cursor.execute(sql, history_val)
 
@@ -66,7 +66,7 @@ def deleteOrderMarket(orderID):
 
 def match_order():
     for coinID in range(2, 13):
-        sql_buyOrder = "SELECT * FROM orders_limit WHERE Slid='Buy' && Coin_ID=%s ORDER BY Price"
+        sql_buyOrder = "SELECT * FROM orders_limit WHERE Side='Buy' && Coin_ID=%s ORDER BY Price"
         val = (coinID,)
         cursor.execute(sql_buyOrder, val)
         resultBuy = cursor.fetchall()
@@ -77,7 +77,7 @@ def match_order():
             buy_UnFilled = buyOrder[5] - buyOrder[6]  # buy unfilled (Coin)
             buy_usdtRemain = buyOrder[7]  # buy remain (USDT)
 
-            sql_sellOrder = "SELECT * FROM orders_limit WHERE Slid='Sell' && Coin_ID=%s && Price=%s && User_ID!=%s"
+            sql_sellOrder = "SELECT * FROM orders_limit WHERE Side='Sell' && Coin_ID=%s && Price=%s && User_ID!=%s"
             val = (coinID, buy_price, buy_user_id)
             cursor.execute(sql_sellOrder, val)
             resultSell = cursor.fetchall()
@@ -163,7 +163,7 @@ def match_order():
 
 def match_order_market_buy():
     for coinID in range(2, 13):
-        sql_buyOrder = "SELECT * FROM orders_market WHERE Slid='Buy' && Coin_ID=%s"
+        sql_buyOrder = "SELECT * FROM orders_market WHERE Side='Buy' && Coin_ID=%s"
         val = (coinID,)
         cursor.execute(sql_buyOrder, val)
         resultBuy = cursor.fetchall()
@@ -176,7 +176,7 @@ def match_order_market_buy():
             buy_usdtRemain = buyOrder[7]  # buy remain (USDT)
 
             # get lowest price
-            sql_sellOrder = "SELECT * FROM orders_limit WHERE Slid='Sell' && Coin_ID=%s && User_ID!=%s ORDER BY Price"
+            sql_sellOrder = "SELECT * FROM orders_limit WHERE Side='Sell' && Coin_ID=%s && User_ID!=%s ORDER BY Price"
             val = (coinID, buy_user_id)
             cursor.execute(sql_sellOrder, val)
             resultSell = cursor.fetchall()
@@ -269,7 +269,7 @@ def match_order_market_buy():
 
 def match_order_market_sell():
     for coinID in range(2, 13):
-        sql_sellOrder = "SELECT * FROM orders_market WHERE Slid='Sell' && Coin_ID=%s"
+        sql_sellOrder = "SELECT * FROM orders_market WHERE Side='Sell' && Coin_ID=%s"
         val = (coinID,)
         cursor.execute(sql_sellOrder, val)
         resultSell = cursor.fetchall()
@@ -283,7 +283,7 @@ def match_order_market_sell():
             sell_total = sellOrder[8]  # sell total (in USDT)
 
             # get highest price
-            sql_buyOrder = "SELECT * FROM orders_limit WHERE Slid='Buy' && Coin_ID=%s && User_ID!=%s ORDER BY Price " \
+            sql_buyOrder = "SELECT * FROM orders_limit WHERE Side='Buy' && Coin_ID=%s && User_ID!=%s ORDER BY Price " \
                            "DESC"
             val = (coinID, sell_order_id)
             cursor.execute(sql_buyOrder, val)

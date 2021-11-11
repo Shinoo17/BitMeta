@@ -22,11 +22,11 @@
         if($type == "limit"){
             $price = $_POST["price"];
             $amount = $_POST["amount"];
-            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Side,Price,Amount,Filled,Remain,Total,Time,Type) 
                           VALUES ('$User_ID','$coin_id','Buy','$price','$amount','0','$total','$total',NOW(),'Limit')";   
         }
         else if($type == "market"){
-            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Side,Price,Amount,Filled,Remain,Total,Time,Type) 
                           VALUES ('$User_ID','$coin_id','Buy','0','0','0','$total','$total',NOW(),'Market')";
         }
         $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='1'";
@@ -42,17 +42,17 @@
         if($type == "limit"){
             $price = $_POST["price"];
             $total = $_POST["total"];
-            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+            $sql_order = "INSERT INTO orders_limit (User_ID,Coin_ID,Side,Price,Amount,Filled,Remain,Total,Time,Type) 
                           VALUES ('$User_ID','$coin_id','Sell','$price','$amount','0','$amount','$total',NOW(),'Limit')";
         }
         else if($type == "market"){
-            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Slid,Price,Amount,Filled,Remain,Total,Time,Type) 
+            $sql_order = "INSERT INTO orders_market (User_ID,Coin_ID,Side,Price,Amount,Filled,Remain,Total,Time,Type) 
                           VALUES ('$User_ID','$coin_id','Sell','0','$amount','0','$amount','0',NOW(),'Market')";
         }
         $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='$coin_id'";
     }
     $conn->exec($sql_order);
-    #$conn->exec($sql_wallet);
+    //$conn->exec($sql_wallet);
     $conn = null;
     header("location: ../market.php");
 ?>

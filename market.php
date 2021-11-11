@@ -248,18 +248,19 @@
                     <thead>
                         <tr>
                             <th>Order</th>
-                            <th>Time <i class="bi bi-caret-up-fill"></i> </th>
-                            <th>Symbol</th>
-                            <th>Type</th>
-                            <th>Sild</th>
-                            <th>Price</th>
-                            <th>amount</th>
-                            <th>Filled</th>
-                            <th>Total</th>
+                            <th><span class="table-sort">Time <i class="bi bi-caret-up-fill"></i></span></th>
+                            <th><span class="table-sort">Symbol <i class="bi"></span></th>
+                            <th><span class="table-sort">Type <i class="bi"></span></th>
+                            <th><span class="table-sort">Side <i class="bi"></span></th>
+                            <th><span class="table-sort">Price <i class="bi"></span></th>
+                            <th><span class="table-sort">Amount <i class="bi"></span></th>
+                            <th><span class="table-sort">Filled <i class="bi"></span></th>
+                            <th><span class="table-sort">Total <i class="bi"></span></th>
                             <th style="text-align: center;">Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Order details will show here -->
                     </tbody>
                 </table>
                 
@@ -295,7 +296,7 @@
         let index;              /* index for api */
         let walletData;         /* User wallet data */
         let balance_usdt;       /* User USDT */
-        let orderBy = "Time";   /* Use for query database */
+        let orderBy = "Time ASC";   /* Use for query database */
 
         /*Dropdown Menu*/
         $('.dropdown').click(function () {
@@ -441,14 +442,12 @@
                 $('#buy-total').val(total);
             }
             else if(price > 0){
-                /* Set amount 4 decimal */
-                let amount = balance_usdt*(buy_percent/100)/price;
-                amount = Math.floor(amount * 10000) / 10000;
-                $('#buy-amount').val(amount);
                 /* Set total 4 decimal */
-                let total = amount * price;
-                total = Math.floor(total * 10000) / 10000;
+                let total = Math.floor( balance_usdt * (buy_percent/100) * 10000 ) / 10000;
                 $('#buy-total').val(total)
+                /* Set amount 4 decimal */
+                let amount = Math.floor(total/price * 10000) / 10000;
+                $('#buy-amount').val(amount);
             }
         }
         /* Auto Set by slider */
@@ -550,8 +549,7 @@
             refreshOpenOrders();
         });
 
-        /* Open Orders table */
-        
+        /* Get open orders table */
         $('.refresh').click(function (){
             refreshOpenOrders();
         })
@@ -590,6 +588,26 @@
             });
         }
 
+        /* sort open orders by user select */
+        $('.table-sort').each(function(){
+            $(this).click(function(){
+                /* Lowest = up arrow */
+                /* Highest = down arrow */
+                /* Lowest -> Highest */
+                if($(this).find('i').hasClass("bi-caret-up-fill")){
+                    $(this).find('i').removeClass("bi-caret-up-fill")
+                    $(this).find('i').addClass("bi-caret-down-fill")
+                    orderBy = $(this).text() + "DESC";
+                } else {
+                    /* Highest -> Lowest */ 
+                    $('.table-sort').find('i').removeClass("bi-caret-down-fill")
+                    $('.table-sort').find('i').removeClass("bi-caret-up-fill")
+                    $(this).find('i').addClass("bi-caret-up-fill")
+                    orderBy = $(this).text() + " ASC";
+                }
+                refreshOpenOrders();
+            })
+        })
         
         /* tooltip by Bootstrap */
         $(function () {

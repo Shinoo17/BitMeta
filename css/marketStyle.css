@@ -337,3 +337,7 @@ i {
 .sell {
     color: rgb(238, 59, 59);
 }
+
+.table-sort {
+    cursor: pointer;
+}
