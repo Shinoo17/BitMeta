@@ -54,12 +54,7 @@ $conn->exec($sql);
 $_SESSION["save_profile"]="success";
 
 
-echo "targetDir = ".$targetDir."<br>";
-echo "fileName = ".$fileName."<br>";
-echo "targetFilePath = ".$targetFilePath."<br>";
-echo "fileType = ".$fileType."<br>";
-/*
 $conn=null;
 header("location:profile.php");
-die();*/
+die();
 ?>
