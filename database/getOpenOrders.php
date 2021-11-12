@@ -32,7 +32,7 @@
                     <td>$row[6]</td>
                     <td>$row[8]</td>
                     <td><i class='gg-trash cancelIcon' style='margin-left: 50%;' data-type='$row[10]' data-orderID='$row[0]'
-                        data-bs-target='#showForm' data-bs-toggle='modal' data-userOrderID='$order_count'></i>
+                        data-bs-target='#deleteComfirm' data-bs-toggle='modal' data-userOrderID='$order_count'></i>
                     </td>
                 </tr>";
         $data = $data . "<br>";

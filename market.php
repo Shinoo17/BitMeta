@@ -23,7 +23,7 @@
     <title>BitMeta Market</title>
 </head>
 <body>
-    
+    <!-- Notification -->
     <div class="sticky-top mt-2" style="width: 18%; float: right; top: 15px" id="delete-alert">
         
     </div>
@@ -84,8 +84,9 @@
         </script>
     </div>
     <!-- TradingView END -->
+
     <div class="container mt-3">
-        <!-- Label -->
+        <!-- Dropdown -->
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 col-sm-8">
                 <span class="thai-font">เลือกเหรียญ</span>
@@ -131,53 +132,46 @@
                         <span>USDT</span>
                     </span>
                 </div>
-                <section>
+                <form>
                     <!-- Buy ราคา -->
                     <div class="input-group mt-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text left-span">ราคา $</span>
-                        </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none price-input" id="buy-price" 
-                            placeholder="ราคา" min="0"  autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text right-span" id="price-buy">USDT</span>
-                        </div>
+                        <div class="input-group-prepend"><span class="input-group-text left-span">ราคา $</span></div>
+                        <input type="number" class="form-control shadow-none price-input" id="buy-price" 
+                            placeholder="ราคา" autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
+                        <div class="input-group-append"><span class="input-group-text right-span" id="price-buy">USDT</span></div>
                     </div>
+
                     <!-- Buy จำนวน -->
                     <div class="input-group mt-3" id="buy-amount-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text left-span">จำนวน</span>
-                          </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none" id="buy-amount" 
-                            placeholder="จำนวน" min="0" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text right-span Cryptocurrency" id="coin-symbol-buy">Coin</span>
-                        </div>
+                        <div class="input-group-prepend"><span class="input-group-text left-span">จำนวน</span></div>
+                        <input type="number" class="form-control shadow-none" id="buy-amount" 
+                            placeholder="จำนวน" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
+                        <div class="input-group-append"><span class="input-group-text right-span Cryptocurrency" id="coin-symbol-buy">Coin</span></div>
                     </div>
+
                     <!-- Buy Slider -->
                     <div class="range-slider mt-3">
                         <input class="range-slider__range" type="range" value="0" min="0" max="100" id="buy-slider">
                         <span class="range-slider__value" id="buy-slider-text">0</span>
                     </div>
+
                     <!-- Buy ทั้งหมด -->
                     <div class="input-group mt-3" id="buy-total-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text left-span">ทั้งหมด</span>
-                        </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none"  id="buy-total"
-                            placeholder="ทั้งหมด" min="0" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text right-span" id="price-buy">USDT</span>
-                        </div>
+                        <div class="input-group-prepend"><span class="input-group-text left-span">ทั้งหมด</span></div>
+                        <input type="number" class="form-control shadow-none"  id="buy-total"
+                            placeholder="ทั้งหมด" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
+                        <div class="input-group-append"><span class="input-group-text right-span" id="price-buy">USDT</span></div>
                     </div>
+
+                    <!-- Buy button -->
                     <?php if(isset($_SESSION["User_ID"])) { ?>
-                        <button type="submit" class="btn btn-buy mt-3" id="buy-button" name="buy">Buy</button>
+                        <button type="button" class="btn btn-buy mt-3" id="buy-button" name="buy">Buy</button>
                     <?php } else { ?>
                         <div class="btn btn-div btn-secondary mt-3">
                             <a href="login.php" class="link">Login</a> or <a href="register.php" class="link">Register</a>
                         </div>
                     <?php } ?>
-                </section>
+                </form>
             </div>
             <!-- Sell -->
             <div class="col-lg-4 col-md-6 mt-3 col-sm-10">
@@ -189,56 +183,50 @@
                         <span class="Cryptocurrency">Coin</span>
                     </span>
                 </div>
-                <section action="database/place_order.php" method="post">
+                <form>
                     <!-- Sell ราคา -->
                     <div class="input-group mt-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text left-span">ราคา $</span>
-                          </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none price-input"  id="sell-price"
-                            placeholder="ราคา" min="0" autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text right-span" id="price-sell">USDT</span>
-                        </div>
+                        <div class="input-group-prepend"><span class="input-group-text left-span">ราคา $</span></div>
+                        <input type="number" class="form-control shadow-none price-input"  id="sell-price"
+                            placeholder="ราคา" autocomplete="off" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
+                        <div class="input-group-append"><span class="input-group-text right-span" id="price-sell">USDT</span></div>
                     </div>
+
                     <!-- Sell จำนวน -->
                     <div class="input-group mt-3" id="sell-amount-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text left-span">จำนวน</span>
-                          </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none" id="sell-amount"
-                            placeholder="จำนวน" min="0" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text right-span Cryptocurrency" id="coin-symbol-sell">Coin</span>
-                        </div>
+                        <div class="input-group-prepend"><span class="input-group-text left-span">จำนวน</span></div>
+                        <input type="number" class="form-control shadow-none" id="sell-amount"
+                            placeholder="จำนวน" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
+                        <div class="input-group-append"><span class="input-group-text right-span Cryptocurrency" id="coin-symbol-sell">Coin</span></div>
                     </div>
+
                     <!-- Sell slider -->
                     <div class="range-slider mt-3">
                         <input class="range-slider__range" type="range" value="0" min="0" max="100" id="sell-slider">
                         <span class="range-slider__value" id="sell-slider-text">0</span>
                     </div>
+
                     <!-- Sell ทั้งหมด -->
                     <div class="input-group mt-3" id="sell-total-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text left-span">ทั้งหมด</span>
-                        </div>
-                        <input type="number" step="0.0001" class="form-control shadow-none" id="sell-total"
-                            placeholder="ทั้งหมด" min="0" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
-                        <div class="input-group-append">
-                            <span class="input-group-text right-span" id="price-sell">USDT</span>
-                        </div>
+                        <div class="input-group-prepend"><span class="input-group-text left-span">ทั้งหมด</span></div>
+                        <input type="number" class="form-control shadow-none" id="sell-total"
+                            placeholder="ทั้งหมด" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
+                        <div class="input-group-append"><span class="input-group-text right-span" id="price-sell">USDT</span></div>
                     </div>
+
+                    <!-- Sell button -->
                     <?php if(isset($_SESSION["User_ID"])) { ?>
-                        <button type="submit" class="btn btn-sell mt-3" id="sell-button" name="sell">Sell</button>
+                        <button type="button" class="btn btn-sell mt-3" id="sell-button" name="sell">Sell</button>
                     <?php } else { ?>
                         <div class="btn btn-div btn-secondary mt-3">
                             <a href="login.php" class="link">Login</a> or <a href="register.php" class="link">Register</a>
                         </div>
                     <?php } ?>
-                </section>
+                </form>
             </div>
         </div>
 
+        <!-- Order table -->
         <div class="row mt-3 justify-content-center" style="padding-bottom: 250px;">
             <div class="col-lg-10 border border-secondary table-responsive">
                 <table class="table" style="color: #c9c9c9;">
@@ -265,82 +253,63 @@
                         <!-- Order details will show here -->
                     </tbody>
                 </table>
-                
-                <div class="modal fade" id="showForm" style="color: black;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Cancel Order</h5>
-                                <button class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div>
-                                    คุณต้องการยกเลิก Order <span id="orderID"></span> หรือไม่
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                <button class="btn" data-bs-dismiss="modal" onclick="cancelOrder()" style="background-color: #f15e5e; color: #fff;">ลบ Order</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
+
+        <!-- orderError modal popup -->
+        <div class="modal fade" id="orderError" style="color: black;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Order error</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="modal-text"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-bs-dismiss="modal" style="background-color: #30c230; color: #fff;">ฉันเข้าใจแล้ว</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delete comfirm modal popup -->
+        <div class="modal fade" id="deleteComfirm" style="color: black;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cancel Order</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            คุณต้องการยกเลิก Order <span id="orderID"></span> หรือไม่
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                        <button class="btn" data-bs-dismiss="modal" onclick="cancelOrder()" style="background-color: #f15e5e; color: #fff;">ลบ Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     
 
 
     <script>
 
-        $('#buy-button').click(function(){
-            $.ajax({
-                url: 'database/place_order.php', type: 'post', dataType: 'json', 
-                data: {
-                    coin_id : id_symbol,
-                    symbol : symbol,
-                    type : select,
-                    Side : "Buy",
-                    price : $('#buy-price').val(),
-                    amount : $('#buy-amount').val(),
-                    total : $('#buy-total').val(),
-                    buy : "buy"
-                },
-                success: function(response){
-                    refreshOpenOrders()
-                }
-            });
-            
-        })
-        $('#sell-button').click(function(){
-            $.ajax({
-                url: 'database/place_order.php', type: 'post', dataType: 'json', 
-                data: {
-                    coin_id : id_symbol,
-                    symbol : symbol,
-                    type : select,
-                    Side : "Sell",
-                    price : $('#sell-price').val(),
-                    amount : $('#sell-amount').val(),
-                    total : $('#sell-total').val(),
-                    sell : "sell"
-                },
-                success: function(response){
-                    refreshOpenOrders()
-                }
-            });
-            
-        })
-        let select = "limit";   /* User select Limit or Market */
-        let symbol;             /* User select Cryptocurrency */
-        let id_symbol;          /* User select Cryptocurrency */
-        let buy_percent = 0;    /* User slide buy-slider */
-        let sell_percent = 0;   /* User slide sell-slider */
-        let index;              /* index for api */
-        let walletData;         /* User wallet data */
-        let balance_usdt;       /* User USDT */
-        let orderBy = "Time ASC";   /* Use for query database */
+        let select = "limit";       /* User select Limit or Market  */
+        let symbol = "";            /* User select Cryptocurrency   */
+        let id_symbol;              /* User select Cryptocurrency   */
+        let buy_percent = 0;        /* User slide buy-slider        */
+        let sell_percent = 0;       /* User slide sell-slider       */
+        let index;                  /* index for api                */
+        let walletData;             /* User wallet data             */
+        let balance_usdt;           /* User USDT                    */
+        let orderBy = "Time ASC";   /* Use for query database       */
+        let alert_index = 1;        /* Use for Alert notification   */
 
         /*Dropdown Menu*/
         $('.dropdown').click(function () {
@@ -594,10 +563,105 @@
             $('tbody').html("<td colspan='10'><div class='mt-1'>No order open</div></td>")
         });
 
-        /* Get open orders table */
+        function createAlert(text, color, timeOut, id){
+                    $alert = $('#delete-alert').html() + "<div class='alert alert-" + color + " alert-dismissible fade show' id='alert-" + id + "'>\
+                        " + text + " <button type='button' class='btn-close'></button></div>";
+                    $('#delete-alert').html($alert)
+                    let closeFunction = function(){
+                        $(".btn-close").click(function() {
+                            $(this)
+                                .parent(".alert")
+                                .fadeOut();
+                        });
+                    }
+                    closeFunction();
+                    setTimeout(() => {
+                        $("#alert-" + id).fadeOut();
+                    }, timeOut);
+        }
+        
+        $('#buy-button').click(function(){
+            let price = $('#buy-price').val();
+            let amount = $('#buy-amount').val();
+            let total = $('#buy-total').val();
+            if(symbol==""){
+                $("#modal-text").text("กรุณาเลือกเหรียญ");
+                window.$("#orderError").modal("show")
+            } else if( price=="" || amount=="" || total=="" ){
+                $("#modal-text").text("กรุณากรอกข้อมูลให้ถูกต้อง");
+                window.$("#orderError").modal("show")
+            } else if( ( price <= 0 || amount <= 0 || total <= 0 ) && select == "limit" ){
+                $("#modal-text").text("กรุณาใส่มูลค่ามากกว่า 0");
+                window.$("#orderError").modal("show")
+            } else if( total <= 0  && select == "market" ){
+                $("#modal-text").text("กรุณาใส่มูลค่ามากกว่า 0");
+                window.$("#orderError").modal("show")
+            }  else {
+                $.ajax({
+                    url: 'database/place_order.php', type: 'post', dataType: 'json', 
+                    data: {
+                        coin_id : id_symbol,
+                        symbol : symbol,
+                        type : select,
+                        side : "Buy",
+                        price : price ,
+                        amount : amount,
+                        total : total,
+                    },
+                    success: function(response){
+                        refreshOpenOrders()
+                        clearInputField()
+                        createAlert("<strong>Success! </strong>create order buy", "success", 10000, alert_index)
+                        alert_index++;
+                    }
+                });
+            }
+        })
+        $('#sell-button').click(function(){
+            let price = $('#sell-price').val();
+            let amount = $('#sell-amount').val();
+            let total = $('#sell-total').val();
+            if(symbol==""){
+                $("#modal-text").text("กรุณาเลือกเหรียญ")
+                window.$("#orderError").modal("show")
+            } else if( price=="" || amount=="" || total=="" ){
+                $("#modal-text").text("กรุณากรอกข้อมูลให้ถูกต้อง")
+                window.$("#orderError").modal("show")
+            } else if( ( price <= 0 || amount <= 0 || total <= 0 ) && select == "limit" ){
+                $("#modal-text").text("กรุณาใส่มูลค่ามากกว่า 0");
+                window.$("#orderError").modal("show")
+            } else if( amount <= 0  && select == "market" ){
+                $("#modal-text").text("กรุณาใส่มูลค่ามากกว่า 0");
+                window.$("#orderError").modal("show")
+            } else {
+                $.ajax({
+                    url: 'database/place_order.php', type: 'post', dataType: 'json', 
+                    data: {
+                        coin_id : id_symbol,
+                        symbol : symbol,
+                        type : select,
+                        side : "Sell",
+                        price : price,
+                        amount : amount,
+                        total : total,
+                    },
+                    success: function(response){
+                        refreshOpenOrders()
+                        clearInputField()
+                        createAlert("<strong>Success! </strong>create order sell", "success", 10000, alert_index)
+                        alert_index++;
+                    }
+                });
+            }
+        })
+
+        /* Refresh orders table */
         $('.refresh').click(function (){
             refreshOpenOrders();
+            createAlert("<strong>Success!</strong> Order refresh.", "warning", 3000, alert_index);
+            alert_index++;
         })
+
         let cancelType;
         let cancelOrderID;
         function refreshOpenOrders(){
@@ -606,14 +670,14 @@
                 success: function(response){
                     $('tbody').html(response.code)
                     $('.orderCount').text(response.orderCount)
-                    let deleteFunction = function(){
+                    let setCancelOrderFunction = function(){
                         $('.cancelIcon').click(function(){
                             $('#orderID').text($(this).data("userorderid"));
                             cancelType = $(this).data("type");
                             cancelOrderID = $(this).data("orderid")
                         })
                     }
-                    deleteFunction();
+                    setCancelOrderFunction();
                 }
             });
         }
@@ -629,28 +693,13 @@
                 success: function(response){
                     refreshOpenOrders();
                     getWalletData();
-                    $alert = $('#delete-alert').html() + "<div class='alert alert-success alert-dismissible fade show'>\
-                        <strong>Success!</strong> Delete order successfully.\
-                        <button type='button' class='btn-close'></button>\
-                        </div>";
-                    $('#delete-alert').html($alert)
-                    /* data-bs-dismiss='alert' */
-                    let closeFunction = function(){
-                        $(".btn-close").click(function() {
-                            $(this)
-                                .parent(".alert")
-                                .fadeOut();
-                        });
-                    }
-                    closeFunction();
-                    setTimeout(() => {
-                        $(".btn-close").parent(".alert").fadeOut();
-                    }, 5000);
+                    createAlert("<strong>Success!</strong> Delete order successfully.", "success", 5000, alert_index);
+                    alert_index++;
                 }
             });
         }
 
-        /* sort open orders by user select */
+        /* sort orders by user select */
         $('.table-sort').each(function(){
             $(this).click(function(){
                 /* Lowest = up arrow */
