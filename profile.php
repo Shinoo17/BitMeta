@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +15,7 @@
 <style>
 img{
     max-width: 300px;
-    max-height: 300px;
+    max-height: 400px;
     margin: auto;
     text-align: center;
 }
@@ -24,28 +27,30 @@ a {
 </style>
 </head>
 
-<?php
-if($_POST){
-    if(isset($_FILES['upload'])){
-        $name_file =  $_FILES['upload']['name'];
-        $tmp_name =  $_FILES['upload']['tmp_name'];
-        $locate_img ="pic/";
-        move_uploaded_file($tmp_name,$locate_img.$name_file);
-    }
-}
-?>
+
 <body>
-    <div class="conatiner">
+    <div class="container">
+        <?php $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
+        $sql = "SELECT * FROM user WHERE User_ID='$_SESSION[User_ID]'";
+        $result=$conn->query($sql);
+        $row = $result->fetch();
+        ?>
         <center>
-            <a href="test.php"><img src="pic/<?php echo $name_file?>" alt="Avatar"></a>
+        <?php 
+            $conn = new PDO("mysql:host=localhost;dbname=bitmeta;charset=utf8","root","");
+        ?>
+            <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar">
         </center>
         <div style="text-align: center;">
-           <h1>Seres</h1>
-           <p class="title">Wep Devoloper</p>
-           <p>KMUTNB</p>
-           <a href="#"><i class="fa fa-twitter"></i></a>  
-           <a href="#"><i class="fa fa-facebook"></i></a> 
-           <a href="#"><i class="fa fa-twitch"></i></a>
+           <h1><?php echo $row["Username"]; ?></h1>
+           <p>Name : <?php echo $row["Name"]; ?>&nbsp;&nbsp;<?php echo $row["Surname"]; ?></p>
+           <p>Email : <?php echo $row["Email"]; ?></p>
+           <p>ID card : <?php echo $row["ID_card_number"]; ?></p>
+           <p>Address : <?php echo $row["Address"]; ?></p>
+           <p>Work : <?php echo $row["Job"]; ?></p>
+           <p>Tel. <?php echo $row["phone"]; ?></p>
+           <br>
+           <a href="profile_edit.php" class="btn button-link mt-2 btn-primary">edit profile</a>
         </div>
     </div>
 </body>

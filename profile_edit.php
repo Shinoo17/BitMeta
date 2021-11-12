@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["username"])){
+if(!isset($_SESSION["User_ID"])){
     header("location:login.php");
     die();
 }
@@ -17,14 +17,18 @@ if(!isset($_SESSION["username"])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <body>
+<?php $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
+    $sql = "SELECT * FROM user WHERE User_ID='$_SESSION[User_ID]'";
+    $result=$conn->query($sql);
+    $row = $result->fetch();
+?>
 <form action="profile_save.php" method="post">
     <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold"><?php echo $_SESSION['username']; ?></span>
-                    <span><input type="file" id="icon" name="icon"></span>
+                    <span class="font-weight-bold"><?php echo $row['Username']; ?></span>
                 </div>
             </div>
             <div class="col-md-5 border-right">
@@ -33,19 +37,19 @@ if(!isset($_SESSION["username"])){
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="name" value=""></div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="<?php echo $row['Name']; ?>" name="name"></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="<?php echo $row['Surname']; ?>" name="surname"></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value="" name="phone"></div>
-                        <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" value="" name="address"></div>
-                        <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="enter email" value="" name="email"></div>
-                        <div class="col-md-12"><label class="labels">ID card number</label><input type="text" class="form-control" placeholder="enter ID card number" value="" name="ID_card_number"></div>
-                        <div class="col-md-12"><label class="labels">Job</label><input type="text" class="form-control" placeholder="enter job" value="" name="job"></div>
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="int" min="0" class="form-control" placeholder="<?php echo $row['phone']; ?>" value="" name="phone" maxlength="10"></div>
+                        <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="<?php echo $row['Address']; ?>" value="" name="address"></div>
+                        <div class="col-md-12"><label class="labels">Email</label><input type="email" class="form-control" placeholder="<?php echo $row['Email']; ?>" value="" name="email"></div>
+                        <div class="col-md-12"><label class="labels">ID card number</label><input type="int" min="0" class="form-control" placeholder="<?php echo $row['ID_card_number']; ?>" value="" name="ID_card_number" maxlength="13"></div>
+                        <div class="col-md-12"><label class="labels">Job</label><input type="text" class="form-control" placeholder="<?php echo $row['Job']; ?>" value="" name="job"></div>
                     </div>
                     <div class="row mt-3"></div>
                     <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="button" name="save">Save Profile</button>
+                        <button class="btn btn-primary profile-button" type="submit" name="save">Save Profile</button>
                     </div>
                 </div>
             </div>
