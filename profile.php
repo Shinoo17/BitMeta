@@ -38,8 +38,18 @@ a {
         <center>
         <?php 
             $conn = new PDO("mysql:host=localhost;dbname=bitmeta;charset=utf8","root","");
+            if($row['Icon']==""){
+                ?>
+                    <img src="image/Icon/default-profile.jpg" alt="avatar">
+                <?php
+            }else{
+                ?>
+                    <img src="image/Icon/<?php echo $row['Icon']?>" alt="avatar">
+                <?php
+            }
         ?>
-            <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar">
+        
+            
         </center>
         <div style="text-align: center;">
            <h1><?php echo $row["Username"]; ?></h1>
