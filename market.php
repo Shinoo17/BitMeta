@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- gg css icon -->
@@ -23,10 +23,15 @@
     <title>BitMeta Market</title>
 </head>
 <body>
+    
+    <div class="sticky-top mt-2" style="width: 18%; float: right; top: 15px" id="delete-alert">
+        
+    </div>
+
     <!-- navbar -->
     <nav class="navbar navbar-expand navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door-fill"></i>Home</a>
+            <a class="navbar-brand" href="index.php"><i class="bi bi-house-door-fill"></i>Home</a>
             <a class="navbar-link" href="market.php"><i class="bi bi-currency-exchange"></i>Market</a>
             <a class="navbar-link" href="news.php"><i class="bi bi-file-earmark-text"></i>Announcement</a>
             <ul class="navbar-nav">
@@ -37,6 +42,8 @@
             </ul>
         </div>
     </nav>
+
+    
 
     <br><br><br>
     <!-- TradingView -->
@@ -112,6 +119,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="row justify-content-center">
             <!-- Buy -->
             <div class="col-lg-4 col-md-6 col-sm-10">
@@ -123,7 +131,7 @@
                         <span>USDT</span>
                     </span>
                 </div>
-                <form action="database/place_order.php" method="post">
+                <section>
                     <!-- Buy ราคา -->
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
@@ -162,9 +170,6 @@
                           <span class="input-group-text right-span" id="price-buy">USDT</span>
                         </div>
                     </div>
-                    <input type="text" style="display: none;" name="coin_id" class="coin_id">
-                    <input type="text" style="display: none;" name="symbol" class="symbol">
-                    <input type="text" style="display: none;" name="type" class="type">
                     <?php if(isset($_SESSION["User_ID"])) { ?>
                         <button type="submit" class="btn btn-buy mt-3" id="buy-button" name="buy">Buy</button>
                     <?php } else { ?>
@@ -172,7 +177,7 @@
                             <a href="login.php" class="link">Login</a> or <a href="register.php" class="link">Register</a>
                         </div>
                     <?php } ?>
-                </form>
+                </section>
             </div>
             <!-- Sell -->
             <div class="col-lg-4 col-md-6 mt-3 col-sm-10">
@@ -184,7 +189,7 @@
                         <span class="Cryptocurrency">Coin</span>
                     </span>
                 </div>
-                <form action="database/place_order.php" method="post">
+                <section action="database/place_order.php" method="post">
                     <!-- Sell ราคา -->
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
@@ -223,9 +228,6 @@
                             <span class="input-group-text right-span" id="price-sell">USDT</span>
                         </div>
                     </div>
-                    <input type="text" style="display: none;" name="coin_id" class="coin_id">
-                    <input type="text" style="display: none;" name="symbol" class="symbol">
-                    <input type="text" style="display: none;" name="type" class="type">
                     <?php if(isset($_SESSION["User_ID"])) { ?>
                         <button type="submit" class="btn btn-sell mt-3" id="sell-button" name="sell">Sell</button>
                     <?php } else { ?>
@@ -233,10 +235,10 @@
                             <a href="login.php" class="link">Login</a> or <a href="register.php" class="link">Register</a>
                         </div>
                     <?php } ?>
-                </form>
+                </section>
             </div>
         </div>
-        
+
         <div class="row mt-3 justify-content-center" style="padding-bottom: 250px;">
             <div class="col-lg-10 border border-secondary table-responsive">
                 <table class="table" style="color: #c9c9c9;">
@@ -247,16 +249,16 @@
                     <hr>
                     <thead>
                         <tr>
-                            <th>Order</th>
-                            <th><span class="table-sort">Time <i class="bi bi-caret-up-fill"></i></span></th>
-                            <th><span class="table-sort">Symbol <i class="bi"></span></th>
-                            <th><span class="table-sort">Type <i class="bi"></span></th>
-                            <th><span class="table-sort">Side <i class="bi"></span></th>
-                            <th><span class="table-sort">Price <i class="bi"></span></th>
-                            <th><span class="table-sort">Amount <i class="bi"></span></th>
-                            <th><span class="table-sort">Filled <i class="bi"></span></th>
-                            <th><span class="table-sort">Total <i class="bi"></span></th>
-                            <th style="text-align: center;">Cancel</th>
+                            <th style="width: 5%;">Order</th>
+                            <th style="width: 16%;"><span class="table-sort first-table">Time <i class="bi"></i></span></th>
+                            <th style="width: 9%;"><span class="table-sort">Symbol <i class="bi"></span></th>
+                            <th style="width: 8%;"><span class="table-sort">Type <i class="bi"></span></th>
+                            <th style="width: 6%;"><span class="table-sort">Side <i class="bi"></span></th>
+                            <th style="width: 10%;"><span class="table-sort">Price <i class="bi"></span></th>
+                            <th style="width: 10%;"><span class="table-sort">Amount <i class="bi"></span></th>
+                            <th style="width: 10%;"><span class="table-sort">Filled <i class="bi"></span></th>
+                            <th style="width: 10%;"><span class="table-sort">Total <i class="bi"></span></th>
+                            <th style="text-align: center; width: 10%">Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -278,16 +280,58 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                <button class="btn btn-success" data-bs-dismiss="modal" onclick="cancelOrder()">ยืนยัน</button>
+                                <button class="btn" data-bs-dismiss="modal" onclick="cancelOrder()" style="background-color: #f15e5e; color: #fff;">ลบ Order</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+    
+
 
     <script>
+
+        $('#buy-button').click(function(){
+            $.ajax({
+                url: 'database/place_order.php', type: 'post', dataType: 'json', 
+                data: {
+                    coin_id : id_symbol,
+                    symbol : symbol,
+                    type : select,
+                    Side : "Buy",
+                    price : $('#buy-price').val(),
+                    amount : $('#buy-amount').val(),
+                    total : $('#buy-total').val(),
+                    buy : "buy"
+                },
+                success: function(response){
+                    refreshOpenOrders()
+                }
+            });
+            
+        })
+        $('#sell-button').click(function(){
+            $.ajax({
+                url: 'database/place_order.php', type: 'post', dataType: 'json', 
+                data: {
+                    coin_id : id_symbol,
+                    symbol : symbol,
+                    type : select,
+                    Side : "Sell",
+                    price : $('#sell-price').val(),
+                    amount : $('#sell-amount').val(),
+                    total : $('#sell-total').val(),
+                    sell : "sell"
+                },
+                success: function(response){
+                    refreshOpenOrders()
+                }
+            });
+            
+        })
         let select = "limit";   /* User select Limit or Market */
         let symbol;             /* User select Cryptocurrency */
         let id_symbol;          /* User select Cryptocurrency */
@@ -547,6 +591,7 @@
         $(document).ready(function(){
             getWalletData(); 
             refreshOpenOrders();
+            $('tbody').html("<td colspan='10'><div class='mt-1'>No order open</div></td>")
         });
 
         /* Get open orders table */
@@ -584,6 +629,23 @@
                 success: function(response){
                     refreshOpenOrders();
                     getWalletData();
+                    $alert = $('#delete-alert').html() + "<div class='alert alert-success alert-dismissible fade show'>\
+                        <strong>Success!</strong> Delete order successfully.\
+                        <button type='button' class='btn-close'></button>\
+                        </div>";
+                    $('#delete-alert').html($alert)
+                    /* data-bs-dismiss='alert' */
+                    let closeFunction = function(){
+                        $(".btn-close").click(function() {
+                            $(this)
+                                .parent(".alert")
+                                .fadeOut();
+                        });
+                    }
+                    closeFunction();
+                    setTimeout(() => {
+                        $(".btn-close").parent(".alert").fadeOut();
+                    }, 5000);
                 }
             });
         }

@@ -17,7 +17,7 @@
         $order_count++;
         $data = $data . 
                 "<tr>
-                    <td>$order_count</td>
+                    <td><center>$order_count</center></td>
                     <td>$row[9]</td>
                     <td>$row[13]</td>
                     <td>$row[10]</td>";
@@ -44,7 +44,7 @@
         ));
     }else{
         echo json_encode( array(
-            "code" => "<div class='mt-2'>No order open</div>",
+            "code" => "<td colspan='10'><div class='mt-1'>No order open</div></td>",
             "orderCount" => $order_count,
         ));
     }

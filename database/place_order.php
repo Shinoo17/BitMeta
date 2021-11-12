@@ -54,5 +54,7 @@
     $conn->exec($sql_order);
     //$conn->exec($sql_wallet);
     $conn = null;
-    header("location: ../market.php");
+    echo json_encode( array(
+        "done" => "done"
+    ));
 ?>

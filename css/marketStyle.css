@@ -1,8 +1,9 @@
 @import url('http://fonts.cdnfonts.com/css/sofia-pro');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
 html,
 body {
-    font-family: 'Sofia Pro', sans-serif;
+    font-family: 'Quicksand';
     color: #f9f9f9;
     background:#10122d;
     position: relative;
@@ -317,7 +318,6 @@ input[type=number] {
     border-color: white;
     cursor: pointer;
     margin-top: -5px;
-    position: relative;
 }
 
 .refresh:hover {
@@ -341,3 +341,8 @@ i {
 .table-sort {
     cursor: pointer;
 }
+
+.btn-close:focus,.btn-close:active {
+    outline: none !important;
+    box-shadow: none;
+ }

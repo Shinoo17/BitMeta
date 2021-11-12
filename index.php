@@ -210,10 +210,6 @@
                 $('body').addClass('loaded');
             }, 1500);
         });
-
-        $(".accept").click(function(){
-            $(".cookie").hide();
-        });
     </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php 
     session_start();
     if(isset($_SESSION["User_ID"])){
-        header("location:http://localhost/work/BitMeta/index.html");
+        header("location:http://localhost/work/BitMeta/index.php");
         die();
     }
 ?>
