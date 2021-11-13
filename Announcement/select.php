@@ -13,35 +13,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-<style>
-   #image {
-     width: 100%;
-     height: 90%;
-     object-fit: cover;
-   }
-</style>
+
 </head>
 <body>
 <?php include 'nav-edit.php';?>
 <div class="container">
   <div class="topLeft">
-    <h1><a href="news.php"><img id="image" src="image/newscrp.jpg" style="width: 960px; height:972px;"></img></a></h1>
+    <h1><a href="news.php"><img id="image" src="image/news/newscrp.jpg" style="width: 960px; height:972px;"></img></a></h1>
   </div>
   <div class="topRight">
-    <h1><a href="WhatIsIt.html"><img id="image" src="image/what.jpg" style="width: 960px; height:972px;"></img></a></h1>
+    <h1><a href="WhatIsIt.html"><img id="image" src="image/news/what.jpg" style="width: 960px; height:972px;"></img></a></h1>
   </div>
-  
-  
-  <!--makes the blur work between the circle and the dot-->
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-    <defs>
-      <filter id="goo">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-        <feBlend in="SourceGraphic" in2="goo" />
-      </filter>
-    </defs>
-  </svg>
 </body>
 
 </html>

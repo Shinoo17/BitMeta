@@ -1,0 +1,80 @@
+.mainheading {
+	padding:0rem 0rem;
+}
+
+.padding {
+	padding-top: -20px;
+}
+
+a,a:hover {
+	transition:all 0.2s;
+}
+
+section {
+	margin-bottom:20px;
+}
+.section-title h2 {
+	border-bottom:1px solid rgba(0,0,0,.15);
+	margin-bottom:25px;
+	font-weight:700;
+	font-size:1.4rem;
+	margin-bottom:27px;
+}
+.section-title span {
+	border-bottom:1px solid rgba(0,0,0,.44);
+	display:inline-block;
+	padding-bottom:20px;
+	margin-bottom:-1px;
+
+.card-columns .card {
+	margin-bottom:20px;
+}
+
+.mainheading h1.sitetitle {
+	font-family:Righteous;
+}
+.mainheading h1.posttitle {
+	font-weight:700;
+	margin-bottom:1rem;
+}
+.footer {
+	border-top:1px solid rgba(0,0,0,.05)!important;
+	padding-top:15px;
+	padding-bottom:12px;
+	font-size:0.8rem;
+	color:rgba(0,0,0,.44);
+	margin-top:50px;
+}
+
+.featured-image {
+	display:block;
+	margin:0px auto;
+	margin-bottom:1.5rem;
+}
+
+.card {
+	border-radius:10px;
+}
+.card .img-thumb {
+	border-top-right-radius:4px;
+	border-top-left-radius:4px;
+}
+ul.tags {
+	list-style:none;
+	padding-left:0;
+	margin:0 0 3rem 0;
+}
+ul.tags li {
+	display:inline-block;
+	font-size:0.9rem;
+}
+ul.tags li a {
+	background:rgba(0,0,0,.05);
+	color:rgba(0,0,0,.6);
+	border-radius:3px;
+	padding:5px 10px;
+}
+ul.tags li a:hover {
+	background:rgba(0,0,0,.07);
+	text-decoration:none;
+}
