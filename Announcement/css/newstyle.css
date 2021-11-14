@@ -11,7 +11,3 @@ body {
   padding-bottom: 10px;
   background: #d9d9e6;
 }
-a,a:hover {
-	transition:all 0.4s;
-    color: rgb(0, 0, 0);
-}

@@ -8,13 +8,13 @@ body{
     width:100%;
     position:absolute;
     color:#10122d;
-    opacity:0.3;
+    opacity:0.8;
   }
  
   
   .topRight{
     position:absolute;
-    top:5.9%;
+    top:5.8%;
     right:0%;
     height:100%;
     width:50%;
@@ -22,34 +22,16 @@ body{
   }
   .topLeft{
     position:absolute;
-    top:5.9%;
+    top:5.8%;
     left:0%;
     height:100%;
     width:50%;
     transition:800ms;
   }
-  .bottomRight{
-    position:absolute;
-    bottom:0%;
-    right:0%;
-    height:50%;
-    width:50%;
-    transition:800ms;
-  }
-  .bottomLeft{
-    position:absolute;
-    bottom:0%;
-    left:0%;
-    height: 50%;
-    width:50%;
-    transition:800ms;
-  }
-  .topLeft:hover,.topRight:hover,.bottomLeft:hover,.bottomRight:hover{
+  .topLeft:hover,.topRight:hover{
     cursor:pointer;
   }
-  .topLeft:hover > h1,
-  .topRight:hover > h1,
-  .bottomLeft:hover > h1,
-  .bottomRight:hover > h1{
+  .topLeft:hover > h1, .topRight:hover > h1
+  {
     opacity:1;
   }

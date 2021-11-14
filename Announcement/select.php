@@ -17,12 +17,11 @@
 </head>
 <body>
 <?php include 'nav-edit.php';?>
-<div class="container">
   <div class="topLeft">
-    <h1><a href="news.php"><img id="image" src="image/news/newscrp.jpg" style="width: 960px; height:972px;"></img></a></h1>
+    <h1><a href="news.php"><img src="image/news/newscrp.jpg" style="width: 960px; height:972px;"></img></a></h1>
   </div>
   <div class="topRight">
-    <h1><a href="WhatIsIt.html"><img id="image" src="image/news/what.jpg" style="width: 960px; height:972px;"></img></a></h1>
+    <h1><a href="WhatIsIt.html"><img src="image/news/what.jpg" style="width: 960px; height:972px;"></img></a></h1>
   </div>
 </body>
 
