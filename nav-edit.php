@@ -1,5 +1,5 @@
-
 <?php
+ 
 if(!isset($_SESSION["User_ID"]))
 {?>
 
@@ -17,7 +17,7 @@ if(!isset($_SESSION["User_ID"]))
 
 <?php }else { ?>
     
-    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/nav-login.css">
     <nav class="navbar navbar-expand navbar-light" style="background-color: #0d154e">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="index.php"><i class="bi bi-house-fill"></i>&nbsp;</i>Home</a>
@@ -26,9 +26,9 @@ if(!isset($_SESSION["User_ID"]))
             
             <div id="indicator"></div>
         </div>
-        <ul class="navbar-nav float-right">
+        <ul class="navbar-nav ">
             <div class="dropdown">
-                <a class="btn dropdown-toggle btn-sm" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="btn dropdown-toggle btn-sm m-1" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-wallet2"></i>
                 </a>
                 <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton2">
@@ -44,16 +44,18 @@ if(!isset($_SESSION["User_ID"]))
                     ?>
                 </ul>
             </div>
-            <div class="dropdown">
-                <a class="btn dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            &nbsp;
+            <div class="dropdown" style="margin-right: 70px;">
+                <a class="btn dropdown-toggle btn-sm m-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-lines-fill"></i>&nbsp;<?php echo $_SESSION["Username"] ?>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" data-item="profile" href="profile.php"><i class="bi bi-file-person"></i>ข้อมูลส่วนตัว</a></li>
-                    <li><a class="dropdown-item" data-item="history" href="history.php"><i class="bi bi-receipt-cutoff"></i>ประวัติการซื้อขาย</a></li>
-                    <li><a class="dropdown-item" data-item="logout" href="database/logout.php"><i class="bi bi-power"></i>ออกจากระบบ</a></li>
+                    <li><a class="dropdown-item" data-item="profile" href="profile.php"><i class="bi bi-file-person"></i>Profile</a></li>
+                    <li><a class="dropdown-item" data-item="history" href="history.php"><i class="bi bi-receipt-cutoff"></i>History</a></li>
+                    <li><a class="dropdown-item" data-item="logout" href="database/logout.php"><i class="bi bi-power"></i>Logout</a></li>
                 </ul>
             </div>
+            <div></div>
         </ul>
 
     </nav>  
