@@ -101,12 +101,12 @@ nav a:nth-child(1):hover ~ #indicator{
 }
 
 nav a:nth-child(2):hover ~ #indicator{
-    left: 28%;
+    left: 33%;
     background: linear-gradient(130deg, #00e2ff, #89ff00);
 }
 
 nav a:nth-child(3):hover ~ #indicator{
-    left: 55%;
+    left: 65%;
     background: linear-gradient(130deg, purple, palevioletred);
 }
 
