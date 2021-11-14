@@ -8,7 +8,7 @@ body{
     width:100%;
     position:absolute;
     color:#10122d;
-    opacity:0.8;
+    opacity:0.3;
   }
  
   
@@ -19,6 +19,7 @@ body{
     height:100%;
     width:50%;
     transition:800ms;
+    background-color:#10122d;
   }
   .topLeft{
     position:absolute;
@@ -27,6 +28,7 @@ body{
     height:100%;
     width:50%;
     transition:800ms;
+    background-color:#10122d;
   }
   .topLeft:hover,.topRight:hover{
     cursor:pointer;
