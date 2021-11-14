@@ -24,7 +24,7 @@
 </head>
 <body>
     <!-- Notification -->
-    <div class="sticky-top mt-2" style="width: 18%; float: right; top: 15px" id="delete-alert">
+    <div class="sticky-top mt-2" style="width: 18%; float: right; top: 15px" id="notification-alert">
         
     </div>
 
@@ -256,6 +256,23 @@
             </div>
         </div>
 
+        <!-- Place order success modal popup -->
+        <div class="modal fade" id="placeOrderSuccess" style="color: black;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Place order success</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="modal-text">Place order success</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-bs-dismiss="modal" style="background-color: #30c230; color: #fff;">ฉันเข้าใจแล้ว</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- orderError modal popup -->
         <div class="modal fade" id="orderError" style="color: black;">
             <div class="modal-dialog">
@@ -564,20 +581,23 @@
         });
 
         function createAlert(text, color, timeOut, id){
-                    $alert = $('#delete-alert').html() + "<div class='alert alert-" + color + " alert-dismissible fade show' id='alert-" + id + "'>\
-                        " + text + " <button type='button' class='btn-close'></button></div>";
-                    $('#delete-alert').html($alert)
-                    let closeFunction = function(){
-                        $(".btn-close").click(function() {
-                            $(this)
-                                .parent(".alert")
-                                .fadeOut();
-                        });
-                    }
-                    closeFunction();
-                    setTimeout(() => {
-                        $("#alert-" + id).fadeOut();
-                    }, timeOut);
+            $alert = "<div class='alert alert-" + color + " alert-dismissible fade show FadeIn' id='alert-" + id + "'>\
+                " + text + " <button type='button' class='btn-close'></button></div>";
+            $('#notification-alert').append($alert)
+
+            let closeFunction = function(){
+                $(".btn-close").click(function() {
+                    $(this)
+                        .parent(".alert")
+                        .addClass("FadeOut");
+                    setTimeout(() => { $(this).parent(".alert").hide(); }, 150);
+                });
+            }
+            closeFunction();
+            setTimeout(() => {
+                $("#alert-" + id).addClass("FadeOut");
+                setTimeout(() => { $("#alert-" + id).hide(); }, 250);
+            }, timeOut);
         }
         
         $('#buy-button').click(function(){
@@ -613,6 +633,7 @@
                         clearInputField()
                         createAlert("<strong>Success! </strong>create order buy", "success", 10000, alert_index)
                         alert_index++;
+                        window.$("#placeOrderSuccess").modal("show");
                     }
                 });
             }
@@ -650,6 +671,7 @@
                         clearInputField()
                         createAlert("<strong>Success! </strong>create order sell", "success", 10000, alert_index)
                         alert_index++;
+                        window.$("#placeOrderSuccess").modal("show");
                     }
                 });
             }

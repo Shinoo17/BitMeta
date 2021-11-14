@@ -346,3 +346,35 @@ i {
     outline: none !important;
     box-shadow: none;
  }
+
+.FadeIn {
+    -webkit-animation: fadein 0.35s linear forwards;
+    animation: fadein 0.35s linear forwards;
+    opacity: 0;
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity: 0; }
+}
+
+@keyframes fadein {
+  100% { opacity: 1; }
+}
+
+.FadeOut {
+    animation: fadeOut 0.15s linear forwards;
+    -webkit-animation: fadeOut 0.15s linear forwards;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+
+  @-webkit-keyframes fadeOut {
+    0% { opacity: 0; }
+  }
+  
