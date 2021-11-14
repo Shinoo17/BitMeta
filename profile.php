@@ -10,27 +10,20 @@ session_start();
     <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-img{
-    max-width: 300px;
-    max-height: 400px;
-    margin: auto;
-    text-align: center;
-}
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-</style>
+    
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 
 
 <body>
+    <?php include"nav-edit.php"?>
     <div class="container">
-        <?php $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
+        <?php 
+        $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
         $sql = "SELECT * FROM user WHERE User_ID='$_SESSION[User_ID]'";
         $result=$conn->query($sql);
         $row = $result->fetch();
@@ -40,11 +33,11 @@ a {
             $conn = new PDO("mysql:host=localhost;dbname=bitmeta;charset=utf8","root","");
             if($row['Icon']==""){
                 ?>
-                    <img src="image/Icon/default-profile.jpg" alt="avatar">
+                    <img class="rounded-circle mt-5" src="image/Icon/default-profile.jpg" width="300px" height="300px" alt="avatar">
                 <?php
             }else{
                 ?>
-                    <img src="image/Icon/<?php echo $row['Icon']?>" alt="avatar">
+                    <img class="rounded-circle mt-5" src="image/Icon/<?php echo $row['Icon']?>" width="300px" height="300px" alt="avatar">
                 <?php
             }
         ?>
@@ -59,8 +52,7 @@ a {
            <p>Address : <?php echo $row["Address"]; ?></p>
            <p>Work : <?php echo $row["Job"]; ?></p>
            <p>Tel. <?php echo $row["phone"]; ?></p>
-           <br>
-           <a href="profile_edit.php" class="btn button-link mt-2 btn-primary">edit profile</a>
+           <a href="profile_edit.php" class="btn btn-primary profile-button">edit profile</a>
         </div>
     </div>
 </body>
