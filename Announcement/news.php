@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 </head>
 <body>
-<?php include 'nav-edit.php';?>
+<?php include 'nav.php';?>
 <div class="container"> 
     <br>
     <div class="card">
