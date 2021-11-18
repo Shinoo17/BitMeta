@@ -1,0 +1,189 @@
+@import url('http://fonts.cdnfonts.com/css/sofia-pro');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+html,
+body {
+    font-family: 'Quicksand';
+    color: #f9f9f9;
+    background:#10122d;
+    position: relative;
+    overflow: overlay;
+    height: 100%;
+}
+
+.thai-font {
+    font-family: 'Pind';
+    font-size: 20px;
+}
+
+.table-sort {
+    cursor: pointer;
+}
+
+.buy {
+    color: green;
+}
+
+.sell {
+    color: rgb(238, 59, 59);
+}
+
+.notification {
+    width: 15%; 
+    float: right; 
+    top: 15px;
+    
+}
+
+.dropdown {
+    width: 15%;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 2px rgb(204, 204, 204);
+    transition: all .5s ease;
+    position: relative;
+    font-size: 14px;
+    color: #474747;
+    height: 42px;
+    text-align: left;
+    z-index: 10;
+}
+.dropdown .select {
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+}
+.dropdown .select > i {
+    font-size: 13px;
+    color: #888;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    float: right;
+    line-height: 20px;
+}
+.dropdown:hover {
+    box-shadow: 0 0 4px rgb(204, 204, 204)
+}
+.dropdown:active {
+    background-color: #f8f8f8
+}
+.dropdown.active:hover,
+.dropdown.active {
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    border-radius: 5px 5px 0 0;
+    background-color: #f8f8f8
+}
+.dropdown.active .select > i {
+    transform: rotate(-90deg)
+}
+.dropdown .dropdown-menu {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    left: 0;
+    margin-top: 1px;
+    box-shadow: 0 1px 2px rgb(204, 204, 204);
+    border-radius: 0px 1px 10px 10px;
+    display: none;
+    max-height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
+    z-index: 9;
+}
+.dropdown .dropdown-menu li {
+    font-size: 16px;
+    padding: 10px;
+    transition: all .2s ease-in-out;
+    cursor: pointer
+} 
+.dropdown .dropdown-menu {
+    padding: 0;
+    list-style: none
+}
+.dropdown .dropdown-menu li:hover {
+    background-color: #f2f2f2
+}
+.dropdown .dropdown-menu li:active {
+    background-color: #e2e2e2
+}
+
+/* Scrollbar customs */
+::-webkit-scrollbar {
+    width: 26px;
+    height: 26px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 13px;
+    background-clip: padding-box;
+    border: 10px solid transparent;
+    box-shadow: inset 0 0 0 10px;
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+.dropdown .dropdown-menu::-webkit-scrollbar {
+    width: 22px;
+    background-color: white;
+    border-radius: 0 0 10px 0;
+}
+.dropdown .dropdown-menu::-webkit-scrollbar-thumb {
+    border-radius: 11px;
+    background-clip: padding-box;
+    border: 8px solid transparent;
+    box-shadow: inset 0 0 0 10px;
+}
+
+.refresh,.reset {
+    color: white; 
+    background: transparent;
+    font-size: 15px;
+    border-radius: 20px; 
+    border-color: white;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.refresh:hover,.reset:hover {
+    color: rgb(44, 44, 44);
+    background-color: #F0B90B;
+    border-color: black;
+}
+
+
+.btn-close:focus,.btn-close:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+.FadeIn {
+    -webkit-animation: fadein 0.35s linear forwards;
+    animation: fadein 0.35s linear forwards;
+    opacity: 0;
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity: 0; }
+}
+
+@keyframes fadein {
+  100% { opacity: 1; }
+}
+
+.FadeOut {
+    animation: fadeOut 0.15s linear forwards;
+    -webkit-animation: fadeOut 0.15s linear forwards;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+
+  @-webkit-keyframes fadeOut {
+    0% { opacity: 0; }
+  }
+  

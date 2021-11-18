@@ -97,7 +97,7 @@
                         <i class="bi bi-chevron-left"></i>
                     </div>
                     <input type="hidden" name="coin">
-                    <ul class="dropdown-menu dd1">
+                    <ul class="dropdown-menu">
                       <li id="BTC"><img src="image/symbol/BTC.png" class="mini-symbol">&nbsp; Bitcoin / USDT</li>
                       <li id="ETH"><img src="image/symbol/ETH.png" class="mini-symbol">&nbsp; ETH / USDT</li>
                       <li id="BNB"><img src="image/symbol/BNB.png" class="mini-symbol">&nbsp; BNB / USDT</li>
@@ -173,6 +173,7 @@
                     <?php } ?>
                 </form>
             </div>
+
             <!-- Sell -->
             <div class="col-lg-4 col-md-6 mt-3 col-sm-10">
                 <div class="bg-danger head-column">Sell</div>
@@ -224,6 +225,7 @@
                     <?php } ?>
                 </form>
             </div>
+
         </div>
 
         <!-- Order table -->
@@ -570,7 +572,10 @@
                 success: function(response){
                     walletData = response;
                     $('#usdt').text(walletData["USDT"]);
-                    balance_usdt = parseFloat($('#usdt').text());
+                    balance_usdt = walletData["USDT"];
+                    if(symbol != ""){
+                        $('#crypto_coin').text(walletData[symbol]);
+                    }
                 }
             });
         }
@@ -715,7 +720,7 @@
                 success: function(response){
                     refreshOpenOrders();
                     getWalletData();
-                    createAlert("<strong>Success!</strong> Delete order successfully.", "success", 5000, alert_index);
+                    createAlert("<strong>Success!</strong> Cancel order successfully.", "danger", 5000, alert_index);
                     alert_index++;
                 }
             });
@@ -730,13 +735,13 @@
                 if($(this).find('i').hasClass("bi-caret-up-fill")){
                     $(this).find('i').removeClass("bi-caret-up-fill")
                     $(this).find('i').addClass("bi-caret-down-fill")
-                    orderBy = $(this).text() + "DESC";
+                    orderBy = $(this).text() + " ASC";
                 } else {
                     /* Highest -> Lowest */ 
                     $('.table-sort').find('i').removeClass("bi-caret-down-fill")
                     $('.table-sort').find('i').removeClass("bi-caret-up-fill")
                     $(this).find('i').addClass("bi-caret-up-fill")
-                    orderBy = $(this).text() + " ASC";
+                    orderBy = $(this).text() + "DESC";
                 }
                 refreshOpenOrders();
             })

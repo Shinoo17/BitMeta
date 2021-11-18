@@ -132,7 +132,7 @@ function setColorByPriceChange(price){
         document.getElementById("priceChange").style.color = "#55d538";
         document.getElementById("percentChange").style.color = "#55d538";
     } else {
-        document.getElementById("priceChange").style.color = "#e22c2d";
-        document.getElementById("percentChange").style.color = "#e22c2d";
+        document.getElementById("priceChange").style.color = "#ee3b3b";
+        document.getElementById("percentChange").style.color = "#ee3b3b";
     }
 }

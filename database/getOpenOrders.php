@@ -35,7 +35,6 @@
                         data-bs-target='#deleteComfirm' data-bs-toggle='modal' data-userOrderID='$order_count'></i>
                     </td>
                 </tr>";
-        $data = $data . "<br>";
     }
     if($data != ""){
         echo json_encode( array(
