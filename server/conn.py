@@ -1,8 +1,7 @@
 import mysql.connector
 import datetime
 
-database = mysql.connector.connect(host="localhost", user="root", password="", database="bitmeta")
-cursor = database.cursor()
+
 """
 # database order index :
 # 0 : Order_ID
@@ -16,6 +15,21 @@ cursor = database.cursor()
 # 8 : Total
 # 9 : Time
 """
+
+database = mysql.connector.connect(host="localhost", user="root", password="", database="bitmeta")
+cursor = database.cursor
+
+
+def startConn():
+    global database
+    global cursor
+    database = mysql.connector.connect(host="localhost", user="root", password="", database="bitmeta")
+    cursor = database.cursor()
+
+
+def stopConn():
+    if database.is_connected():
+        database.close()
 
 
 def getWalletData(userID, coinID_):
@@ -82,6 +96,7 @@ def match_order():
             cursor.execute(sql_sellOrder, val)
             resultSell = cursor.fetchall()
             for sellOrder in resultSell:
+                print(sellOrder)
                 sell_order_id = sellOrder[0]
                 sell_user_id = sellOrder[1]
                 sell_price = sellOrder[4]
@@ -248,7 +263,8 @@ def match_order_market_buy():
                     deleteOrder(sell_order_id)
 
                     """ Update buyOrderMarket """
-                    buy_price = round(((buy_price * buy_filled) + (sell_price * sell_coinRemain)) / (buy_filled + sell_coinRemain), 4)
+                    buy_price = round(
+                        ((buy_price * buy_filled) + (sell_price * sell_coinRemain)) / (buy_filled + sell_coinRemain), 4)
                     buy_filled = round(buy_filled + sell_coinRemain, 4)
                     buy_usdtRemain = round(buy_usdtRemain - buyer_pay, 4)
                     updateOrderMarket(buy_order_id, buy_price, buy_filled, buy_filled, buy_usdtRemain, buyOrder[8])

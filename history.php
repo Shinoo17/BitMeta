@@ -23,7 +23,7 @@
     </div>
 
     <div class="container">
-        <div class="row mt-3 justify-content-center" style="padding-top: 50px;">
+        <div class="row mt-3 justify-content-center" style="padding-top: 50px; padding-bottom: 50px">
             <div class="col-lg-10 border border-secondary">
                 <table class="table" style="color: #c9c9c9;">
                     <div class="mt-3">

@@ -59,7 +59,7 @@
                                     </label>
                                 </div>
                                 <div class="w-50" style="text-align: right;">
-                                    <a href="resetPassword.html">Forgot Password</a>
+                                    <a href="resetPassword.php">Forgot Password</a>
                                 </div>
                             </div>
                         </form>

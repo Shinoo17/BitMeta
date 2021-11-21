@@ -267,7 +267,7 @@
                         <button class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="modal-text">Place order success</div>
+                        <div id="modal-text-success">Place order success</div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-bs-dismiss="modal" style="background-color: #30c230; color: #fff;">ฉันเข้าใจแล้ว</button>
@@ -329,6 +329,12 @@
         let balance_usdt;           /* User USDT                    */
         let orderBy = "Time ASC";   /* Use for query database       */
         let alert_index = 1;        /* Use for Alert notification   */
+
+        $(document).ready(function(){
+            $('tbody').html("<td colspan='10'><div class='mt-1'>No order open</div></td>")
+            getWalletData(); 
+            refreshOpenOrders();
+        });
 
         /*Dropdown Menu*/
         $('.dropdown').click(function () {
@@ -566,7 +572,6 @@
 
         /* Get user wallet data */
         function getWalletData(){
-            $('.type').val("limit");
             $.ajax({
                 url: 'database/getWalletData.php', type: 'post', dataType: 'json',
                 success: function(response){
@@ -579,11 +584,6 @@
                 }
             });
         }
-        $(document).ready(function(){
-            getWalletData(); 
-            refreshOpenOrders();
-            $('tbody').html("<td colspan='10'><div class='mt-1'>No order open</div></td>")
-        });
 
         function createAlert(text, color, timeOut, id){
             $alert = "<div class='alert alert-" + color + " alert-dismissible fade show FadeIn' id='alert-" + id + "'>\
@@ -677,7 +677,7 @@
                         createAlert("<strong>Success! </strong>create order sell", "success", 10000, alert_index)
                         alert_index++;
                         window.$("#placeOrderSuccess").modal("show");
-                    }
+                    },
                 });
             }
         })
@@ -685,7 +685,7 @@
         /* Refresh orders table */
         $('.refresh').click(function (){
             refreshOpenOrders();
-            createAlert("<strong>Success!</strong> Order refresh.", "warning", 3000, alert_index);
+            createAlert("<strong>Success!</strong> Order refresh.", "success", 3000, alert_index);
             alert_index++;
         })
 
@@ -720,7 +720,11 @@
                 success: function(response){
                     refreshOpenOrders();
                     getWalletData();
-                    createAlert("<strong>Success!</strong> Cancel order successfully.", "danger", 5000, alert_index);
+                    createAlert("<strong>Success!</strong> Cancel order successfully.", "success", 5000, alert_index);
+                    alert_index++;
+                },
+                error: function(xhr, status, error){
+                    createAlert("<strong>Error!</strong>This order is no longer open.", "danger", 5000, alert_index);
                     alert_index++;
                 }
             });
