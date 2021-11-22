@@ -18,6 +18,8 @@ if(!isset($_SESSION["User_ID"])){
     <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
+    <br>
+    <?php include"nav-edit.php"?>
 <?php $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
     $sql = "SELECT * FROM user WHERE User_ID='$_SESSION[User_ID]'";
     $result=$conn->query($sql);
@@ -59,10 +61,43 @@ if(!isset($_SESSION["User_ID"])){
                         <div class="col-md-12"><label class="labels">ID card number</label><input type="int" min="0" class="form-control" placeholder="<?php echo $row['ID_card_number']; ?>" value="" name="ID_card_number" maxlength="13"></div>
                         <div class="col-md-12"><label class="labels">Job</label><input type="text" class="form-control" placeholder="<?php echo $row['Job']; ?>" value="" name="job"></div>
                     </div>
-                    <div class="row mt-3"></div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label for="bank">Choose a bank:</label>
+                            <select id="bank" name="bank">
+                            <option value="1">ธนาคารกรุงเทพ</option>
+                            <option value="2">ธนาคารกสิกรไทย</option>
+                            <option value="3">ธนาคารกรุงไทย</option>
+                            <option value="4">ธนาคารทหารไทยธนชาต</option>
+                            <option value="5">ธนาคารไทยพาณิชย์</option>
+                            <option value="6">ธนาคารกรุงศรีอยุธยา</option>
+                            <option value="7">ธนาคารออมสิน</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12"><label class="labels">Bank Number</label><input type="text" class="form-control" value="" name="bank_number" maxlength="16"></div>
+                    </div>
                     <div class="mt-5 text-center">
                         <button class="btn btn-primary profile-button" type="submit" name="save">Save Profile</button>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-4 border-right">
+                <br><br><br>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Your bank account</label></div>
+                    <?php $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
+                        $sql2 = "SELECT * FROM bank_account as t1 INNER JOIN bank as b1 ON (t1.Bank_ID = b1.Bank_ID) WHERE User_ID='$_SESSION[User_ID]'";
+                        $result=$conn->query($sql2);
+                        ?>
+                        <div class="col-md-12"><label class="labels container"><?php
+                        while($row=$result->fetch()){
+                            ?>
+                            <input type="checkbox" name="chkDel[]" value="<?php echo $row['Account_Number'];?>">
+                            <?php
+                            echo $row['Name']."  ".$row['Account_Number']."<br>";
+                        }?>
+                        <div class="checkmark"></div>
+                        </label></div>
+                        <label class="labels text-danger"><b>*checked for delete bank account</b></label>
                 </div>
             </div>
         </div>

@@ -19,6 +19,8 @@ $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 $allowTypes = array('jpg','png','jpeg','gif','pdf');
 
+$bank = $_POST['bank'];
+$bank_number = $_POST['bank_number'];
 
 $conn = new PDO("mysql:host=localhost; dbname=bitmeta; charset=utf8","root","");
 $sql1 = "SELECT * FROM user WHERE User_ID='$_SESSION[User_ID]'";
@@ -34,27 +36,37 @@ if($email=="")$email = $row['Email'];
 if($fileName=="")$fileName = $row['Icon'];
 
 if(in_array($fileType, $allowTypes) && $fileName!=""){
-    echo "success1 <br>";
-    
     if(move_uploaded_file($_FILES["icon"]["tmp_name"], $targetFilePath)){
         $sql2="UPDATE user SET Icon='$fileName' WHERE User_ID='$_SESSION[User_ID]'";
         $conn->exec($sql2);
-        echo "success2 <br>";
     }
 }
-
-
-
 
 $sql="UPDATE user SET Name='$name',Surname='$surname',phone='$phone',Address='$address',
       ID_card_number='$ID_card_number',Job='$job',Email='$email' 
       WHERE User_ID='$_SESSION[User_ID]'";
-
 $conn->exec($sql);
+
+$sql4="INSERT INTO `bank_account`(`Account_Number`, `User_ID`, `Bank_ID`) VALUES ('$bank_number','$_SESSION[User_ID]','$bank')";
+$conn->exec($sql4);
+
+$x = $_POST["chkDel"];
+
+for($i=0;$i<count($_POST["chkDel"]);$i++){
+  //  echo "<br>".$_POST["chkDel"][$i];
+    if($_POST["chkDel"][$i] != ""){
+        
+        $sql3 = "DELETE FROM `bank_account` WHERE Account_Number='$x[$i]'";
+        $conn->exec($sql3);
+    }
+}
+
 $_SESSION["save_profile"]="success";
 
 
 $conn=null;
+
 header("location:profile.php");
 die();
+
 ?>
