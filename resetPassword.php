@@ -22,7 +22,7 @@
 <body>
     <?php include"nav-edit.php"?>
     <div class="container">
-        <div class="row justify-content-center" style="padding-top: 25vh;">
+        <div class="row justify-content-center" style="padding-top: 175px;">
             <div class="col-md-8 col-lg-5">
                 <div class="wrap d-md-flex">
                     <div class="reset-warp p-4 p-lg-5">

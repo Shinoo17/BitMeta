@@ -103,5 +103,6 @@ if(!isset($_SESSION["User_ID"])){
         </div>
     </div>
 </form>
+<?php include"footer.php"?>
 </body>
 </html>

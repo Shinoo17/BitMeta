@@ -69,6 +69,7 @@
             </div>
         </div>
     </div>
+
     <script>
         $('i').click(function (){
             if($('#password').attr('type') == 'password'){

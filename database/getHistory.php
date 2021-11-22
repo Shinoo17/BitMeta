@@ -42,9 +42,13 @@
             $data = $data . "         
                         <td>$row[5]</td>
                         <td>$row[6]</td>
-                        <td>$row[7]</td>
-                        <td>$row[9]</td>
-                </tr>";
+                        <td>$row[7]</td>";
+                        if($row[9] == "Success"){
+                            $data = $data . "<td class='buy'>$row[9]</td>"; 
+                        } else { 
+                            $data = $data . "<td class='sell'>$row[9]</td>"; 
+                        }
+            $data = $data . "</tr>";
         $count++;
     }
     if($data != ""){

@@ -67,5 +67,6 @@ session_start();
         </div>
         <br>
     </div>
+    <?php include"footer.php"?>
 </body>
 </html>

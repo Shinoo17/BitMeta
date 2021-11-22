@@ -7,13 +7,13 @@
         <div class="row justify-content-center">
             <ul class="icon-list">
                 <li class="icon-item">
-                    <a href="#" class="icon-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/binance/" class="icon-link" target="_blink"><i class="fab fa-instagram"></i></a>
                 </li>
                 <li class="icon-item">
-                    <a href="#" class="icon-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/binance" class="icon-link" target="_blink"><i class="fab fa-facebook-f"></i></a>
                 </li>
                 <li class="icon-item">
-                    <a href="#" class="icon-link"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.youtube.com/c/NoSugar9147" class="icon-link" target="_blink"><i class="fab fa-youtube"></i></a>
                 </li>
             </ul>
         </div>

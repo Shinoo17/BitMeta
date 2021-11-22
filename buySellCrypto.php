@@ -1,8 +1,8 @@
 <?php
     session_start();
     if(!isset($_SESSION["User_ID"])){
-        //header("location: http://localhost/work/BitMeta/login.php");
-        //die();
+        header("location: http://localhost/work/BitMeta/login.php");
+        die();
     }
 ?>
 <!DOCTYPE html>
@@ -108,7 +108,6 @@
             </div>
         </div>
     </div>
-    
     <script>
         $('#Baht').keyup(function (){
             let cal = Math.floor($(this).val() / 33.5 * 10000) / 10000;

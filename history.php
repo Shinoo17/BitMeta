@@ -110,7 +110,7 @@
                             <th style="width: 10%;"><span class="table-sort">Price <i class="bi"></span></th>
                             <th style="width: 10%;"><span class="table-sort">Amount <i class="bi"></span></th>
                             <th style="width: 10%;"><span class="table-sort">Total <i class="bi"></span></th>
-                            <th style="width: 8%;"><span class="table-sort">Statue <i class="bi"></span></th>
+                            <th style="width: 8%;"><span class="table-sort">Status <i class="bi"></span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -120,8 +120,8 @@
             </div>
         </div>
     </div>
-
     
+    <?php include"footer.php"?>
 
     <script>
         let orderBy = "Time DESC";
