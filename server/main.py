@@ -29,6 +29,7 @@ def stop():
     current_process.config(text="Stop")
 
 
+print("Please wait")
 root = Tk()
 root.title("Bit Meta calculate")
 root.geometry("350x250")

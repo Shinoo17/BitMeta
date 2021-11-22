@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +16,12 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- gg css icon -->
     <link href='https://css.gg/css' rel='stylesheet'>
+
     <!-- my css & javsscript -->
     <link rel="stylesheet" href="css/indexStyle.css">
     <link rel="stylesheet" href="css/loader.css">
 	<script src="js/indexFunction.js"></script>
-
+    
 	<link rel="icon" href="image/icon_200x200.png" type="image/x-icon">
     <title>BitMeta</title>
 </head>
@@ -31,21 +33,12 @@
         <div class="loader-section section-right"></div>
     </div> 
     -->
-
+    
     <div>
 		<!-- navbar -->
-        <nav class="navbar navbar-expand navbar-dark nav-overtop">
-            <div class="container">
-                <a class="navbar-brand" href=""><i class="bi bi-house-door-fill"></i>Home</a>
-                <a class="navbar-link" href="market.php"><i class="bi bi-currency-exchange"></i>Market</a>
-                <a class="navbar-link" href="news.php"><i class="bi bi-file-earmark-text"></i>Announcement</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php"><i class="bi bi-pencil-square"></i> เข้าสู่ระบบ</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div>
+            <?php include"nav-edit.php"?>
+        </div>
         
 		<!-- Swiper -->
         <div class="swiper noSelect">
@@ -97,9 +90,8 @@
 		
     </div>
 
-	<br><br><br><br><br>
     <!-- TradingView Mini Chart -->
-    <div class="container">
+    <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-lg-3">
                 <!-- TradingView Widget BEGIN -->
@@ -118,7 +110,7 @@
                         "underLineBottomColor": "rgba(41, 98, 255, 0)",
                         "isTransparent": false,
                         "autosize": true,
-                        "largeChartUrl": "http://127.0.0.1:5500/Bit_META/market.html"
+                        "largeChartUrl": "http://localhost/work/BitMeta/market.php"
                         }
                     </script>
                 </div>
@@ -141,7 +133,7 @@
                         "underLineBottomColor": "rgba(41, 98, 255, 0)",
                         "isTransparent": false,
                         "autosize": true,
-                        "largeChartUrl": "http://127.0.0.1:5500/Bit_META/market.html"
+                        "largeChartUrl": "http://localhost/work/BitMeta/market.php"
                         }
                     </script>
                 </div>
@@ -164,7 +156,7 @@
                         "underLineBottomColor": "rgba(41, 98, 255, 0)",
                         "isTransparent": false,
                         "autosize": true,
-                        "largeChartUrl": "http://127.0.0.1:5500/Bit_META/market.html"
+                        "largeChartUrl": "http://localhost/work/BitMeta/market.php"
                         }
                     </script>
                 </div>
@@ -187,7 +179,7 @@
                             "underLineBottomColor": "rgba(41, 98, 255, 0)",
                             "isTransparent": false,
                             "autosize": true,
-                            "largeChartUrl": "http://127.0.0.1:5500/Bit_META/market.html"
+                            "largeChartUrl": "http://localhost/work/BitMeta/market.php"
                         }
                     </script>
                 </div>
@@ -196,19 +188,88 @@
         </div>
     </div>
 
-    <footer style="margin-top: 100px; margin-bottom: 100px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                BitMeta
+    <div>
+        <div class="container" style="margin-top: 100px;">              
+            <div class="card-group">           
+                <div class="card m-lg-2 ">                                                                 
+                        <img src="image/WhatIsIt_image/Crypto.png" class="img-fluid" style="width:650px ; height:300px ;">                                         
+                </div>    
+                <div class="card m-lg-2 ">
+                    <div class="card-body bg-dark" style="margin-left: auto;">                              
+                        <h4 class="card-title text-white text-center">Cryptocurrency คืออะไร</h4>                        
+                      
+                        <h6 class="card-subtitle mb-2 text-muted text-white text-center">เผยแพร่ 22/10/2021</h6>
+                        <p class="card-text text-white">Cryptocurrency (สกุลเงินดิจิทัล) คือ สินทรัพย์ดิจิทัลประเภทหนึ่งที่มีการเข้ารหัส มีราคากลางในการซื้อขายแปรผันตามกลไกตลาด จึงสามารถทำหน้าที่เป็นสื่อกลางในการแลกเปลี่ยนมูลค่าผ่านอินเทอร์เน็ตได้ แต่เพราะไม่ได้มีลักษณะทางกายภาพเหมือนเช่นสกุลเงินทั่วไป (Fiat Currency) ของแต่ละประเทศที่มีการตีพิมพ์ธนบัตรหรือเหรียญกษาปณ์ออกมา ทำให้บางครั้ง เราก็เรียก สกุลเงินดิจิทัล ว่า "สกุลเงินเสมือน" หรือ Virtual currency  </p>
+                        <a href="https://www.thairath.co.th/lifestyle/money/2121706" target="_blank">
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">อ่านเพิ่มเติม</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>         
             </div>
-        </div>
-    </footer>
+        </div><br>
+        <div>
+            <div class="container" style="margin-top: 20px;">              
+                <div class="card-group">           
+                     
+                    <div class="card m-lg-2">
+                        <div class="card-body bg-dark" style="margin-left: auto;">                              
+                            <h4 class="card-title text-white text-center">BitCoin คืออะไร</h4>                        
+                          
+                            <h6 class="card-subtitle mb-2 text-muted text-white text-center">เผยแพร่ 22/10/2021</h6>
+                            <p class="card-text text-white">เป็นสกุลเงินดิจิทัลแรกของโลก จึงถือว่าเก่าแก่ที่สุด ซึ่งตลอดหลายปีที่ผ่านมา Bitcoin เข้ามามีบทบาทในการเปลี่ยนแปลงลักษณะการดำเนินธุรกรรมต่างๆ ระหว่างบุคคล สามารถตรวจสอบได้ จึงทำให้นักลงทุนรุ่นใหม่หันมาสนใจลงทุนกับบิตคอยน์มากขึ้น</p>
+                            <a href="https://www.moneybuffalo.in.th/business/what-is-bitcoin" target="_blank">
+                                <button class="learn-more">
+                                    <span class="circle" aria-hidden="true">
+                                        <span class="icon arrow"></span>
+                                    </span>
+                                    <span class="button-text">อ่านเพิ่มเติม</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div> 
+                     <div class="card m-lg-2">                                                                 
+                            <img src="image/WhatIsIt_image/bitcoin.jpg" class="img-fluid" style="width:650px ; height:300px ;">                                         
+                    </div>          
+                </div>
+            </div><br>
+            <div>
+                <div class="container" style="margin-top: 20px;">              
+                    <div class="card-group">           
+                        <div class="card m-lg-2">                                                                 
+                                <img src="image/WhatIsIt_image/eth.png" class="img-fluid" style="width:650px ; height:300px ;">                                         
+                        </div>    
+                        <div class="card m-lg-2">
+                            <div class="card-body bg-dark" style="margin-left: auto;">                              
+                                <h4 class="card-title text-white text-center">ETH คืออะไร</h4>                        
+                              
+                                <h6 class="card-subtitle mb-2 text-muted text-white text-center">เผยแพร่ 22/10/2021</h6>
+                                <p class="card-text text-white">Ethereum ถูกสร้างขึ้นมาในรูปแบบ Open-Source นั่นหมายความว่า ผู้สร้างนั้นได้เปิดเผย Source Code ของตนเพื่อให้ผู้อื่นสามารถนำไปพัฒนาต่อยอดได้อย่างอิสระ ทำให้นักพัฒนาหลายคนนำ Source Code ไปพัฒนาและสร้าง Application มากมายขึ้นบนเครือข่าย Ethereum ทำให้ Ethereum ไม่ถูกจำกัดแค่เรื่องธุรกรรมทางการเงินในตลาดคริปโทเคอร์เรนซี่ (Cryptocurrency) เท่านั้น แต่สามารถประยุกต์ใช้กับธุรกิจอื่นๆ ในวงกว้างได้อีก</p>
+                                <a href="https://moneyandbanking.co.th/article/the-guru/ethereum-cryptocurrency-mb472-aug2021-230864" target="_blank">
+                                    <button class="learn-more">
+                                        <span class="circle" aria-hidden="true">
+                                            <span class="icon arrow"></span>
+                                        </span>
+                                        <span class="button-text">อ่านเพิ่มเติม</span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>         
+                    </div>
+                </div>
+
+    <?php include"footer.php"?>
 
     <script>
         $(document).ready(function() {
             setTimeout(function(){
                 $('body').addClass('loaded');
             }, 1500);
+            $('#nav').css("background", "rgba(13, 21, 78, 0.35)");
         });
     </script>
 </body>

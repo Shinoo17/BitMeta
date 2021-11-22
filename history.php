@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION["User_ID"])){
+        header("location: login.php");
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,78 +24,81 @@
     <title>BitMeta History</title>
 </head>
 <body>
+
+    <?php include"nav-edit.php"?>
+    
     <!-- Notification -->
-    <div class="sticky-top mt-2 notification" id="notification-alert">
+    <div class="sticky-top mt-2" style="width: 15%; float: right; top: 15px" id="notification-alert">
         
     </div>
 
     <div class="container">
-        <div class="row mt-3 justify-content-center" style="padding-top: 50px; padding-bottom: 50px">
+        <div class="row mt-3 justify-content-center" style="padding-top: 75px; padding-bottom: 75px">
             <div class="col-lg-10 border border-secondary">
                 <table class="table" style="color: #c9c9c9;">
                     <div class="mt-3">
                         <h1>History</h1>
                     </div>
                     <span style="margin-right: 10px;">Filter : </span>
-                    <div class="dropdown" id="Coin">
+                    <div class="myDropdown" id="Coin">
                         <div class="select">
-                            Coin : <span id="Coin">Default</span>
+                            Coin : <img src="image/symbol/transparent.png" class="micro-symbol" id="coin-img" style="display: none;"><span id="Coin">Default</span>
                             <i class="bi bi-chevron-left"></i>
                         </div>
                         <input type="hidden" name="coin">
-                        <ul class="dropdown-menu">
-                            <li id="">Default</li>
-                            <li id="BTC">BTC</li>
-                            <li id="ETH">ETH</li>
-                            <li id="BNB">BNB</li>
-                            <li id="ADA">ADA</li>
-                            <li id="SOL">SOL</li>
-                            <li id="XRP">XRP</li>
-                            <li id="DOT">DOT</li>
-                            <li id="DOGE">DOGE</li>
-                            <li id="UNI">UNI</li>
-                            <li id="LTC">LTC</li>
-                            <li id="AXS">AXS</li>
+                        <ul class="myDropdown-menu">
+                            <li id=""><img src="image/symbol/transparent.png" class="mini-symbol">Default</li>
+                            <li id="BTC"><img src="image/symbol/BTC.png" class="mini-symbol">&nbsp; BTC</li>
+                            <li id="ETH"><img src="image/symbol/ETH.png" class="mini-symbol">&nbsp; ETH</li>
+                            <li id="BNB"><img src="image/symbol/BNB.png" class="mini-symbol">&nbsp; BNB</li>
+                            <li id="ADA"><img src="image/symbol/ADA.png" class="mini-symbol">&nbsp; ADA</li>
+                            <li id="SOL"><img src="image/symbol/SOL.png" class="mini-symbol">&nbsp; SOL</li>
+                            <li id="XRP"><img src="image/symbol/XRP.png" class="mini-symbol">&nbsp; XRP</li>
+                            <li id="DOT"><img src="image/symbol/DOT.png" class="mini-symbol">&nbsp; DOT</li>
+                            <li id="DOGE"><img src="image/symbol/DOGE.png" class="mini-symbol">&nbsp; DOGE</li>
+                            <li id="UNI"><img src="image/symbol/UNI.png" class="mini-symbol">&nbsp; UNI</li>
+                            <li id="LTC"><img src="image/symbol/LTC.png" class="mini-symbol">&nbsp; LTC</li>
+                            <li id="AXS"><img src="image/symbol/AXS-2.png" class="mini-symbol">&nbsp; AXS</li>
                         </ul>
                     </div>
-                    <div class="dropdown" style="margin-left: 10px;" id="Type">
+                    <div class="myDropdown" style="margin-left: 10px;" id="Type">
                         <div class="select">
                             Type : <span id="Type">Default</span>
                             <i class="bi bi-chevron-left"></i>
                         </div>
                         <input type="hidden" name="Type">
-                        <ul class="dropdown-menu">
+                        <ul class="myDropdown-menu">
                             <li id="">Default</li>
                             <li id="Limit">Limit</li>
                             <li id="Market">Market</li>
                         </ul>
                     </div>
-                    <div class="dropdown" style="margin-left: 10px;" id="Side">
+                    <div class="myDropdown" style="margin-left: 10px;" id="Side">
                         <div class="select">
                             Side : <span id="Side">Default</span>
                             <i class="bi bi-chevron-left"></i>
                         </div>
                         <input type="hidden" name="Side">
-                        <ul class="dropdown-menu">
+                        <ul class="myDropdown-menu">
                             <li id="">Default</li>
                             <li id="Buy">Buy</li>
                             <li id="Sell">Sell</li>
                         </ul>
                     </div>
-                    <div class="dropdown" style="margin-left: 10px;" id="Status">
+                    <div class="myDropdown" style="margin-left: 10px;" id="Status">
                         <div class="select">
                             Status : <span>Default</span>
                             <i class="bi bi-chevron-left"></i>
                         </div>
                         <input type="hidden" name="Status">
-                        <ul class="dropdown-menu">
+                        <ul class="myDropdown-menu">
                             <li id="">Default</li>
                             <li id="Success">Success</li>
                             <li id="Cancel">Cancel</li>
                         </ul>
                     </div>
                     <span class="reset btn" id="reset">reset</span>
-                    <span class="refresh btn" style="float: right;">refresh</span>
+                    <span class="refresh btn" style="float: right; margin-top: 3px">refresh</span>
                     <hr>
                     <thead>
                         <tr>
@@ -183,20 +193,25 @@
         })
         
         /*Dropdown Menu*/
-        $('.dropdown').click(function () {
+        $('.myDropdown').click(function () {
             $(this).attr('tabindex', 1).focus();
             $(this).toggleClass('active');
-            $(this).find('.dropdown-menu').slideToggle(300);
+            $(this).find('.myDropdown-menu').slideToggle(300);
         });
-        $('.dropdown').focusout(function () {
+        $('.myDropdown').focusout(function () {
             $(this).removeClass('active');
-            $(this).find('.dropdown-menu').slideUp(300);
+            $(this).find('.myDropdown-menu').slideUp(300);
         });
-        $('.dropdown .dropdown-menu li').click(function () {
-            $(this).parents('.dropdown').find('span').text($(this).text());
-            $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
-            
-            $('.dropdown').each(function(){
+        $('.myDropdown .myDropdown-menu li').click(function () {
+            $(this).parents('.myDropdown').find('span').text($(this).text());
+            $(this).parents('.myDropdown').find('input').attr('value', $(this).attr('id'));
+            $('#coin-img').attr('src', $(this).find('img').attr('src'));
+            if($('#coin-img').attr('src') == "image/symbol/transparent.png"){
+                $('#coin-img').hide();
+            } else {
+                $('#coin-img').show();
+            }
+            $('.myDropdown').each(function(){
                 temp[$(this).attr('id')] = $(this).find('input').val();
             })
             getHistory();
@@ -221,12 +236,14 @@
         }
 
         $('#reset').click(function(){   
-            $('.dropdown').each(function(){
+            $('.myDropdown').each(function(){
                 $(this).find('span').text("Default");
                 $(this).find('input').attr('value', "");
                 temp[$(this).attr('id')] = $(this).find('input').val();
             })
             getHistory();
+            createAlert("<strong>Success!</strong> Reset filter.", "success", 3000, alert_index);
+            alert_index++;
         });
 
         /* Refresh orders table */

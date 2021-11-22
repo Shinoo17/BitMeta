@@ -20,7 +20,7 @@
         $total = $_POST["total"];
         $total = floor($total * 10000) / 10000;
         $newBalance = $USDT - $total;
-        //if( $newBalance < 0 ) { die(); }
+        if( $newBalance < 0 ) { die(); }
         if($type == "limit"){
             $price = $_POST["price"];
             $amount = $_POST["amount"];
@@ -42,7 +42,7 @@
         $amount = $_POST["amount"];
         $amount = floor($amount * 10000) / 10000;
         $newBalance = $coin - $amount;
-        //if( $newBalance < 0 ) { die(); }
+        if( $newBalance < 0 ) { die(); }
         if($type == "limit"){
             $price = $_POST["price"];
             $total = $_POST["total"];
@@ -56,7 +56,7 @@
         $sql_wallet = "UPDATE wallet SET Amount='$newBalance' WHERE User_ID='$User_ID' && Coin_ID='$coin_id'";
     }
     $conn->exec($sql_order);
-    //$conn->exec($sql_wallet);
+    $conn->exec($sql_wallet);
     $conn = null;
     echo json_encode( array(
         "done" => "done"

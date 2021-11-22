@@ -24,11 +24,14 @@
     
     <link rel="stylesheet" href="css/exchangeStyle.css">
     <title>Buy&Sell</title>
+
 </head>
 <body>
-    Nav bar
+    <?php include"nav-edit.php"?>
+    <div class="sticky-top mt-2" style="width: 18%; float: right; top: 15px" id="notification-alert">
+        
+    </div>
     <div class="container">
-        <div>ซื้อ</div>
         <div class="row justify-content-center mt-5" style="padding-top: 15vh;">
             <div class="col-lg-5 col-md-8">
                 <div class="card" style="padding: 15px;">
@@ -63,6 +66,9 @@
                                         </svg>
                                     </span>
                                 </span>
+                            </div>
+                            <div>
+                                Avaliable <span id="myUSDT">-</span> USDT
                             </div>
                         </center>
                         <form action="database/BuySellProcess.php" method="POST">
@@ -114,7 +120,7 @@
             
         })
         $('#USDT').keyup(function (){
-            let cal = Math.floor($(this).val() * 33.5 * 10000) / 10000;
+            let cal = Math.floor($(this).val() * 33.5 * 100) / 100;
             if(cal > 0){
                 $('#Baht').val(cal);
             }else{
@@ -122,6 +128,72 @@
             }
             
         })
+        /* Get user wallet data */
+        function getWalletData(){
+            $.ajax({
+                url: 'database/getWalletData.php', type: 'post', dataType: 'json',
+                success: function(response){
+
+                    $('#myUSDT').text(response["USDT"]);
+
+                }
+            });
+        }
+        getWalletData()
+
+        let alert_index = 1;        /* Use for Alert notification   */
+
+        function createAlert(text, color, timeOut, id){
+            $alert = "<div class='alert alert-" + color + " alert-dismissible fade show FadeIn' id='alert-" + id + "'>\
+                " + text + " <button type='button' class='btn-close'></button></div>";
+            $('#notification-alert').append($alert)
+
+            let closeFunction = function(){
+                $(".btn-close").click(function() {
+                    $(this)
+                        .parent(".alert")
+                        .addClass("FadeOut");
+                    setTimeout(() => { $(this).parent(".alert").hide(); }, 150);
+                });
+            }
+            closeFunction();
+            setTimeout(() => {
+                $("#alert-" + id).addClass("FadeOut");
+                setTimeout(() => { $("#alert-" + id).hide(); }, 250);
+            }, timeOut);
+        }
+
+        <?php 
+            if(isset($_SESSION["error"])){
+                if($_SESSION["error"]=="NoBank"){
+        ?>
+                    createAlert("<strong>Failed! </strong>No bank account", "danger", 10000, alert_index)
+                    alert_index++;  
+        <?php
+                    unset($_SESSION["error"]);
+                } else if($_SESSION["error"]=="NotEnoughCoin") {
+        ?>
+                    createAlert("<strong>Failed! </strong>Not Enough USDT", "danger", 10000, alert_index)
+                    alert_index++;  
+        <?php
+                    unset($_SESSION["error"]);
+                }
+            } else if(isset($_SESSION["success"])) {
+                if($_SESSION["success"]=="Buy"){
+        ?>
+                    createAlert("<strong>Success! </strong>Buy USDT Success", "success", 10000, alert_index)
+                    alert_index++;  
+        <?php       unset($_SESSION["success"]);
+
+                } else if($_SESSION["success"]=="Sell"){ ?>
+        
+                    createAlert("<strong>Success! </strong>Sold USDT Success", "success", 10000, alert_index)
+                    alert_index++;  
+        <?php       unset($_SESSION["success"]);
+
+                }
+            }
+        ?>
     </script>
 
 </body>

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap%27');
+
+body{
+    font-family: 'Quicksand';
+    background-color:#10122d;
+    overflow:hidden;
+  }
+  h1{
+    transition:500ms;
+    text-align:center;
+    width:100%;
+    position:absolute;
+    color:#10122d;
+    opacity:0.3;
+  }
+  .topRight{
+    position:absolute;
+    top:5.8%;
+    right:0%;
+    height:100%;
+    width:50%;
+    transition:800ms;
+    background-color:#10122d;
+  }
+  .topLeft{
+    position:absolute;
+    top:5.8%;
+    left:0%;
+    height:100%;
+    width:50%;
+    transition:800ms;
+    background-color:#10122d;
+  }
+  .topLeft:hover,.topRight:hover{
+    cursor:pointer;
+  }
+  .topLeft:hover > h1, .topRight:hover > h1
+  {
+    opacity:1;
+  }

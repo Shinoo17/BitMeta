@@ -20,13 +20,14 @@
     <title>BitMeta reset Password</title>
 </head>
 <body>
+    <?php include"nav-edit.php"?>
     <div class="container">
         <div class="row justify-content-center" style="padding-top: 25vh;">
             <div class="col-md-8 col-lg-5">
                 <div class="wrap d-md-flex">
                     <div class="reset-warp p-4 p-lg-5">
                         <span class="mb-5" style="font-size: 26px;">Reset Password</span>
-                        <form action="#" class="mt-3">
+                        <form action="database/resetDBPassword.php" method="POST" class="mt-3">
                             <div class="form-group mb-3">
                                 <label>Email</label>
                                 <input type="email" class="form-control mt-2" placeholder="Email" name="email" required>

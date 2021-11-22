@@ -27,6 +27,7 @@
     <title>BitMeta Login</title>
 </head>
 <body>
+    <?php include"nav-edit.php"?>
     <div class="container">
         <div class="row justify-content-center" style="padding-top: 25vh;">
             <div class="col-md-12 col-lg-9">

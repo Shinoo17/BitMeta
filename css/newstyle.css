@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap%27');
+
+body {
+    font-family: 'Quicksand';
+    background:#10122d;
+    position: relative;
+    overflow: overlay;
+}
+.card {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    background: #d9d9e6;
+}

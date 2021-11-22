@@ -12,13 +12,10 @@
     $result = $conn->query($sql);
     if($result->rowCount()==1){
         $data = $result->fetch(PDO::FETCH_ASSOC);
-        if( !isset($_POST['remember-me']) ){
-            session_set_cookie_params(0);
-        }
         $_SESSION["Username"] = $username;
         $_SESSION["User_ID"] = $data["User_ID"];
         $_SESSION["session_id"] = session_id();
-        header("location: ../index.php");
+        header("location: ../login.php");
         die();
     }else{
         header("location: ../login.php");

@@ -23,31 +23,14 @@
     <title>BitMeta Market</title>
 </head>
 <body>
+    <?php include"nav-edit.php"?>
     <!-- Notification -->
     <div class="sticky-top mt-2" style="width: 18%; float: right; top: 15px" id="notification-alert">
         
     </div>
 
-    <!-- navbar -->
-    <nav class="navbar navbar-expand navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.php"><i class="bi bi-house-door-fill"></i>Home</a>
-            <a class="navbar-link" href="market.php"><i class="bi bi-currency-exchange"></i>Market</a>
-            <a class="navbar-link" href="news.php"><i class="bi bi-file-earmark-text"></i>Announcement</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php"><i class="bi bi-pencil-square"></i> เข้าสู่ระบบ</a>
-                    <a class="nav-link" href="database/logout.php"><i class="bi bi-pencil-square"></i> Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    
-
-    <br><br><br>
     <!-- TradingView -->
-    <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container" style="margin-top: 100px;">
         <div id="watchlist"></div>
         <script type="text/javascript">
             let td = new TradingView.widget(
@@ -90,14 +73,14 @@
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 col-sm-8">
                 <span class="thai-font">เลือกเหรียญ</span>
-                <div class="dropdown">
+                <div class="myDropdown">
                     <div class="select">
                         <img src="image/symbol/BTC.png" class="mini-symbol" id="show-select-symbol">&nbsp; 
                         <span>Select coin</span>
                         <i class="bi bi-chevron-left"></i>
                     </div>
                     <input type="hidden" name="coin">
-                    <ul class="dropdown-menu">
+                    <ul class="myDropdown-menu">
                       <li id="BTC"><img src="image/symbol/BTC.png" class="mini-symbol">&nbsp; Bitcoin / USDT</li>
                       <li id="ETH"><img src="image/symbol/ETH.png" class="mini-symbol">&nbsp; ETH / USDT</li>
                       <li id="BNB"><img src="image/symbol/BNB.png" class="mini-symbol">&nbsp; BNB / USDT</li>
@@ -136,7 +119,7 @@
                     <!-- Buy ราคา -->
                     <div class="input-group mt-2">
                         <div class="input-group-prepend"><span class="input-group-text left-span">ราคา $</span></div>
-                        <input type="number" class="form-control shadow-none price-input" id="buy-price" 
+                        <input type="number" class="form-control shadow-none price-input" id="buy-price" step="0.0001"
                             placeholder="ราคา" autocomplete="off" name="price" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append"><span class="input-group-text right-span" id="price-buy">USDT</span></div>
                     </div>
@@ -144,7 +127,7 @@
                     <!-- Buy จำนวน -->
                     <div class="input-group mt-3" id="buy-amount-group">
                         <div class="input-group-prepend"><span class="input-group-text left-span">จำนวน</span></div>
-                        <input type="number" class="form-control shadow-none" id="buy-amount" 
+                        <input type="number" class="form-control shadow-none" id="buy-amount" step="0.0001"
                             placeholder="จำนวน" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append"><span class="input-group-text right-span Cryptocurrency" id="coin-symbol-buy">Coin</span></div>
                     </div>
@@ -158,7 +141,7 @@
                     <!-- Buy ทั้งหมด -->
                     <div class="input-group mt-3" id="buy-total-group">
                         <div class="input-group-prepend"><span class="input-group-text left-span">ทั้งหมด</span></div>
-                        <input type="number" class="form-control shadow-none"  id="buy-total"
+                        <input type="number" class="form-control shadow-none"  id="buy-total" step="0.0001"
                             placeholder="ทั้งหมด" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append"><span class="input-group-text right-span" id="price-buy">USDT</span></div>
                     </div>
@@ -188,7 +171,7 @@
                     <!-- Sell ราคา -->
                     <div class="input-group mt-2">
                         <div class="input-group-prepend"><span class="input-group-text left-span">ราคา $</span></div>
-                        <input type="number" class="form-control shadow-none price-input"  id="sell-price"
+                        <input type="number" class="form-control shadow-none price-input"  id="sell-price" step="0.0001"
                             placeholder="ราคา" autocomplete="off" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append"><span class="input-group-text right-span" id="price-sell">USDT</span></div>
                     </div>
@@ -196,7 +179,7 @@
                     <!-- Sell จำนวน -->
                     <div class="input-group mt-3" id="sell-amount-group">
                         <div class="input-group-prepend"><span class="input-group-text left-span">จำนวน</span></div>
-                        <input type="number" class="form-control shadow-none" id="sell-amount"
+                        <input type="number" class="form-control shadow-none" id="sell-amount" step="0.0001"
                             placeholder="จำนวน" autocomplete="off" name="amount" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append"><span class="input-group-text right-span Cryptocurrency" id="coin-symbol-sell">Coin</span></div>
                     </div>
@@ -210,7 +193,7 @@
                     <!-- Sell ทั้งหมด -->
                     <div class="input-group mt-3" id="sell-total-group">
                         <div class="input-group-prepend"><span class="input-group-text left-span">ทั้งหมด</span></div>
-                        <input type="number" class="form-control shadow-none" id="sell-total"
+                        <input type="number" class="form-control shadow-none" id="sell-total" step="0.0001"
                             placeholder="ทั้งหมด" autocomplete="off" name="total" onkeypress="return event.charCode != 45 && event.charCode != 43" required>
                         <div class="input-group-append"><span class="input-group-text right-span" id="price-sell">USDT</span></div>
                     </div>
@@ -229,7 +212,7 @@
         </div>
 
         <!-- Order table -->
-        <div class="row mt-3 justify-content-center" style="padding-bottom: 250px;">
+        <div class="row mt-4 justify-content-center" style="padding-bottom: 250px;">
             <div class="col-lg-10 border border-secondary table-responsive">
                 <table class="table" style="color: #c9c9c9;">
                     <div class="mt-3">
@@ -337,22 +320,22 @@
         });
 
         /*Dropdown Menu*/
-        $('.dropdown').click(function () {
+        $('.myDropdown').click(function () {
             $(this).attr('tabindex', 1).focus();
             $(this).toggleClass('active');
-            $(this).find('.dropdown-menu').slideToggle(300);
+            $(this).find('.myDropdown-menu').slideToggle(300);
         });
-        $('.dropdown').focusout(function () {
+        $('.myDropdown').focusout(function () {
             $(this).removeClass('active');
-            $(this).find('.dropdown-menu').slideUp(300);
+            $(this).find('.myDropdown-menu').slideUp(300);
         });
-        $('.dropdown .dropdown-menu li').click(function () {
+        $('.myDropdown .myDropdown-menu li').click(function () {
             $('#show-select-symbol').attr('src', $(this).find('img').attr('src'));
-            $(this).parents('.dropdown').find('span').text($(this).text());
-            $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+            $(this).parents('.myDropdown').find('span').text($(this).text());
+            $(this).parents('.myDropdown').find('input').attr('value', $(this).attr('id'));
             $('.Cryptocurrency').text($(this).attr('id'));
             $('.symbol').val($(this).attr('id'));
-            symbol = $(this).parents('.dropdown').find('input').val();
+            symbol = $(this).parents('.myDropdown').find('input').val();
             if(walletData!=null){
                 $('#crypto_coin').text(walletData[symbol]);
             }
@@ -636,9 +619,14 @@
                     success: function(response){
                         refreshOpenOrders()
                         clearInputField()
+                        getWalletData()
                         createAlert("<strong>Success! </strong>create order buy", "success", 10000, alert_index)
                         alert_index++;
                         window.$("#placeOrderSuccess").modal("show");
+                    },
+                    error: function(xhr, status, error){
+                        createAlert("<strong>Failed to open order! </strong>You don't have enough USDT!", "danger", 10000, alert_index)
+                        alert_index++;
                     }
                 });
             }
@@ -674,10 +662,15 @@
                     success: function(response){
                         refreshOpenOrders()
                         clearInputField()
+                        getWalletData()
                         createAlert("<strong>Success! </strong>create order sell", "success", 10000, alert_index)
                         alert_index++;
                         window.$("#placeOrderSuccess").modal("show");
                     },
+                    error: function(xhr, status, error){
+                        createAlert("<strong>Failed to open order! </strong>You don't have enough coin!", "danger", 10000, alert_index)
+                        alert_index++;
+                    }
                 });
             }
         })
@@ -731,21 +724,36 @@
         }
 
         /* sort orders by user select */
+
         $('.table-sort').each(function(){
             $(this).click(function(){
                 /* Lowest = up arrow */
                 /* Highest = down arrow */
-                /* Lowest -> Highest */
-                if($(this).find('i').hasClass("bi-caret-up-fill")){
+                /* Highest -> Lowest */ 
+                if($(this).find('i').hasClass("bi-caret-down-fill")){
+                    $(this).find('i').removeClass("bi-caret-down-fill")
+                    orderBy = "Time DESC";
+                } else if($(this).find('i').hasClass("bi-caret-up-fill")) {
                     $(this).find('i').removeClass("bi-caret-up-fill")
                     $(this).find('i').addClass("bi-caret-down-fill")
-                    orderBy = $(this).text() + " ASC";
+                    if($(this).text() == "Coin "){
+                        orderBy = "Symbol DESC";
+                    } else if ($(this).text() == "Type " || $(this).text() == "Side " ){
+                        orderBy = $(this).text() + "DESC ,Time DESC";
+                    } else {
+                        orderBy = $(this).text() + "DESC";
+                    }
                 } else {
-                    /* Highest -> Lowest */ 
                     $('.table-sort').find('i').removeClass("bi-caret-down-fill")
                     $('.table-sort').find('i').removeClass("bi-caret-up-fill")
                     $(this).find('i').addClass("bi-caret-up-fill")
-                    orderBy = $(this).text() + "DESC";
+                    if($(this).text() == "Coin "){
+                        orderBy = "Symbol ASC";
+                    } else if ($(this).text() == "Type " || $(this).text() == "Side " ){
+                        orderBy = $(this).text() + ",Time ASC";
+                    } else{
+                        orderBy = $(this).text() + "ASC";
+                    }
                 }
                 refreshOpenOrders();
             })
